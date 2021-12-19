@@ -1,0 +1,75 @@
+@import './colors.scss';
+
+/*CLASES FORMATEADORAS*/
+
+/*BASICAS*/
+.flex_columna{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flex_columna_izquierda{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+.flex_fila{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor{
+    width: 100vw;
+    height: 100vh;
+    background-color: $claro;
+    color: $oscuro;
+}
+/*FORMULARIOS*/
+.formulario{
+    width: 30em;
+    background-color: $principal;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 10px 1px $oscuro;
+    h2{
+        margin: 0.5em 0;
+        width: calc(80% + 1em);
+        text-align: left;
+    }
+}
+.campo_formulario{
+    margin-top: 1em;
+    width: 85%;
+    label{
+        text-align: left;
+    }
+    input{
+        width: 90%;
+        border-radius: 0.25em;
+        padding: 0.5em 1em;
+        margin: 0.75em 0;
+        border: 0 solid;
+        border-radius: 0.4em;
+    }
+    input:focus{
+        outline: 0.2em solid $principal-claro;
+        background-color: $oscuro;
+        color: $principal-claro;
+    }
+}
+.boton_formulario{
+    width: 7em;
+    margin: 3em 0 1em 0;
+    padding: 0.5em 2em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    background-color: $oscuro;
+    color: $principal-claro;
+    transition: 0.3s;
+}
+.boton_formulario:hover{
+    background-color: $principal-claro;
+    color: $oscuro;
+}

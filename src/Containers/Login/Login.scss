@@ -1,0 +1,12 @@
+@import '../../style/colors.scss';
+@import '../../style/formato.scss';
+
+.contenedor{
+    background-color: $principal-claro;
+}
+img{
+    position: absolute;
+    bottom:1em;
+    left: 1em;
+    width: 8em;
+}
