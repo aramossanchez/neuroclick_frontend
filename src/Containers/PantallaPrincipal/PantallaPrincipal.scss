@@ -24,6 +24,7 @@
     height: 80%;
     background-color: $claro;
     border-radius: 0.25em;
+    overflow: scroll;
 }
 .contenedor_der{
     width: 76%;
@@ -31,23 +32,24 @@
     border-radius: 0 0 0.5em 0.5em;
 }
 
-/*FORMATO DE PESTAÑAS SUPERIORES*/
-.pestañas{
-    position: relative;
+/*FORMATO DE VISTAS SUPERIORES*/
+.vistas{
+    position: absolute;
     height: 2em;
-    top: -1.9em;
-    .pestaña{
-        padding: 0.5em 0;
+    top: -1.92em;
+    width: 100%;
+    .vista{
+        padding: 0.5em 1em;
         clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
         background-color: $principal;
-        width: 20em;
+        width: 10%;
         font-size: 0.8em;
     }
-    .pestaña_activa{
+    .vista_activa{
         background-color: $principal;
         cursor: default;
     }
-    .pestaña_no_activa{
+    .vista_no_activa{
         background-color: $claro;
         cursor: pointer;
     }

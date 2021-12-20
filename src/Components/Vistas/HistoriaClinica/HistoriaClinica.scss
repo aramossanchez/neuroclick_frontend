@@ -1,0 +1,48 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.contenedor_historia_clinica{
+    overflow-y: scroll;
+    h2{
+        text-align: left;
+        margin: 0.5em;
+    }
+}
+
+/*BLOQUES DE DATOS DE USUARIO*/
+.label_historia_clinica_datos{
+    text-align: left;
+    width: 10%;
+    label{
+        margin:0.65em 0;
+    }
+}
+.input_historia_clinica_datos{
+    width: 90%;
+    input{
+        width: 96%;
+        margin:0.5em 0;
+        padding: 0.5em 0.5em;
+        outline: none;
+        border: none;
+    }
+}
+
+/*BLOQUES DE DATOS SOCIAL*/
+.label_historia_clinica_social{
+    text-align: left;
+    width: 25%;
+    label{
+        margin:0.65em 0;
+    }
+}
+.input_historia_clinica_social{
+    width: 75%;
+    input{
+        width: 95%;
+        margin:0.5em 0;
+        padding: 0.5em 0.5em;
+        outline: none;
+        border: none;
+    }
+}
