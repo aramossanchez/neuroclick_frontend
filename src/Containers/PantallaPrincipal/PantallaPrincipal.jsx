@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './PantallaPrincipal.scss';
-import Header from '../../Components/Header/Header.jsx'
+import Header from '../../Components/Header/Header.jsx';
+import { connect } from 'react-redux';
+import { HISTORIACLINICA } from '../../redux/types';
 
 /*IMPORTACIÓN DE VISTAS*/
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
 
-const PantallaPrincipal = () =>{
+const PantallaPrincipal = (props) =>{
+
+    useEffect(()=>{
+        console.log(props.datosVistas);
+    },[])
 
     let vistas = document.getElementsByClassName('vista');
 
-    const activarVista = (e) =>{
+    const activarVista = (e,vista) =>{
         for (let i = 0; i < vistas.length; i++) {
             vistas[i].classList.add('vista_no_activa');
         }
         e.target.classList.remove('vista_no_activa');
         e.target.classList.add('vista_activa');
+        props.dispatch({type:HISTORIACLINICA, payload: vista});
     }
 
     return(
@@ -32,8 +39,8 @@ const PantallaPrincipal = () =>{
                 </div>
                 <div className="contenedor_der bloque_principal">
                     <div className="vistas flex_fila_izquierda">
-                        <div className="vista vista_activa" onClick={(e)=>activarVista(e)}>Historia Clínica</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Datos Médicos</div>
+                        <div className="vista vista_activa" onClick={(e)=>activarVista(e, 'historiaclinica')}>Historia Clínica</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'datosmedicos')}>Datos Médicos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Fisioterapeuta</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>T. Ocupacional</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Neuropsicologa</div>
@@ -43,11 +50,18 @@ const PantallaPrincipal = () =>{
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Informes</div>
                     </div>
+                    {props.datosVistas.vista === "historiaclinica"
+                    ?
                     <HistoriaClinica/>
+                    :
+                    null}
+                    
                 </div>
             </div>
         </div>
     )
 }
 
-export default PantallaPrincipal;
+export default connect((state)=>({
+    datosVistas: state.datosVistas
+}))(PantallaPrincipal);
