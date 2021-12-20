@@ -1,0 +1,34 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.pruebas_disponibles{
+    width: 35%;
+    text-align: left;
+}
+.prueba_individual{
+    margin-top: 1em;
+    div{
+        margin-right: 1em;
+    }
+    img{
+        width: 1.5em;
+        cursor: pointer;
+    }
+    .nombre_prueba{
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+}
+/*EL LISTADO DE LAS PRUEBAS LANZADAS, OCULTO POR DEFECTO*/
+.historico_prueba{
+    max-height: 0em;
+    transform: scaleY(0);
+    div{
+        margin:0.75em 0.25em;
+        cursor: pointer;
+    }
+}
+.prueba_actual{
+    width: 62%;
+}

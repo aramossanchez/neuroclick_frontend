@@ -16,6 +16,14 @@ hr{
     background-color: $oscuro;
     margin: 1.5em 0 1em 2.5%;
 }
+.boton{
+    background-color: $oscuro;
+    color: $principal-claro;
+    padding: 0.25em 0.5em;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
 /*COLUMNAS*/
 .flex_columna{
     display: flex;

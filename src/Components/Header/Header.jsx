@@ -8,7 +8,7 @@ const Header = () =>{
     const navigate = useNavigate();
 
     const logout = () =>{
-        navigate("/aplicacion");
+        navigate("/");
     }
 
     const perfil = () =>{
@@ -22,7 +22,7 @@ const Header = () =>{
             </div>
             <div className="enlaces_header">
                 <a href="">Perfil</a>
-                <a href="">Salir</a>
+                <a href="/">Salir</a>
             </div>
             
         </div>

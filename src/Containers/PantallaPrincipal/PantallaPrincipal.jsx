@@ -7,6 +7,7 @@ import { HISTORIACLINICA } from '../../redux/types';
 /*IMPORTACIÓN DE VISTAS*/
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
 import DatosMedicos from '../../Components/Vistas/DatosMedicos/DatosMedicos';
+import Fisioterapeuta from '../../Components/Vistas/Fisioterapeuta/Fisioterapeuta';
 
 const PantallaPrincipal = (props) =>{
 
@@ -42,7 +43,7 @@ const PantallaPrincipal = (props) =>{
                     <div className="vistas flex_fila_izquierda">
                         <div className="vista vista_activa" onClick={(e)=>activarVista(e, 'historiaclinica')}>Historia Clínica</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'datosmedicos')}>Datos Médicos</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Fisioterapeuta</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'fisioterapeuta')}>Fisioterapeuta</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>T. Ocupacional</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Neuropsicologa</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Logopeda</div>
@@ -60,6 +61,11 @@ const PantallaPrincipal = (props) =>{
                     {props.datosVistas.vista === "datosmedicos"
                     ?
                     <DatosMedicos/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "fisioterapeuta"
+                    ?
+                    <Fisioterapeuta/>
                     :
                     null}
                     
