@@ -12,6 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Exo', sans-serif;
 }
+/*QUITO ESTILOS DE TEXTO EN EL QUE APARECE DESCRIPCION AL DEJAR EL CURSOR*/
+abbr{
+  all: unset;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

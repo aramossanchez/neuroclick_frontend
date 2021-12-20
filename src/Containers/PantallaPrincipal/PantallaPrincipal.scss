@@ -1,0 +1,54 @@
+@import '../../style/colors.scss';
+@import '../../style/formato.scss';
+
+/*FORMATO DE BLOQUES*/
+.bloques_principal{
+    width: 100%;
+    height: 86%;
+    margin-bottom: 0.5em;
+}
+.bloque_principal{
+    background-color: $principal;
+    height: 100%;
+    border-radius: 0.5em;
+}
+.contenedor_izq{
+    width: 22%;
+    h2{
+        margin-top: 0.5em;
+    }
+}
+.contenedor_usuarios{
+    margin: 1em 0;
+    width: 85%;
+    height: 80%;
+    background-color: $claro;
+    border-radius: 0.25em;
+}
+.contenedor_der{
+    width: 76%;
+    position: relative;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+/*FORMATO DE PESTAÑAS SUPERIORES*/
+.pestañas{
+    position: relative;
+    height: 2em;
+    top: -1.9em;
+    .pestaña{
+        padding: 0.5em 0;
+        clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+        background-color: $principal;
+        width: 20em;
+        font-size: 0.8em;
+    }
+    .pestaña_activa{
+        background-color: $principal;
+        cursor: default;
+    }
+    .pestaña_no_activa{
+        background-color: $claro;
+        cursor: pointer;
+    }
+}

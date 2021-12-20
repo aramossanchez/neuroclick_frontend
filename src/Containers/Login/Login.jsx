@@ -1,8 +1,17 @@
 import React from 'react';
 import './Login.scss';
-import logo from '../../img/logo-login.png'
+import { useNavigate } from 'react-router-dom';
+import logo from '../../img/logo-login.png';
 
 const Login = () =>{
+
+    const navigate = useNavigate();
+
+    /*ENTRAR A LA APLICACIÓN*/
+    const entrar = () =>{
+        navigate("/aplicacion");
+    }
+
     return(
         <div className='contenedor_login contenedor flex_columna'>
             <img src={logo} alt="Logo" />
@@ -16,8 +25,8 @@ const Login = () =>{
                     <label htmlFor="clave_acceso">Contraseña de acceso:</label>
                     <input type="password" name="clave_acceso" placeholder='Introduce tu contraseña'/>
                 </div>
-                <div className="boton_formulario">
-                    LOGIN
+                <div className="boton_formulario" onClick={()=>entrar()}>
+                <abbr title="Entrar en la aplicación">ENTRAR</abbr>
                 </div>
             </div>
         </div>

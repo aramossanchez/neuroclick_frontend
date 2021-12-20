@@ -3,11 +3,19 @@
 /*CLASES FORMATEADORAS*/
 
 /*BASICAS*/
+
+/*COLUMNAS*/
 .flex_columna{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.flex_columna_muy_separado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 .flex_columna_izquierda{
     display: flex;
@@ -15,18 +23,45 @@
     align-items: left;
     justify-content: center;
 }
+
+/*FILAS*/
 .flex_fila{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
+.flex_fila_separado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.flex_fila_mas_separado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.flex_fila_muy_separado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.flex_fila_izquierda{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
 .contenedor{
     width: 100vw;
     height: 100vh;
-    background-color: $claro;
+    background-color: $principal-claro;
     color: $oscuro;
 }
+
 /*FORMULARIOS*/
 .formulario{
     width: 30em;
@@ -48,10 +83,11 @@
     input{
         width: 90%;
         border-radius: 0.25em;
-        padding: 0.5em 1em;
+        padding: 0.75em 1em;
         margin: 0.75em 0;
         border: 0 solid;
         border-radius: 0.4em;
+        background-color: $claro;
     }
     input:focus{
         outline: 0.2em solid $principal-claro;
@@ -72,4 +108,27 @@
 .boton_formulario:hover{
     background-color: $principal-claro;
     color: $oscuro;
+}
+
+/*BARRA DE SCROLL*/
+body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+body::-webkit-scrollbar-button:increment,body::-webkit-scrollbar-button {
+    display: none;
+} 
+
+body::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: $oscuro;
+    border-radius: 20px;
+    border: 2px solid $claro;
 }
