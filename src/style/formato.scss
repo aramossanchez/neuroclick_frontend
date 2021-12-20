@@ -23,6 +23,11 @@ hr{
     white-space: nowrap;
     cursor: pointer;
     border-radius: 0.5em;
+    transition: 0.3s;
+}
+.boton:hover{
+    background-color: $principal-claro;
+    color: $oscuro;
 }
 /*COLUMNAS*/
 .flex_columna{
@@ -79,6 +84,12 @@ hr{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+}
+.flex_fila_arriba_izquierda{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: flex-start;
 }
 /*BLOQUES*/

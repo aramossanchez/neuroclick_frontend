@@ -7,7 +7,7 @@ import { HISTORIACLINICA } from '../../redux/types';
 /*IMPORTACIÓN DE VISTAS*/
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
 import DatosMedicos from '../../Components/Vistas/DatosMedicos/DatosMedicos';
-import Fisioterapeuta from '../../Components/Vistas/Fisioterapeuta/Fisioterapeuta';
+import Fisioterapia from '../../Components/Vistas/Fisioterapia/Fisioterapia';
 
 const PantallaPrincipal = (props) =>{
 
@@ -43,10 +43,10 @@ const PantallaPrincipal = (props) =>{
                     <div className="vistas flex_fila_izquierda">
                         <div className="vista vista_activa" onClick={(e)=>activarVista(e, 'historiaclinica')}>Historia Clínica</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'datosmedicos')}>Datos Médicos</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'fisioterapeuta')}>Fisioterapeuta</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'fisioterapia')}>Fisioterapia</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>T. Ocupacional</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Neuropsicologa</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Logopeda</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Neuropsicología</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Logopedia</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Evolutiva</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Seguimientos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
@@ -63,9 +63,9 @@ const PantallaPrincipal = (props) =>{
                     <DatosMedicos/>
                     :
                     null}
-                    {props.datosVistas.vista === "fisioterapeuta"
+                    {props.datosVistas.vista === "fisioterapia"
                     ?
-                    <Fisioterapeuta/>
+                    <Fisioterapia/>
                     :
                     null}
                     
