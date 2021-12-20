@@ -1,0 +1,19 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.datos_medicos_usuario{
+    input{
+        outline: none;
+        margin-right: 1em;
+    }
+    label{
+        margin-right: 0.5em;
+    }
+}
+.bloque_multiples_datos_medicos{
+    background-color: $claro;
+    border-radius: 0.25em;
+    width: 95%;
+    min-height: 10em;
+    margin-bottom: 1em;
+}

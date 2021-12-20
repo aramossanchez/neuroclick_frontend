@@ -6,6 +6,7 @@ import { HISTORIACLINICA } from '../../redux/types';
 
 /*IMPORTACIÓN DE VISTAS*/
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
+import DatosMedicos from '../../Components/Vistas/DatosMedicos/DatosMedicos';
 
 const PantallaPrincipal = (props) =>{
 
@@ -50,9 +51,15 @@ const PantallaPrincipal = (props) =>{
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Informes</div>
                     </div>
+                    {/* ALTERNANCIA DE VISTA EN FUNCION DE QUE PESTAÑA PINCHEMOS */}
                     {props.datosVistas.vista === "historiaclinica"
                     ?
                     <HistoriaClinica/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "datosmedicos"
+                    ?
+                    <DatosMedicos/>
                     :
                     null}
                     
