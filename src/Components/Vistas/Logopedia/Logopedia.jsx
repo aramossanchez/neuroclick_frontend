@@ -1,8 +1,8 @@
 import React from 'react';
-import './Fisioterapia.scss';
+import './Logopedia.scss';
 import '.././VistasProfesiones.scss';
 
-const Fisioterapia = () =>{
+const Logopedia = () =>{
 
     const abrirHistoricoPrueba = (e, historico) =>{
         let lista = document.getElementById(historico);
@@ -23,8 +23,8 @@ const Fisioterapia = () =>{
     }
 
     return(
-        <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
-            <h2>Pruebas de Fisioterapia</h2>
+        <div className='contenedor_logopedia contenedor_vista flex_columna_arriba_izquierda'>
+            <h2>Pruebas de Logopedia</h2>
             <div className="bloque_pruebas flex_fila_arriba_izquierda">
                 <div className='pruebas_disponibles flex_columna_arriba_izquierda mi'>
                     {/* PRUEBAS LANZABLES Y SUS HISTORIALES */}
@@ -335,4 +335,4 @@ const Fisioterapia = () =>{
     )
 }
 
-export default Fisioterapia;
+export default Logopedia;

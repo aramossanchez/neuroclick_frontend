@@ -8,6 +8,9 @@ import { HISTORIACLINICA } from '../../redux/types';
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
 import DatosMedicos from '../../Components/Vistas/DatosMedicos/DatosMedicos';
 import Fisioterapia from '../../Components/Vistas/Fisioterapia/Fisioterapia';
+import TerapiaOcupacional from '../../Components/Vistas/TerapiaOcupacional/TerapiaOcupacional';
+import Neuropsicologia from '../../Components/Vistas/Neuropsicologia/Neuropsicologia';
+import Logopedia from '../../Components/Vistas/Logopedia/Logopedia';
 
 const PantallaPrincipal = (props) =>{
 
@@ -44,9 +47,9 @@ const PantallaPrincipal = (props) =>{
                         <div className="vista vista_activa" onClick={(e)=>activarVista(e, 'historiaclinica')}>Historia Clínica</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'datosmedicos')}>Datos Médicos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'fisioterapia')}>Fisioterapia</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>T. Ocupacional</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Neuropsicología</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Logopedia</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'terapiaocupacional')}>T. Ocupacional</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'neuropsicologia')}>Neuropsicología</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'logopedia')}>Logopedia</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Evolutiva</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Seguimientos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
@@ -66,6 +69,21 @@ const PantallaPrincipal = (props) =>{
                     {props.datosVistas.vista === "fisioterapia"
                     ?
                     <Fisioterapia/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "terapiaocupacional"
+                    ?
+                    <TerapiaOcupacional/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "neuropsicologia"
+                    ?
+                    <Neuropsicologia/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "logopedia"
+                    ?
+                    <Logopedia/>
                     :
                     null}
                     

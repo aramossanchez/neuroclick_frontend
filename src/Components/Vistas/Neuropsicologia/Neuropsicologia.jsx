@@ -1,8 +1,8 @@
 import React from 'react';
-import './Fisioterapia.scss';
+import './Neuropsicologia.scss';
 import '.././VistasProfesiones.scss';
 
-const Fisioterapia = () =>{
+const Neuropsicologia = () =>{
 
     const abrirHistoricoPrueba = (e, historico) =>{
         let lista = document.getElementById(historico);
@@ -23,8 +23,8 @@ const Fisioterapia = () =>{
     }
 
     return(
-        <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
-            <h2>Pruebas de Fisioterapia</h2>
+        <div className='contenedor_neuropsicologia contenedor_vista flex_columna_arriba_izquierda'>
+            <h2>Pruebas de Neuropsicología</h2>
             <div className="bloque_pruebas flex_fila_arriba_izquierda">
                 <div className='pruebas_disponibles flex_columna_arriba_izquierda mi'>
                     {/* PRUEBAS LANZABLES Y SUS HISTORIALES */}
@@ -82,6 +82,21 @@ const Fisioterapia = () =>{
                             </div>
                         </div>
                         <div className='historico_prueba' id="historico_prueba_4">
+                            <div className=''>Prueba realizada el 12-12-2020</div>
+                            <div className=''>Prueba realizada el 12-03-2021</div>
+                            <div className=''>Prueba realizada el 12-06-2021</div>
+                            <div className=''>Prueba realizada el 12-09-2021</div>
+                        </div>
+                    </div>
+                    <div className="prueba_individual flex_columna_arriba_izquierda mi">
+                        <div className="detalles_prueba flex_columna_arriba_izquierda">
+                            <div className='nombre_prueba'>- Prueba5</div>
+                            <div className="acciones_prueba flex_fila_izquierda">
+                                <div className='boton' onClick={(e)=>abrirHistoricoPrueba(e, 'historico_prueba_5')}>Ver historial</div>
+                                <div className='boton'>Añadir prueba</div>
+                            </div>
+                        </div>
+                        <div className='historico_prueba' id="historico_prueba_5">
                             <div className=''>Prueba realizada el 12-12-2020</div>
                             <div className=''>Prueba realizada el 12-03-2021</div>
                             <div className=''>Prueba realizada el 12-06-2021</div>
@@ -303,27 +318,6 @@ const Fisioterapia = () =>{
                                 </label>
                             </div>
                         </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración11</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion11" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
                     </div>
                     <div className='flex_columna'>
                     <div className="boton">GUARDAR PRUEBA</div>
@@ -335,4 +329,4 @@ const Fisioterapia = () =>{
     )
 }
 
-export default Fisioterapia;
+export default Neuropsicologia;

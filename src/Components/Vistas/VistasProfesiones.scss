@@ -1,0 +1,84 @@
+@import '../../style/colors.scss';
+@import '../../style/formato.scss';
+
+.pruebas_disponibles{
+    width: 35%;
+    text-align: left;
+}
+.prueba_individual{
+    margin-top: 1em;
+    div{
+        margin-right: 1em;
+    }
+    .nombre_prueba{
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+}
+/*EL LISTADO DE LAS PRUEBAS LANZADAS, OCULTO POR DEFECTO*/
+.historico_prueba{
+    max-height: 0em;
+    transform: scaleY(0);
+    div{
+        margin:0.75em 0.25em;
+        cursor: pointer;
+    }
+}
+.bloque_prueba_actual{
+    width: 62%;
+    h3{
+        text-align: left;
+    }
+    .boton{
+        margin-bottom: 1em;
+    }
+}
+.prueba_actual{
+    background-color: $claro;
+    width: 100%;
+    margin: 1em 0;
+    border-radius: 0.5em;
+}
+/*CADA PREGUNTA DE LA PRUEBA ACTUAL, CON SUS INPUT RADIO*/
+.pregunta_individual{
+    padding: 0.25em 0.75em;
+    margin: 1.5em 0;
+    label{
+        position: relative;
+        margin-left:2em;
+    }
+    .puntuacion_prueba input{
+        margin: 0 0.5em;
+        visibility:hidden
+    }
+    i{
+        background: $oscuro;
+        border: 0.1em solid $claro;
+        position: absolute; 
+        width: 1em;
+        height: 1em;
+        border-radius: 5em;
+        left: 0.25em;
+        top: 0;
+        transition: 0.25s;
+    }
+    i:before{
+        content: '';
+        display: block;
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 5em;
+        position: absolute;
+        z-index: 1;
+        left: 0.25em;
+        top: 0.25em;
+        background:$principal-claro;
+        transform: scale(0);
+        opacity: 0;
+    }
+    input[type=radio]:checked + i:before{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
