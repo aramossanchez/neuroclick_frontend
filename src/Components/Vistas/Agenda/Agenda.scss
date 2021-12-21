@@ -1,0 +1,37 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.agenda_profesionales{
+    height: 30em;
+    text-align: left;
+    .profesionales_horarios{
+        margin: 0 2em 0 1em;
+        div{
+            margin: 1em 0;
+        }
+    }
+}
+
+.agenda_semana{
+    width: 60%;
+    height: 100%;
+    background-color: red;
+    .dias_semana{
+        width: 100%;
+        background-color: yellow;
+    }
+    .horas_horarios{
+        width: 100%;
+    }
+    .horas_jornada{
+        width: 10%;
+        div{
+            margin: 1em 0;
+        }
+    }
+    .horarios{
+        background-color: $claro;
+        width: 90%;
+        height: 100%;
+    }
+}

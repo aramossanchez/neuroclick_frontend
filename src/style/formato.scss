@@ -92,6 +92,12 @@ hr{
     align-items: flex-start;
     justify-content: flex-start;
 }
+.flex_fila_arriba_derecha{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
 /*BLOQUES*/
 .contenedor{
     width: 100vw;

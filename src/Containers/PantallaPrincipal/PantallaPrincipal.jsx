@@ -13,12 +13,9 @@ import Neuropsicologia from '../../Components/Vistas/Neuropsicologia/Neuropsicol
 import Logopedia from '../../Components/Vistas/Logopedia/Logopedia';
 import Evolutiva from '../../Components/Vistas/Evolutiva/Evolutiva';
 import Seguimientos from '../../Components/Vistas/Seguimientos/Seguimientos';
+import Agenda from '../../Components/Vistas/Agenda/Agenda';
 
 const PantallaPrincipal = (props) =>{
-
-    useEffect(()=>{
-        console.log(props.datosVistas);
-    },[])
 
     let vistas = document.getElementsByClassName('vista');
 
@@ -54,7 +51,7 @@ const PantallaPrincipal = (props) =>{
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'logopedia')}>Logopedia</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'evolutiva')}>Evolutiva</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'seguimientos')}>Seguimientos</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'agenda')}>Agenda</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Informes</div>
                     </div>
                     {/* ALTERNANCIA DE VISTA EN FUNCION DE QUE PESTAÑA PINCHEMOS */}
@@ -96,6 +93,11 @@ const PantallaPrincipal = (props) =>{
                     {props.datosVistas.vista === "seguimientos"
                     ?
                     <Seguimientos/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "agenda"
+                    ?
+                    <Agenda/>
                     :
                     null}
                     
