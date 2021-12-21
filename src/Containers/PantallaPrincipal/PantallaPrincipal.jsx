@@ -11,6 +11,8 @@ import Fisioterapia from '../../Components/Vistas/Fisioterapia/Fisioterapia';
 import TerapiaOcupacional from '../../Components/Vistas/TerapiaOcupacional/TerapiaOcupacional';
 import Neuropsicologia from '../../Components/Vistas/Neuropsicologia/Neuropsicologia';
 import Logopedia from '../../Components/Vistas/Logopedia/Logopedia';
+import Evolutiva from '../../Components/Vistas/Evolutiva/Evolutiva';
+import Seguimientos from '../../Components/Vistas/Seguimientos/Seguimientos';
 
 const PantallaPrincipal = (props) =>{
 
@@ -50,8 +52,8 @@ const PantallaPrincipal = (props) =>{
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'terapiaocupacional')}>T. Ocupacional</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'neuropsicologia')}>Neuropsicología</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'logopedia')}>Logopedia</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Evolutiva</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Seguimientos</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'evolutiva')}>Evolutiva</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'seguimientos')}>Seguimientos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Agenda</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Informes</div>
                     </div>
@@ -84,6 +86,16 @@ const PantallaPrincipal = (props) =>{
                     {props.datosVistas.vista === "logopedia"
                     ?
                     <Logopedia/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "evolutiva"
+                    ?
+                    <Evolutiva/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "seguimientos"
+                    ?
+                    <Seguimientos/>
                     :
                     null}
                     

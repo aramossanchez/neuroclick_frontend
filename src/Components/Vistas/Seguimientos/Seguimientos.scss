@@ -1,0 +1,58 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.contenedor_seguimientos{
+    h3{
+        text-align: left;
+        margin: 1em 0 0 1em;
+    }
+    .columnas_seguimientos{
+        width: 90%;
+        margin: 1em 0 0 5%;
+        text-align: left;
+        padding-left: 0.5em;
+        .columna_individual_seguimiento_corto{
+            width: 15%;
+        }
+        .columna_individual_seguimiento_largo{
+            width: 70%;
+        }
+
+    }
+    .total_seguimientos{
+        width: 90%;
+        margin: 1em 0 0 5%;
+        text-align: left;
+        padding-left: 0.5em;
+        overflow-y: scroll;
+        .seguimiento_individual_corto, .seguimiento_individual_largo{
+            margin: 0.5em 0;
+            cursor: pointer;
+        }
+        .seguimiento_individual_corto{
+            width: 15%;
+        }
+        .seguimiento_individual_largo{
+            width: 70%;
+        }
+    }
+    .total_seguimientos{
+        width: 90%;
+        height: 60%;
+        background-color: $claro;
+        margin: 0.25em 0 0 5%;
+    }
+    textarea{
+        all:unset;
+        text-align: left;
+        padding: 0.5em;
+        background-color: $claro;
+        color: $oscuro;
+        width: 90%;
+        margin: 1em 0 1em 5%;
+        height: 50%;
+    }
+    .boton{
+        margin-bottom: 1em;
+    }
+}

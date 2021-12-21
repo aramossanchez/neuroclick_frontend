@@ -326,7 +326,7 @@ const Logopedia = () =>{
                         </div>
                     </div>
                     <div className='flex_columna'>
-                    <div className="boton">GUARDAR PRUEBA</div>
+                        <div className="boton">GUARDAR PRUEBA</div>
                     </div>
                 </div>
             </div>
