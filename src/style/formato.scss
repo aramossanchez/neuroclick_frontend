@@ -36,6 +36,18 @@ hr{
     align-items: center;
     justify-content: center;
 }
+.flex_columna_arriba{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: flex-start;
+}
+.flex_columna_arriba_derecha{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    justify-content: flex-start;
+}
 .flex_columna_muy_separado{
     display: flex;
     flex-direction: column;

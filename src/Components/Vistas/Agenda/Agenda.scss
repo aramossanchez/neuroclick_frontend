@@ -2,36 +2,86 @@
 @import '../../../style/formato.scss';
 
 .agenda_profesionales{
-    height: 30em;
+    height: 28em;
     text-align: left;
+    /*CONTENEDOR DE LAS PROFESIONES*/
     .profesionales_horarios{
-        margin: 0 2em 0 1em;
+        width: 15%;
+        margin: 1em 2em 0 1em;
+    }
+    /*CONTENEDOR DE CADA PROFESION CON SU COLOR CORRESPONDIENTE*/
+    .profesion_horario{
         div{
-            margin: 1em 0;
+            margin:2.5em 0;
         }
     }
-}
-
-.agenda_semana{
-    width: 60%;
-    height: 100%;
-    background-color: red;
-    .dias_semana{
-        width: 100%;
-        background-color: yellow;
+    .color_fisioterapia, .color_terapia_ocupacional, .color_neuropsicologia, .color_logopedia{
+        width: 2em;
+        height: 1.5em;
+        border-radius: 0.3em;
+        margin-left: 1em;
+        cursor: pointer;
     }
+    .color_fisioterapia{
+        background-color: rgb(96, 255, 144);
+    }
+    .color_terapia_ocupacional{
+        background-color: rgb(255, 144, 246);
+    }
+    .color_neuropsicologia{
+        background-color: rgb(179, 1, 250);
+    }
+    .color_logopedia{
+        background-color: rgb(255, 195, 66);
+    }
+}
+/*CONTENEDOR DE HORAS, DIAS Y HORARIO*/
+.agenda_semana{
+    margin-top: 1em;
+    width: 74%;
+    height: 100%;
+    padding: 0;
+    .mes_horarios{
+        width: 90%;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-bottom: 2px solid $principal-claro;
+        margin-bottom: 0.5em;
+    }
+    /*CONTENEDOR DE DIAS DE LA SEMANA*/
+    .dias_semana{
+        width: 90%;
+        div{
+            width: 25%;
+            text-align: center;
+        }
+    }
+    /*CONTENEDOR DE LAS HORAS Y DEL HORARIO*/
     .horas_horarios{
         width: 100%;
     }
+    /*CONTENEDOR DE LAS HORAS*/
     .horas_jornada{
-        width: 10%;
+        width: 8%;
         div{
-            margin: 1em 0;
+            text-align: center;
+            height: 2em;
+            border:0.1em solid $principal;
         }
     }
     .horarios{
         background-color: $claro;
         width: 90%;
         height: 100%;
+        .dia_horarios{
+            width: 25%;
+            height: 2em;
+            border:0.1em solid $principal-claro;
+        }
+    }
+    .elegido{
+        cursor: pointer;
+        background-color: rgb(179, 1, 250);
     }
 }
