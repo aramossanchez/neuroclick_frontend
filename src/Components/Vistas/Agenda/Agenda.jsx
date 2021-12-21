@@ -3,6 +3,19 @@ import './Agenda.scss';
 
 const Agenda = () =>{
 
+    const mesActual = () =>{
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        let fecha = new Date();
+        let mes = fecha.getMonth();
+        return meses[mes];
+    }
+    const diaDelMes = (dia) =>{
+        var dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+        let fecha = new Date();
+        let dia = fecha.getDay()
+        return dia;
+    }
+
     return(
         <div className='contenedor_agenda contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Agenda</h2>
@@ -22,13 +35,13 @@ const Agenda = () =>{
                     </div>
                 </div>
                 <div className="agenda_semana flex_columna_arriba_derecha">
-                    <div className='mes_horarios'>Diciembre</div>
+                    <div className='mes_horarios'>{mesActual()}</div>
                     <div className="dias_semana flex_fila_separado">
-                        <div>Lunes</div>
-                        <div>Martes</div>
-                        <div>Miércoles</div>
-                        <div>Jueves</div>
-                        <div>Viernes</div>
+                        <div>Lunes {diaDelMes()}</div>
+                        <div>Martes {diaDelMes()}</div>
+                        <div>Miércoles {diaDelMes()}</div>
+                        <div>Jueves {diaDelMes()}</div>
+                        <div>Viernes {diaDelMes()}</div>
                     </div>
                     <div className="horas_horarios flex_fila_arriba_derecha">
                         <div className="horas_jornada">
@@ -49,7 +62,7 @@ const Agenda = () =>{
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios elegido'></div>
+                                <div className='dia_horarios cita_neuropsicologia'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
                                 <div className='dia_horarios'></div>
@@ -66,7 +79,7 @@ const Agenda = () =>{
                                 <div className='dia_horarios'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios elegido'></div>
+                                <div className='dia_horarios cita_neuropsicologia'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
@@ -76,14 +89,7 @@ const Agenda = () =>{
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios elegido'></div>
-                                <div className='dia_horarios'></div>
-                            </div>
-                            <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_neuropsicologia'></div>
                                 <div className='dia_horarios'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
@@ -110,7 +116,14 @@ const Agenda = () =>{
                             <div className="fila_horarios flex_fila_separado">
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios elegido'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                            </div>
+                            <div className="fila_horarios flex_fila_separado">
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_neuropsicologia'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                             </div>

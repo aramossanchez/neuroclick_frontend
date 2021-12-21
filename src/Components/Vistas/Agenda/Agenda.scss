@@ -29,7 +29,8 @@
         background-color: rgb(255, 144, 246);
     }
     .color_neuropsicologia{
-        background-color: rgb(179, 1, 250);
+        background: rgb(179,1,250);
+        background: linear-gradient(90deg, rgba(179,1,250,1) 0%, rgba(223,144,255,1) 100%);
     }
     .color_logopedia{
         background-color: rgb(255, 195, 66);
@@ -77,11 +78,12 @@
         .dia_horarios{
             width: 25%;
             height: 2em;
-            border:0.1em solid $principal-claro;
+            border:0.1em solid $principal;
         }
     }
-    .elegido{
+    .cita_neuropsicologia{
         cursor: pointer;
-        background-color: rgb(179, 1, 250);
+        background: rgb(179,1,250);
+        background: linear-gradient(90deg, rgba(179,1,250,1) 0%, rgba(223,144,255,1) 100%);
     }
 }
