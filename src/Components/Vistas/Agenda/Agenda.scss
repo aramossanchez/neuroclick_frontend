@@ -12,28 +12,36 @@
     /*CONTENEDOR DE CADA PROFESION CON SU COLOR CORRESPONDIENTE*/
     .profesion_horario{
         div{
-            margin:2.5em 0;
+            margin:1.5em 0;
         }
     }
-    .color_fisioterapia, .color_terapia_ocupacional, .color_neuropsicologia, .color_logopedia{
-        width: 2em;
-        height: 1.5em;
+    .color_usuario, .color_fisioterapia, .color_terapia_ocupacional, .color_neuropsicologia, .color_logopedia{
         border-radius: 0.3em;
         margin-left: 1em;
-        cursor: pointer;
+        padding: 0.5em;
+        abbr{
+            cursor: pointer;
+        }
+    }
+    .color_usuario{
+        background: rgb(214,216,206);
+        background: linear-gradient(90deg, rgba(214,216,206,1) 0%, rgba(240,242,232,1) 100%);
     }
     .color_fisioterapia{
-        background-color: rgb(96, 255, 144);
+        background: rgb(96,255,144);
+        background: linear-gradient(90deg, rgba(96,255,144,1) 0%, rgba(165,255,192,1) 100%);
     }
     .color_terapia_ocupacional{
-        background-color: rgb(255, 144, 246);
+        background: rgb(254,157,246);
+        background: linear-gradient(90deg, rgba(254,157,246,1) 0%, rgba(255, 196, 250, 1) 100%);
     }
     .color_neuropsicologia{
         background: rgb(179,1,250);
         background: linear-gradient(90deg, rgba(179,1,250,1) 0%, rgba(223,144,255,1) 100%);
     }
     .color_logopedia{
-        background-color: rgb(255, 195, 66);
+        background: rgb(255,195,66);
+        background: linear-gradient(90deg, rgba(255,195,66,1) 0%, rgba(249,207,118,1) 100%);
     }
 }
 /*CONTENEDOR DE HORAS, DIAS Y HORARIO*/
@@ -81,10 +89,25 @@
             border:0.1em solid $principal;
         }
     }
+    .cita_fisioterapia{
+        cursor: pointer;
+        background: rgb(96,255,144);
+        background: linear-gradient(90deg, rgba(96,255,144,1) 0%, rgba(165,255,192,1) 100%);
+    }
+    .cita_terapia_ocupacional{
+        cursor: pointer;
+        background: rgb(254,157,246);
+        background: linear-gradient(90deg, rgba(254,157,246,1) 0%, rgb(255, 196, 250) 100%);
+    }
     .cita_neuropsicologia{
         cursor: pointer;
         background: rgb(179,1,250);
         background: linear-gradient(90deg, rgba(179,1,250,1) 0%, rgba(223,144,255,1) 100%);
+    }
+    .cita_logopedia{
+        cursor: pointer;
+        background: rgb(255,195,66);
+        background: linear-gradient(90deg, rgba(255,195,66,1) 0%, rgba(249,207,118,1) 100%);
     }
     .contenedor_botones{
         margin: 1em 0;

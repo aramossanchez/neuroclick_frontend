@@ -12,7 +12,7 @@ const Seguimientos = () =>{
                 <div className='columna_individual_seguimiento_corto'>Profesional</div>
                 <div className='columna_individual_seguimiento_largo'>Seguimiento</div>
             </div>
-            <div className="total_seguimientos ">
+            <div className="total_seguimientos">
                 <div className="seguimiento_individual flex_fila_separado">
                     <div className='seguimiento_individual_corto'>15/12/2020</div>
                     <div className='seguimiento_individual_corto'>Fisioterapia</div>

@@ -28,6 +28,7 @@ const Agenda = () =>{
     }
 
     /* FUNCION QUE CALCULA EL LUNES DE LA SEMANA*/
+    //A PARTIR DEL LUNES DE LA SEMANA, SE CALCULAN EL RESTO DE DÍAS
     const saberLunes = () =>{
         let fecha = new Date();
         let diaSemana = fecha.getDay();/*SABER QUE DIA DE LA SEMANA ES*/
@@ -84,16 +85,19 @@ const Agenda = () =>{
             <div className="agenda_profesionales flex_fila_separado">
                 <div className="profesionales_horarios">
                     <div className='profesion_horario flex_fila_muy_separado'>
-                        <div>Fisioterapia</div><div className="color_fisioterapia"></div>
+                        <div>Usuario</div><div className="color_usuario"><abbr title="Mostrar todas las citas del usuario">📅</abbr></div>
                     </div>
                     <div className='profesion_horario flex_fila_muy_separado'>
-                        <div>T. Ocupacional</div><div className="color_terapia_ocupacional"></div>
+                        <div>Fisioterapia</div><div className="color_fisioterapia"><abbr title="Mostrar citas de fisioterapia">📅</abbr></div>
                     </div>
                     <div className='profesion_horario flex_fila_muy_separado'>
-                        <div>Neuropsicología</div><div className="color_neuropsicologia"></div>
+                        <div>T. Ocupacional</div><div className="color_terapia_ocupacional"><abbr title="Mostrar citas de terapia ocupacional">📅</abbr></div>
                     </div>
                     <div className='profesion_horario flex_fila_muy_separado'>
-                        <div>Logopedia</div><div className="color_logopedia"></div>
+                        <div>Neuropsicología</div><div className="color_neuropsicologia"><abbr title="Mostrar citas de neuropsicologia">📅</abbr></div>
+                    </div>
+                    <div className='profesion_horario flex_fila_muy_separado'>
+                        <div>Logopedia</div><div className="color_logopedia"><abbr title="Mostrar citas de logopedia">📅</abbr></div>
                     </div>
                 </div>
                 <div className="agenda_semana flex_columna_arriba_derecha">
@@ -121,28 +125,42 @@ const Agenda = () =>{
                         <div className='horarios'>
                             <div className="fila_horarios flex_fila_separado">
                                 <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_fisioterapia'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_neuropsicologia'></div>
+                            </div>
+                            <div className="fila_horarios flex_fila_separado">
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_terapia_ocupacional'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                            </div>
+                            <div className="fila_horarios flex_fila_separado">
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                            </div>
+                            <div className="fila_horarios flex_fila_separado">
+                                <div className='dia_horarios cita_neuropsicologia'></div>
+                                <div className='dia_horarios cita_fisioterapia'></div>
+                                <div className='dia_horarios cita_terapia_ocupacional'></div>
+                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios'></div>
+                            </div>
+                            <div className="fila_horarios flex_fila_separado">
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios cita_neuropsicologia'></div>
-                            </div>
-                            <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                            </div>
-                            <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios cita_neuropsicologia'></div>
-                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_logopedia'></div>
+                                <div className='dia_horarios cita_logopedia'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
@@ -151,7 +169,7 @@ const Agenda = () =>{
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios cita_neuropsicologia'></div>
+                                <div className='dia_horarios cita_terapia_ocupacional'></div>
                                 <div className='dia_horarios'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
@@ -164,22 +182,8 @@ const Agenda = () =>{
                             <div className="fila_horarios flex_fila_separado">
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                            </div>
-                            <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                            </div>
-                            <div className="fila_horarios flex_fila_separado">
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_fisioterapia'></div>
+                                <div className='dia_horarios cita_logopedia'></div>
                                 <div className='dia_horarios'></div>
                             </div>
                             <div className="fila_horarios flex_fila_separado">
@@ -187,7 +191,7 @@ const Agenda = () =>{
                                 <div className='dia_horarios'></div>
                                 <div className='dia_horarios cita_neuropsicologia'></div>
                                 <div className='dia_horarios'></div>
-                                <div className='dia_horarios'></div>
+                                <div className='dia_horarios cita_logopedia'></div>
                             </div>
                         </div>      
                     </div>
@@ -195,13 +199,7 @@ const Agenda = () =>{
                         <div className='boton' onClick={()=>cambiarSemana("-")}>Semana anterior</div>
                         <div className='boton' onClick={()=>cambiarSemana("+")}>Semana siguiente</div>
                     </div>
-                    
-
-
                 </div>
-            </div>
-            <div className="agenda_usuario flex_fila_arriba_izquierda">
-
             </div>
         </div>
     )
