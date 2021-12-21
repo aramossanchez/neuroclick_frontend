@@ -1,19 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Agenda.scss';
 
 const Agenda = () =>{
 
-    const mesActual = () =>{
+    //HOOKS
+    const[lunes, setLunes] = useState(0);
+    const[fechaLunes, setFechaLunes] = useState(0);
+    const[mes, setMes] = useState(0);
+
+    
+    useEffect(()=>{
+        saberLunes();
+    },[])
+    
+    useEffect(()=>{
+        saberMes();
+    },[lunes])
+    
+    //FUNCION QUE CALCULA EL MES DEL LUNES DE LA SEMANA
+    const saberMes = () =>{
         var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        let fecha = new Date();
+        let fecha = new Date(fechaLunes);
         let mes = fecha.getMonth();
-        return meses[mes];
+        setMes(meses[mes]);
     }
-    const diaDelMes = (dia) =>{
-        var dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+
+    /* FUNCION QUE CALCULA EL LUNES DE LA SEMANA*/
+    const saberLunes = () =>{
         let fecha = new Date();
-        let dia = fecha.getDay()
-        return dia;
+        let diaSemana = fecha.getDay();/*SABER QUE DIA DE LA SEMANA ES*/
+        let diaCompleto = fecha.getTime();
+        let diaMes = fecha.getDate();
+        switch (diaSemana) {
+            case 1:
+                setLunes(diaMes);
+                setFechaLunes(diaCompleto);
+                break;
+            case 2:
+                let martes = new Date(diaCompleto - 86400000);
+                setLunes(martes.getDate());
+                setFechaLunes(martes);
+                break;
+            case 3:
+                let miercoles = new Date(diaCompleto - (86400000*2));
+                setLunes(miercoles.getDate());
+                setFechaLunes(miercoles);
+                break;
+            case 4:
+                let jueves = new Date(diaCompleto - (86400000*3));
+                setLunes(jueves.getDate());
+                setFechaLunes(jueves);
+                break;
+            case 5:
+                let viernes = new Date(diaCompleto - (86400000*4));
+                setLunes(viernes.getDate());
+                setFechaLunes(viernes);
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+    const saberDia = (dia) =>{
+        let fecha = new Date(fechaLunes);
+        let diaActual = fecha.getTime() + (86400000 * (dia-1));
+        let numeroDia = new Date(diaActual)
+        return numeroDia.getDate();
     }
 
     return(
@@ -35,13 +88,13 @@ const Agenda = () =>{
                     </div>
                 </div>
                 <div className="agenda_semana flex_columna_arriba_derecha">
-                    <div className='mes_horarios'>{mesActual()}</div>
+                    <div className='mes_horarios'>{mes}</div>
                     <div className="dias_semana flex_fila_separado">
-                        <div>Lunes {diaDelMes()}</div>
-                        <div>Martes {diaDelMes()}</div>
-                        <div>Miércoles {diaDelMes()}</div>
-                        <div>Jueves {diaDelMes()}</div>
-                        <div>Viernes {diaDelMes()}</div>
+                        <div>Lunes {saberDia(1)}</div>
+                        <div>Martes {saberDia(2)}</div>
+                        <div>Miércoles {saberDia(3)}</div>
+                        <div>Jueves {saberDia(4)}</div>
+                        <div>Viernes {saberDia(5)}</div>
                     </div>
                     <div className="horas_horarios flex_fila_arriba_derecha">
                         <div className="horas_jornada">
