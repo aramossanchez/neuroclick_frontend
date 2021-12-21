@@ -81,7 +81,7 @@ const Agenda = () =>{
 
     return(
         <div className='contenedor_agenda contenedor_vista flex_columna_arriba_izquierda'>
-            <h2>Agenda</h2>
+            <h2>Agenda semanal</h2>
             <div className="agenda_profesionales flex_fila_separado">
                 <div className="profesionales_horarios">
                     <div className='profesion_horario flex_fila_muy_separado'>

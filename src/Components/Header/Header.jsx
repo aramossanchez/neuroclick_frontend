@@ -21,7 +21,8 @@ const Header = () =>{
                 <img src={logo} alt="Logo" />
             </div>
             <div className="enlaces_header">
-                <a href="">Perfil</a>
+                <a href="/nuevousuario">Registrar nuevo usuario</a>
+                <a href="/nuevoprofesional">Registrar nuevo profesional</a>
                 <a href="/">Salir</a>
             </div>
             

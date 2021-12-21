@@ -9,6 +9,9 @@
 .mi{
     margin-left:1em;
 }
+.ma{
+    margin-top: 1em;
+}
 hr{
     height: 0.1px;
     width: 95%;
@@ -28,6 +31,12 @@ hr{
 .boton:hover{
     background-color: $principal-claro;
     color: $oscuro;
+}
+.ancho100{
+    width: 100%;
+}
+.ancho50{
+    width: 50%;
 }
 /*COLUMNAS*/
 .flex_columna{
@@ -73,6 +82,13 @@ hr{
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+.flex_fila_arriba_separado_wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .flex_fila_separado{
     display: flex;
