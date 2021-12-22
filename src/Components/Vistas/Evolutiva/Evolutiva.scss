@@ -31,21 +31,37 @@
                 .evolutiva_con_valores_izquierda{
                     width: 100%;
                     .evolutiva_valores{
-                        width: 5%;                        
+                        width: 5%;                 
                         height: 19em;
-                        div{
-                            margin-right: 0.5em
+                        .valor_individual{
+                            margin-right: 0.5em;
                         }
                     }
                     .evolutiva_grafica{
                         width: 95%;
                         height: 19em;
                         background-color: $claro;
+                        position: relative;
+                        .barras_horizontales_evolutiva{
+                            top: -0.1em;
+                            position: absolute;
+                            height: 19em;
+                            width: 100%;
+                            div{
+                                height: 33%;
+                            }
+                            .barra_horizontal_border{
+                                border-top: 0.1em dotted $oscuro;
+                                border-bottom: 0.1em dotted $oscuro;
+                            }
+                        }
                         .evolutiva_barra{
-                            width: 12%;
+                            width: 7%;
                             background-color: $principal-claro;
                             margin: 0 0.5em;
                             transition: 0.7s;
+                            cursor: pointer;
+                            border-radius: 0.75em 0.75em 0 0;
                         }
                     }
                 }

@@ -16,7 +16,7 @@ const Seguimientos = () =>{
                 <div className="seguimiento_individual flex_fila_arriba_separado_wrap">
                     <div className='seguimiento_individual_corto'>15/12/2020</div>
                     <div className='seguimiento_individual_corto'>Fisioterapia</div>
-                    <div className='seguimiento_individual_largo'>Me parece que este señor tiene dolor de espalda. Se agacha y se queja. Le toco en la espalda y dice: "auch, que haces niño mierda". Puedo confirmar dolor al palpar chicha.</div>
+                    <div className='seguimiento_individual_largo'>Detectado dolor agudo de zona lumbar. Usuario indica que nota dolor en amplia gama de movimientos. Al palpar también indica dolor por toda la zona. Se ve inflamación de la zona.</div>
                 </div>
             </div>
             <hr />
