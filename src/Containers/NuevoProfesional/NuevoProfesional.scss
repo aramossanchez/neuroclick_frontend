@@ -1,3 +1,58 @@
 @import '../../style/colors.scss';
 @import '../../style/formato.scss';
 
+@import '../../style/colors.scss';
+@import '../../style/formato.scss';
+
+.contenedor_nuevo_profesional{
+    font-size: 0.9em;
+    overflow-y: scroll;
+    h2{
+        padding: 1em 0;
+    }
+    .bloque_rellenar{
+        background-color: $principal;
+        width: 48%;
+        border-radius: 0.5em;
+        margin-top: 0.5em;
+        padding-top: 0.5em;
+        h2{
+            text-align: left;
+            margin-left: 1em;
+            padding: 0;
+        }
+        label{
+            margin: 1em 0;
+        }
+        input{
+            width: 95%;
+            margin: 0.8em 0;
+            padding: 0.4em 0.5em;
+            outline: none;
+            border: none;
+            border-radius: 0.25em;
+        }
+        input:focus{
+            outline: 0.2em solid $oscuro;
+        }
+    }
+    .bloques_nuevo_profesional{
+        width: 100%;
+        margin-bottom: 2em;
+    }
+    /*BLOQUES DE DATOS DE PROFESIONAL*/
+    .label_nuevo_profesional{
+        text-align: left;
+        width: 15%;
+    }
+    .input_nuevo_profesional{
+        width: 85%;
+    }
+    .boton{
+        margin: 2em 0;
+    }
+    .boton:hover{
+        background-color: $principal;
+    }
+}
+

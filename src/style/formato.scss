@@ -306,3 +306,25 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 20px;
     border: 2px solid $principal-claro;
 }
+/*CONTENEDOR DE CREACION DE NUEVO PROFESIONAL*/
+.contenedor_nuevo_profesional::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.contenedor_nuevo_profesional::-webkit-scrollbar:vertical {
+    width:0.5em;
+}
+
+.contenedor_nuevo_profesional::-webkit-scrollbar-button:increment,.contenedor_nuevo_profesional::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.contenedor_nuevo_profesional::-webkit-scrollbar:horizontal {
+    height: 0.5em;
+}
+
+.contenedor_nuevo_profesional::-webkit-scrollbar-thumb {
+    background-color: $principal;
+    border-radius: 20px;
+    border: 2px solid $principal-claro;
+}
