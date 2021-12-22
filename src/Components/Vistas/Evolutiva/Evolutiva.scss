@@ -1,3 +1,60 @@
 @import '../../../style/colors.scss';
 @import '../../../style/formato.scss';
 
+.contenedor_evolutiva{
+    .pruebas_realizadas{
+        margin: 1em 0;
+        div{
+            padding: 0.5em 1em;
+            margin: 0.5em 1em;
+            border-radius: 0.5em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+    }
+    .prueba_seleccionada{
+        background-color: $principal-claro;
+    }
+    .evolutivas_mostradas{
+        width: 90%;
+        .evolutiva_individual{
+            width: 70%;
+            margin: 2em 0 2em 2em;
+            h3{
+                text-align: left;
+                margin-bottom: 1em;
+                font-size: 1.3em;
+            }
+            .evolutiva_total{
+                width: 100%;
+                .evolutiva_con_valores_izquierda{
+                    width: 100%;
+                    .evolutiva_valores{
+                        width: 5%;                        
+                        height: 19em;
+                        div{
+                            margin-right: 0.5em
+                        }
+                    }
+                    .evolutiva_grafica{
+                        width: 95%;
+                        height: 19em;
+                        background-color: $claro;
+                        .evolutiva_barra{
+                            width: 12%;
+                            background-color: $principal-claro;
+                            margin: 0 0.5em;
+                            transition: 0.7s;
+                        }
+                    }
+                }
+                .evolutiva_fechas{
+                    width: 95%;
+                    margin-top: 0.5em;
+                }
+            }
+            
+        }
+    }
+}

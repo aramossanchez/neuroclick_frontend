@@ -90,6 +90,13 @@ hr{
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.flex_fila_arriba_wrap{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
 .flex_fila_separado{
     display: flex;
     flex-direction: row;
@@ -106,6 +113,12 @@ hr{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+}
+.flex_fila_muy_separado_abajo{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
     justify-content: space-between;
 }
 .flex_fila_izquierda{

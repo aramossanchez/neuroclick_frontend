@@ -13,10 +13,10 @@ const Seguimientos = () =>{
                 <div className='columna_individual_seguimiento_largo'>Seguimiento</div>
             </div>
             <div className="total_seguimientos">
-                <div className="seguimiento_individual flex_fila_separado">
+                <div className="seguimiento_individual flex_fila_arriba_separado_wrap">
                     <div className='seguimiento_individual_corto'>15/12/2020</div>
                     <div className='seguimiento_individual_corto'>Fisioterapia</div>
-                    <div className='seguimiento_individual_largo'>Me parece que este señor tiene dolor de espalda. Se agacha y se queja.</div>
+                    <div className='seguimiento_individual_largo'>Me parece que este señor tiene dolor de espalda. Se agacha y se queja. Le toco en la espalda y dice: "auch, que haces niño mierda". Puedo confirmar dolor al palpar chicha.</div>
                 </div>
             </div>
             <hr />
