@@ -14,6 +14,7 @@ import Logopedia from '../../Components/Vistas/Logopedia/Logopedia';
 import Evolutiva from '../../Components/Vistas/Evolutiva/Evolutiva';
 import Seguimientos from '../../Components/Vistas/Seguimientos/Seguimientos';
 import Agenda from '../../Components/Vistas/Agenda/Agenda';
+import Informe from '../../Components/Vistas/Informe/Informe';
 
 const PantallaPrincipal = (props) =>{
 
@@ -52,7 +53,7 @@ const PantallaPrincipal = (props) =>{
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'evolutiva')}>Evolutiva</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'seguimientos')}>Seguimientos</div>
                         <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'agenda')}>Agenda</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e)}>Informes</div>
+                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'informe')}>Informe</div>
                     </div>
                     {/* ALTERNANCIA DE VISTA EN FUNCION DE QUE PESTAÑA PINCHEMOS */}
                     {props.datosVistas.vista === "historiaclinica"
@@ -98,6 +99,11 @@ const PantallaPrincipal = (props) =>{
                     {props.datosVistas.vista === "agenda"
                     ?
                     <Agenda/>
+                    :
+                    null}
+                    {props.datosVistas.vista === "informe"
+                    ?
+                    <Informe/>
                     :
                     null}
                     
