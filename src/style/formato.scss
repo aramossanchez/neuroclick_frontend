@@ -245,9 +245,9 @@ textarea{
 }
 
 .contenedor_usuarios::-webkit-scrollbar-thumb {
-    background-color: $principal-claro;
+    background-color: $oscuro;
     border-radius: 20px;
-    border: 2px solid $oscuro;
+    border: 2px solid $claro;
 }
 
 /*CONTENEDOR DE CADA VISTA*/

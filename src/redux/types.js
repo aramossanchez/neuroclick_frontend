@@ -3,6 +3,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //GUARDO LOS DATOS DEL USUARIO LOGUEADO
-export const HISTORIACLINICA = 'historiaclinica';
+export const VISTASELECCIONADA = 'vistaseleccionada';
 
+//GUARDO EL USUARIO SELECCIONADO
+export const USUARIO = 'usuario';
 

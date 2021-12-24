@@ -1,20 +1,20 @@
-import {VISTASELECCIONADA} from '../types';
+import {USUARIO} from '../types';
 
 const initialState = {
-    vista : ''
+    usuario:{}
 };
 
-const datosVistasReducer = (state = initialState, action) => {
+const usuarioSeleccionadoReducer = (state = initialState, action) => {
     switch(action.type){
         //GUARDO EN EL ESTADO COMO LA VISTA ACTUAL, LA VISTA HISTORIA CLINICA
-        case VISTASELECCIONADA :
+        case USUARIO :
             return {
                 ...state,
-                vista: action.payload
+                usuario: action.payload
             }
             
         default :
             return state
     }
 }
-export default datosVistasReducer;
+export default usuarioSeleccionadoReducer;

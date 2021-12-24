@@ -1,7 +1,8 @@
 import React from 'react';
 import './HistoriaClinica.scss';
+import { connect } from 'react-redux';
 
-const HistoriaClinica = () =>{
+const HistoriaClinica = (props) =>{
 
     return(
         <div className='contenedor_historia_clinica contenedor_vista flex_columna_arriba_izquierda'>
@@ -14,10 +15,10 @@ const HistoriaClinica = () =>{
                     <label htmlFor="telefono_usuario">Telefono:</label>
                 </div>
                 <div className="input_historia_clinica_datos flex_columna_izquierda">
-                    <input type="text" name="nombre_usuario" readOnly/>
-                    <input type="text" name="apellidos_usuario" readOnly/>
-                    <input type="text" name="direccion_usuario" readOnly/>
-                    <input type="text" name="telefono_usuario" readOnly/>
+                    <input type="text" name="nombre_usuario" readOnly value={props.usuarioSeleccionado.usuario.nombre}/>
+                    <input type="text" name="apellidos_usuario" readOnly value={props.usuarioSeleccionado.usuario.apellidos}/>
+                    <input type="text" name="direccion_usuario" readOnly value={props.usuarioSeleccionado.usuario.direccion}/>
+                    <input type="text" name="telefono_usuario" readOnly value={props.usuarioSeleccionado.usuario.telefono_usuario}/>
                 </div>
             </div>
             <hr />
@@ -29,13 +30,14 @@ const HistoriaClinica = () =>{
                     <label htmlFor="telefono_contacto">Teléfono de persona de contacto:</label>
                 </div>
                 <div className="input_historia_clinica_social flex_columna_izquierda">
-                    <input type="text" name="pension" readOnly/>
-                    <input type="text" name="persona_contacto" readOnly/>
-                    <input type="text" name="telefono_contacto" readOnly/>
+                    <input type="text" name="pension" readOnly value={props.usuarioSeleccionado.usuario.pension}/>
+                    <input type="text" name="persona_contacto" readOnly value={props.usuarioSeleccionado.usuario.persona_contacto}/>
+                    <input type="text" name="telefono_contacto" readOnly value={props.usuarioSeleccionado.usuario.telefono_contacto}/>
                 </div>
             </div>
         </div>
     )
 }
-
-export default HistoriaClinica;
+export default connect((state)=>({
+    usuarioSeleccionado: state.usuarioSeleccionado
+}))(HistoriaClinica);
