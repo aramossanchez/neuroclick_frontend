@@ -18,25 +18,6 @@
         margin-top: 0.5em;
     }
 }
-.contenedor_usuarios{
-    margin: 1em 0;
-    width: 85%;
-    height: 80%;
-    background-color: $claro;
-    border-radius: 0.25em;
-    overflow: scroll;
-    .usuario_individual{
-        margin: 0.5em 0;
-        cursor: pointer;
-        text-align: left;
-        padding: 0.25em 0.5em;
-    }
-    .usuario_seleccionado{
-        border-radius: 0.5em;
-        background-color: $oscuro;
-        color: $principal-claro;
-    }
-}
 .contenedor_der{
     width: 76%;
     position: relative;
