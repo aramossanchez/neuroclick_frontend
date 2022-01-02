@@ -6,7 +6,7 @@ const initialState = {
 
 const usuarioSeleccionadoReducer = (state = initialState, action) => {
     switch(action.type){
-        //GUARDO EN EL ESTADO COMO LA VISTA ACTUAL, LA VISTA HISTORIA CLINICA
+        //GUARDO EN EL ESTADO EL USUARIO DEL QUE SE ESTÁ VIENDO LA INFORMACIÓN
         case USUARIO :
             return {
                 ...state,

@@ -1,25 +1,49 @@
 import React from 'react';
 import './Fisioterapia.scss';
 import '.././VistasProfesiones.scss';
+import { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const Fisioterapia = () =>{
 
+    //HOOK
+    const[pruebasFisio, setPruebasFisio] = useState([]);
+    const[historico, setHistorico] = useState([]);
+
+    useEffect(()=>{
+        saberPruebas();
+    }, [])
+
+    //SABER QUE PRUEBAS SON LAS QUE PUEDE HACER FISIOTERAPIA
+    const saberPruebas = async () =>{
+        let res = await axios.get("http://localhost:3000/pruebas/profesional/fisioterapia");
+        setPruebasFisio(res.data);
+    }
+
+    //SABER EL HISTORICO DE LA PRUEBA
+    const saberHistoricoPrueba = async (id) =>{
+        let res = await axios.get(`http://localhost:3000/pruebas_hechas/prueba/${id}`);
+        setHistorico(res.data);
+        console.log(historico.length);
+    }
+
+    //CONTROLA ABRIR O CERRAR HISTORIAL DE LA PRUEBA CLICKADA
     const abrirHistoricoPrueba = (e, historico) =>{
+        //CONTRAE TODOS LOS DIV DE HISTORICOS
+        let historicos = document.getElementsByClassName("historico_prueba");
+        for (let i = 0; i < historicos.length; i++) {
+            historicos[i].style.maxHeight="0em";
+            historicos[i].style.transform="scaleY(0)";
+        }
+        //CAMBIA EL TEXTO DE TODOS LOS BOTONES DE HISTORIAL
+        let botones = document.getElementsByClassName("ver_historial");
+        for (let i = 0; i < botones.length; i++) {
+            botones[i].innerHTML = "Ver historial";
+        }
         let lista = document.getElementById(historico);
-        if (lista.classList.contains('abierta')) {
-            lista.style.maxHeight="0em";
-            lista.style.transform="scaleY(0)";
-            lista.classList.remove('abierta');
-            e.target.innerHTML = "Ver historial";
-            return  
-        }
-        else{
-            lista.style.maxHeight="none";
-            lista.style.transform="scaleY(1)";
-            lista.classList.add('abierta');
-            e.target.innerHTML = "Ocultar historial";
-            return
-        }
+        lista.style.maxHeight="none";
+        lista.style.transform="scaleY(1)";
     }
 
     return(
@@ -28,66 +52,36 @@ const Fisioterapia = () =>{
             <div className="bloque_pruebas flex_fila_arriba_izquierda">
                 <div className='pruebas_disponibles flex_columna_arriba_izquierda mi'>
                     {/* PRUEBAS LANZABLES Y SUS HISTORIALES */}
-                    <div className="prueba_individual flex_columna_arriba_izquierda mi">
-                        <div className="detalles_prueba flex_columna_arriba_izquierda">
-                            <div className='nombre_prueba'>- Prueba1</div>
-                            <div className="acciones_prueba flex_fila_izquierda">
-                                <div className='boton' onClick={(e)=>abrirHistoricoPrueba(e, 'historico_prueba_1')}>Ver historial</div>
-                                <div className='boton'>Añadir prueba</div>
+                    {pruebasFisio.map((prueba)=>{
+                        return(
+                            <div key={prueba.id} className="prueba_individual flex_columna_arriba_izquierda mi">
+                                <div className="detalles_prueba flex_columna_arriba_izquierda">
+                                    <div className='nombre_prueba'>- {prueba.nombre}</div>
+                                    <div className="acciones_prueba flex_fila_izquierda">
+                                        <div className='boton ver_historial' onClick={(e)=>{abrirHistoricoPrueba(e, `historico_prueba_${prueba.id}`);saberHistoricoPrueba(prueba.id)}}>Ver historial</div>
+                                        <div className='boton'>Añadir prueba</div>
+                                    </div>
+                                </div>
+                                <div className='historico_prueba' id={`historico_prueba_${prueba.id}`}>
+                                    {historico.length===0
+                                    ?
+                                    <div>
+                                        <div className=''>Aún no se ha realizado ninguna prueba de este tipo.</div>                                             
+                                    </div>
+                                    :
+                                    historico.map((prueba_hecha)=>{
+                                        return(
+                                            <div key={prueba_hecha.id}>
+                                                <div className=''>Prueba realizada el {prueba_hecha.createdAt}</div>                                             
+                                            </div>                                            
+                                        )
+                                    })
+                                    }
+                                    
+                                </div>
                             </div>
-                        </div>
-                        <div className='historico_prueba' id="historico_prueba_1">
-                            <div className=''>Prueba realizada el 12-12-2020</div>
-                            <div className=''>Prueba realizada el 12-03-2021</div>
-                            <div className=''>Prueba realizada el 12-06-2021</div>
-                            <div className=''>Prueba realizada el 12-09-2021</div>
-                        </div>
-                    </div>
-                    <div className="prueba_individual flex_columna_arriba_izquierda mi">
-                        <div className="detalles_prueba flex_columna_arriba_izquierda">
-                            <div className='nombre_prueba'>- Prueba2</div>
-                            <div className="acciones_prueba flex_fila_izquierda">
-                                <div className='boton' onClick={(e)=>abrirHistoricoPrueba(e, 'historico_prueba_2')}>Ver historial</div>
-                                <div className='boton'>Añadir prueba</div>
-                            </div>
-                        </div>
-                        <div className='historico_prueba' id="historico_prueba_2">
-                            <div className=''>Prueba realizada el 12-12-2020</div>
-                            <div className=''>Prueba realizada el 12-03-2021</div>
-                            <div className=''>Prueba realizada el 12-06-2021</div>
-                            <div className=''>Prueba realizada el 12-09-2021</div>
-                        </div>
-                    </div>
-                    <div className="prueba_individual flex_columna_arriba_izquierda mi">
-                        <div className="detalles_prueba flex_columna_arriba_izquierda">
-                            <div className='nombre_prueba'>- Prueba3</div>
-                            <div className="acciones_prueba flex_fila_izquierda">
-                                <div className='boton' onClick={(e)=>abrirHistoricoPrueba(e, 'historico_prueba_3')}>Ver historial</div>
-                                <div className='boton'>Añadir prueba</div>
-                            </div>
-                        </div>
-                        <div className='historico_prueba' id="historico_prueba_3">
-                            <div className=''>Prueba realizada el 12-12-2020</div>
-                            <div className=''>Prueba realizada el 12-03-2021</div>
-                            <div className=''>Prueba realizada el 12-06-2021</div>
-                            <div className=''>Prueba realizada el 12-09-2021</div>
-                        </div>
-                    </div>
-                    <div className="prueba_individual flex_columna_arriba_izquierda mi">
-                        <div className="detalles_prueba flex_columna_arriba_izquierda">
-                            <div className='nombre_prueba'>- Prueba4</div>
-                            <div className="acciones_prueba flex_fila_izquierda">
-                                <div className='boton' onClick={(e)=>abrirHistoricoPrueba(e, 'historico_prueba_4')}>Ver historial</div>
-                                <div className='boton'>Añadir prueba</div>
-                            </div>
-                        </div>
-                        <div className='historico_prueba' id="historico_prueba_4">
-                            <div className=''>Prueba realizada el 12-12-2020</div>
-                            <div className=''>Prueba realizada el 12-03-2021</div>
-                            <div className=''>Prueba realizada el 12-06-2021</div>
-                            <div className=''>Prueba realizada el 12-09-2021</div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
                 {/* PRUEBA ACTUAL */}
                 <div className="bloque_prueba_actual flex_columna_arriba_izquierda">
