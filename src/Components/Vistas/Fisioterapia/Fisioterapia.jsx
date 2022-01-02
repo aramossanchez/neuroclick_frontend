@@ -4,12 +4,17 @@ import '.././VistasProfesiones.scss';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const Fisioterapia = () =>{
+const Fisioterapia = (props) =>{
 
     //HOOK
     const[pruebasFisio, setPruebasFisio] = useState([]);
     const[historico, setHistorico] = useState([]);
+    const[pruebaNueva, setPruebaNueva] = useState({});
+    const[valoracionesPruebaNueva, setValoracionesPruebaNueva] = useState([])
+    
+    let pruebasRealizadas = false;
 
     useEffect(()=>{
         saberPruebas();
@@ -25,7 +30,6 @@ const Fisioterapia = () =>{
     const saberHistoricoPrueba = async (id) =>{
         let res = await axios.get(`http://localhost:3000/pruebas_hechas/prueba/${id}`);
         setHistorico(res.data);
-        console.log(historico.length);
     }
 
     //CONTROLA ABRIR O CERRAR HISTORIAL DE LA PRUEBA CLICKADA
@@ -46,6 +50,24 @@ const Fisioterapia = () =>{
         lista.style.transform="scaleY(1)";
     }
 
+    //CREAR PRUEBA NUEVA
+    const crearPrueba = (id) => {
+        obtenerPrueba(id);
+        obtenerValoracionesPrueba(id);
+    }
+
+    //OBTENER LA PRUEBA A REALIZAR
+    const obtenerPrueba = async(id) => {
+        let res = await axios.get(`http://localhost:3000/pruebas/${id}`);
+        setPruebaNueva(res.data);
+    }
+    
+    //OBTENER LAS VALORACIONES DE LA PRUEBA A REALIZAR
+    const obtenerValoracionesPrueba = async(id) => {
+        let res = await axios.get(`http://localhost:3000/pruebas_valoraciones/prueba/${id}`);
+        setValoracionesPruebaNueva(res.data);
+    }
+
     return(
         <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Fisioterapia</h2>
@@ -59,25 +81,40 @@ const Fisioterapia = () =>{
                                     <div className='nombre_prueba'>- {prueba.nombre}</div>
                                     <div className="acciones_prueba flex_fila_izquierda">
                                         <div className='boton ver_historial' onClick={(e)=>{abrirHistoricoPrueba(e, `historico_prueba_${prueba.id}`);saberHistoricoPrueba(prueba.id)}}>Ver historial</div>
-                                        <div className='boton'>Añadir prueba</div>
+                                        <div className='boton' onClick={()=>crearPrueba(prueba.id)}>Añadir prueba</div>
                                     </div>
                                 </div>
                                 <div className='historico_prueba' id={`historico_prueba_${prueba.id}`}>
+                                    {/* SABER SI LA PRUEBA TIENE HISTORIAL O NO */}
                                     {historico.length===0
                                     ?
                                     <div>
-                                        <div className=''>Aún no se ha realizado ninguna prueba de este tipo.</div>                                             
+                                        <div className=''>Aún no se ha realizado ninguna prueba de este tipo.</div>
                                     </div>
                                     :
                                     historico.map((prueba_hecha)=>{
+                                        if (prueba_hecha.UsuarioID===props.usuarioSeleccionado.usuario.id) {
+                                            pruebasRealizadas = true
+                                        }
                                         return(
                                             <div key={prueba_hecha.id}>
-                                                <div className=''>Prueba realizada el {prueba_hecha.createdAt}</div>                                             
-                                            </div>                                            
+                                            {prueba_hecha.UsuarioID===props.usuarioSeleccionado.usuario.id
+                                            ?
+                                            <div className=''>Prueba realizada el {prueba_hecha.createdAt}</div>
+                                            :                                        
+                                            null
+                                            }
+                                            </div>                           
                                         )
                                     })
                                     }
-                                    
+                                    {/* LA PRUEBA PUEDE TENER HISTORIAL, PERO NO HABERSE HECHO NUNCA AL PACIENTE SELECCIONADO */}
+                                    {(pruebasRealizadas && historico.length>0) || (!pruebasRealizadas && historico.length===0)
+                                    ?
+                                    null
+                                    :
+                                    <div className=''>Aún no se ha realizado ninguna prueba de este tipo.</div>
+                                    }
                                 </div>
                             </div>
                         )
@@ -85,8 +122,15 @@ const Fisioterapia = () =>{
                 </div>
                 {/* PRUEBA ACTUAL */}
                 <div className="bloque_prueba_actual flex_columna_arriba_izquierda">
-                    <h3>Nueva Prueba1</h3>
+                    <h3>Nueva {pruebaNueva.nombre}</h3>
                     <div className="prueba_actual">
+                        {valoracionesPruebaNueva.map((valoracion)=>{
+                            return(
+                                <div className="pregunta_individual flex_fila_muy_separado">
+                                
+                                </div>
+                            )
+                        })}
                         <div className="pregunta_individual flex_fila_muy_separado">
                             <div className='pregunta_prueba'>Valoración1</div>
                             <div className="puntuacion_prueba">
@@ -329,4 +373,6 @@ const Fisioterapia = () =>{
     )
 }
 
-export default Fisioterapia;
+export default connect((state)=>({
+    usuarioSeleccionado: state.usuarioSeleccionado
+}))(Fisioterapia);
