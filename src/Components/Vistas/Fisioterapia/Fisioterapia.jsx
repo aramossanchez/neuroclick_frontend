@@ -68,6 +68,31 @@ const Fisioterapia = (props) =>{
         setValoracionesPruebaNueva(res.data);
     }
 
+    let puntuacionesRadios = [];
+
+    //COMPROBAR RADIOS MARCADOS
+    const comprobarRadios = () =>{
+        puntuacionesRadios = []
+        let radios = document.getElementsByTagName("input");
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].type === 'radio' && radios[i].checked) {
+                puntuacionesRadios.push(radios[i].value);
+            }
+        }
+    }
+
+    //CREAR REGISTRO DE PRUEBA
+    const guardarPrueba = async () =>{
+        comprobarRadios();
+        let prueba = {
+            puntuacion: puntuacionesRadios.toString(),
+            PruebaID: pruebaNueva.id,
+            UsuarioID: props.usuarioSeleccionado.usuario.id,
+            ProfesionalID: 3
+        }
+        let res = await axios.post(`http://localhost:3000/pruebas_hechas/`, prueba);
+    }
+
     return(
         <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Fisioterapia</h2>
@@ -124,247 +149,28 @@ const Fisioterapia = (props) =>{
                 <div className="bloque_prueba_actual flex_columna_arriba_izquierda">
                     <h3>Nueva {pruebaNueva.nombre}</h3>
                     <div className="prueba_actual">
+                        {/* MUESTRA TODAS LAS VALORACIONES DE LA PRUEBA SELECCIONADA */}
                         {valoracionesPruebaNueva.map((valoracion)=>{
+                            let puntuaciones = [];
+                            for (let i = 0; i < valoracion.valoracione.escala; i++) {
+                                puntuaciones.push(
+                                <label key={"valoracion_radio" + i}>
+                                    <input type="radio" name={valoracion.valoracione.pregunta} value={i}/>{i}
+                                    <i></i>
+                                </label>)
+                            }
                             return(
-                                <div className="pregunta_individual flex_fila_muy_separado">
-                                
+                                <div key={valoracion.id} className="pregunta_individual flex_fila_muy_separado">
+                                    <div className='pregunta_prueba'>{valoracion.valoracione.pregunta}</div>
+                                    <div className="puntuacion_prueba">
+                                        {puntuaciones}
+                                    </div>
                                 </div>
                             )
                         })}
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración1</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion1" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion1" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion1" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion1" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
+                        <div className='flex_columna'>
+                            <div className="boton" onClick={()=>guardarPrueba()}>GUARDAR PRUEBA</div>
                         </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración2</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion2" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion2" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion2" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion2" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración3</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion3" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion3" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion3" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion3" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración4</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion4" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion4" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion4" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion4" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración5</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion5" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion5" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion5" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion5" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración6</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion6" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion6" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion6" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion6" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración7</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion7" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion7" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion7" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion7" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración8</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion8" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion8" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion8" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion8" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración9</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion9" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion9" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion9" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion9" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración10</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion10" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion10" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion10" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion10" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="pregunta_individual flex_fila_muy_separado">
-                            <div className='pregunta_prueba'>Valoración11</div>
-                            <div className="puntuacion_prueba">
-                                <label>
-                                    <input type="radio" name="valoracion11" value="1"/>Muy bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="2"/>Bajo
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="3"/>Medio
-                                    <i></i>
-                                </label>
-                                <label>
-                                    <input type="radio" name="valoracion11" value="4"/>Alto
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex_columna'>
-                    <div className="boton">GUARDAR PRUEBA</div>
                     </div>
                 </div>
             </div>
