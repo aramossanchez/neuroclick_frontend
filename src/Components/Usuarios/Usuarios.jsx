@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Usuarios.scss';
 import { connect } from 'react-redux';
 import { USUARIO } from '../../redux/types';
+import { VISTASELECCIONADA } from '../../redux/types';
 import axios from 'axios';
 
 const Usuarios = (props) =>{
@@ -40,6 +41,7 @@ const Usuarios = (props) =>{
     //GUARDAR USUARIO SELECCIONADO EN REDUX
     const elegirUsuario = (usuario, e) =>{
         props.dispatch({type:USUARIO, payload: usuario});
+        props.dispatch({type:VISTASELECCIONADA, payload: "historiaclinica"});
         //CAMBIAR CLASE PARA MARCAR CUAL USUARIO ESTÁ SELECCIONADO
         let usuarios = document.getElementsByClassName('usuario_individual');
         for (let i = 0; i < usuarios.length; i++) {

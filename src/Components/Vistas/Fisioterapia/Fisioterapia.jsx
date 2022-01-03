@@ -5,61 +5,147 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import spin from '../../../img/spin.gif';
 
 const Fisioterapia = (props) =>{
 
     //HOOK
-    const[pruebasFisio, setPruebasFisio] = useState([]);
-    const[historico, setHistorico] = useState([]);
-    const[pruebaNueva, setPruebaNueva] = useState({});
-    const[valoracionesPruebaNueva, setValoracionesPruebaNueva] = useState([]);
-    const[respuestasPrueba, setRespuestasPrueba] = useState([])
-    
-    let pruebasRealizadas = false;
 
+    //GUARDAR LAS PRUEBAS DEL PROFESIONAL
+    const[pruebasFisio, setPruebasFisio] = useState([]);
+    //GUARDAR EL HISTORICO COMPROBADO ACTUALMENTE
+    const[historico, setHistorico] = useState([]);
+    //GUARDA LA PRUEBA REVISADA O CREADA
+    const[pruebaNueva, setPruebaNueva] = useState({});
+    //GUARDA LAS VALORACIONES DE LA PRUEBA ACTUAL
+    const[valoracionesPruebaNueva, setValoracionesPruebaNueva] = useState([]);
+    //GUARDA LAS PUNTUACIONES DE LA PRUEBA ACTUAL
+    const[respuestasPrueba, setRespuestasPrueba] = useState([]);
+    //GUARDA SI SE ESTÁ CREANDO UNA PRUEBA NUEVA
+    const[creandoPrueba, setCreandoPrueba] = useState(false);
+    //CARGANDO IZQUIERDA
+    const[cargandoIzquierda, setCargandoIzquierda] = useState(false);
+    //CARGANDO DERECHA
+    const[cargandoDerecha, setCargandoDerecha] = useState(false);
+    //MENSAJE DE ERROR
+    const[mensajeError, setMensajeError] = useState("");
+
+    //AL CARGAR EL COMPONENTE SE CARGAN LAS PRUEBAS CORRESPONDIENTES AL PROFESIONAL
     useEffect(()=>{
         saberPruebas();
     }, []);
 
     //CADA VEZ QUE CAMBIA EL HOOK DONDE SE GUARDAN LAS VALORACIONES, PINTA LAS RESPUESTAS DEL HISTORICO SELECCIONADO
     useEffect(()=>{
-        console.log("soy el que se ejecuta automatico" + respuestasPrueba);
-        escribirValoracionesPrueba(respuestasPrueba);
+        if (valoracionesPruebaNueva.length>0) {
+            pintarPuntuacionesPrueba(respuestasPrueba);
+        }
     }, [valoracionesPruebaNueva])
 
-    //MANEJADOR DEL HOOK DONDE SE GUARDAN LAS RESPUESTAS DE LOS HISTORICOS DE LAS PRUEBAS
-    const handlerRespuestasPrueba = (puntuaciones) =>{
-        setRespuestasPrueba(puntuaciones);
-    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //SABER QUE PRUEBAS SON LAS QUE PUEDE HACER FISIOTERAPIA
     const saberPruebas = async () =>{
-        let res = await axios.get("http://localhost:3000/pruebas/profesional/fisioterapia");
-        setPruebasFisio(res.data);
+        try {
+            setCargandoIzquierda(true)
+            let res = await axios.get("http://localhost:3000/pruebas/profesional/fisioterapia");
+            setPruebasFisio(res.data);
+            setCargandoIzquierda(false);
+        } catch (error) {
+            setMensajeError(error);
+        }
     }
 
-    //SABER EL HISTORICO DE LA PRUEBA
-    const saberHistoricoPrueba = async (id) =>{
-        let res = await axios.get(`http://localhost:3000/pruebas_hechas/prueba/${id}`);
-        setHistorico(res.data);
-    }
+    //VARIABLE PARA CONTROLAR SI EXISTE HISTORIAL DE UNA PRUEBA
+    let pruebasRealizadas = false;
 
-    //CONTROLA ABRIR O CERRAR HISTORIAL DE LA PRUEBA CLICKADA
-    const abrirHistoricoPrueba = (e, historico) =>{
-        //CONTRAE TODOS LOS DIV DE HISTORICOS
+    //CONTRAE TODOS LOS DIV DE HISTORICOS
+    const cerrarHistoricos = () => {
         let historicos = document.getElementsByClassName("historico_prueba");
         for (let i = 0; i < historicos.length; i++) {
             historicos[i].style.maxHeight="0em";
             historicos[i].style.transform="scaleY(0)";
         }
+    }    
+
+    //CONTROLA ABRIR O CERRAR HISTORIAL DE LA PRUEBA CLICKADA
+    const abrirHistoricoPrueba = (e, historico) =>{
+        cerrarHistoricos();
         //CAMBIA EL TEXTO DE TODOS LOS BOTONES DE HISTORIAL
         let botones = document.getElementsByClassName("ver_historial");
         for (let i = 0; i < botones.length; i++) {
             botones[i].innerHTML = "Ver historial";
         }
+        //MUESTRA EL LISTADO SELECCIONADO
         let lista = document.getElementById(historico);
         lista.style.maxHeight="none";
         lista.style.transform="scaleY(1)";
+    }
+
+    //BUSCAR EL HISTORICO DE LA PRUEBA
+    const saberHistoricoPrueba = async (id) =>{
+        try {
+            let res = await axios.get(`http://localhost:3000/pruebas_hechas/prueba/${id}`);
+            setHistorico(res.data);
+        } catch (error) {
+            setMensajeError(error);
+        }
+        
+    }
+
+    //FORMATEA LA FECHA DEL HISTORICO DE LA PRUEBA
+    const editarFecha = (fecha) =>{
+        let f = new Date(fecha);
+        let fvalida = f.toLocaleDateString()
+        return "Revisar prueba realizada el " + fvalida;
+    }
+
+    //OBTENER LA PRUEBA A REALIZAR
+    const obtenerPrueba = async(id) => {
+        try {
+            setCargandoDerecha(true);
+            let res = await axios.get(`http://localhost:3000/pruebas/${id}`);
+            setPruebaNueva(res.data);
+            setCargandoDerecha(false);
+        } catch (error) {
+            setMensajeError(error);
+        }
+        
+    }
+    
+    //OBTENER LAS VALORACIONES DE LA PRUEBA A REALIZAR
+    const obtenerValoracionesPrueba = async(id) => {
+        try {
+            setCargandoDerecha(true);
+            let res = await axios.get(`http://localhost:3000/pruebas_valoraciones/prueba/${id}`);
+            setValoracionesPruebaNueva(res.data);
+            setCargandoDerecha(false);
+        } catch (error) {
+            setMensajeError(error);            
+        }
+        
+    }
+    
+    //ESCRIBE LAS PUNTUACIONES CORRESPONDIENTES EN CADA VALORACIÓN PARA MOSTRAR HISTORICO DE PRUEBAS
+    const pintarPuntuacionesPrueba = (puntuaciones) =>{
+        //NECESARIO TIMEOUT PARA QUE NO FALLE NUNCA AL PINTAR LAS PUNTUACIONES
+        setTimeout(() => {
+            //RECORRO TANTAS VECES COMO VALORACIONES HAY
+            for (let i = 0; i < valoracionesPruebaNueva.length; i++) {
+                var label = document.getElementsByName(valoracionesPruebaNueva[i].valoracione.pregunta);
+                //RECORRO LAS LABEL PARA CHECKEAR LA QUE CORRESPONDA CON LA PUNTUACION DE LA VALORACION CORRESPONDIENTE
+                for (let e = 0; e < label.length; e++) {
+                    if (label[e].value === puntuaciones[i]) {
+                        label[e].checked = true;
+                    }                
+                }
+            }
+        }, 500);
+    }
+
+    //MANEJADOR DEL HOOK DONDE SE GUARDAN LAS RESPUESTAS DE LOS HISTORICOS DE LAS PRUEBAS
+    const handlerRespuestasPrueba = (puntuaciones) =>{
+        setRespuestasPrueba(puntuaciones);
     }
 
     //CREAR PRUEBA NUEVA
@@ -68,29 +154,20 @@ const Fisioterapia = (props) =>{
         obtenerPrueba(id);
         obtenerValoracionesPrueba(id);
         handlerRespuestasPrueba([]);
+        setCreandoPrueba(true);
     }
 
     //MOSTRAR PRUEBA Y PUNTUACIONES GUARDADAS
     const mostrarPruebaSeleccionada = (id) => {
         obtenerPrueba(id);
         obtenerValoracionesPrueba(id);
+        setCreandoPrueba(false);
     }
 
-    //OBTENER LA PRUEBA A REALIZAR
-    const obtenerPrueba = async(id) => {
-        let res = await axios.get(`http://localhost:3000/pruebas/${id}`);
-        setPruebaNueva(res.data);
-    }
-    
-    //OBTENER LAS VALORACIONES DE LA PRUEBA A REALIZAR
-    const obtenerValoracionesPrueba = async(id) => {
-        let res = await axios.get(`http://localhost:3000/pruebas_valoraciones/prueba/${id}`);
-        setValoracionesPruebaNueva(res.data);
-    }
-
+    //VARIABLE PARA GUARDAR LAS PUNTUACIONES DE LA PRUEBA NUEVA QUE SE ESTÁ HACIENDO
     let puntuacionesRadios = [];
 
-    //COMPROBAR RADIOS MARCADOS
+    //COMPROBAR RADIOS MARCADOS PARA GUARDAR RESULTADO DE PRUEBA EN BASE DE DATOS
     const comprobarRadios = () =>{
         puntuacionesRadios = []
         let radios = document.getElementsByTagName("input");
@@ -101,7 +178,7 @@ const Fisioterapia = (props) =>{
         }
     }
 
-    //CREAR REGISTRO DE PRUEBA
+    //GUARDAR REGISTRO DE PRUEBA NUEVA
     const guardarPrueba = async () =>{
         comprobarRadios();
         let prueba = {
@@ -110,27 +187,26 @@ const Fisioterapia = (props) =>{
             UsuarioID: props.usuarioSeleccionado.usuario.id,
             ProfesionalID: 3
         }
-        let res = await axios.post(`http://localhost:3000/pruebas_hechas/`, prueba);
-    }
-
-    //ESCRIBE LAS PUNTUACIONES CORRESPONDIENTES EN CADA VALORACIÓN
-    const escribirValoracionesPrueba = (puntuaciones) =>{
-        //RECORRO TANTAS VECES COMO VALORACIONES HAY
-        for (let i = 0; i < valoracionesPruebaNueva.length; i++) {
-            var label = document.getElementsByName(valoracionesPruebaNueva[i].valoracione.pregunta);
-            //RECORRO LAS LABEL PARA CHECKEAR LA QUE CORRESPONDA CON LA PUNTUACION DE LA VALORACION CORRESPONDIENTE
-            for (let e = 0; e < label.length; e++) {
-                if (label[e].value === puntuaciones[i]) {
-                    label[e].checked = true;
-                }                
-            }
+        try {
+            await axios.post(`http://localhost:3000/pruebas_hechas/`, prueba);
+            cerrarHistoricos();
+            setPruebaNueva({});
+            setValoracionesPruebaNueva([]);
+            setCreandoPrueba(false);
+        } catch (error) {
+            setMensajeError(error);
         }
     }
+
 
     return(
         <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Fisioterapia</h2>
             <div className="bloque_pruebas flex_fila_arriba_izquierda">
+                {cargandoIzquierda
+                ?
+                <img src={spin} alt="Cargando" />
+                :
                 <div className='pruebas_disponibles flex_columna_arriba_izquierda mi'>
                     {/* PRUEBAS LANZABLES Y SUS HISTORIALES */}
                     {pruebasFisio.map((prueba)=>{
@@ -159,7 +235,7 @@ const Fisioterapia = (props) =>{
                                             <div key={prueba_hecha.id}>
                                             {prueba_hecha.UsuarioID===props.usuarioSeleccionado.usuario.id
                                             ?
-                                            <div className='' onClick={()=>{mostrarPruebaSeleccionada(prueba_hecha.PruebaID);handlerRespuestasPrueba(prueba_hecha.puntuacion.split(","))}}>Prueba realizada el {prueba_hecha.createdAt}</div>
+                                            <div className='' onClick={()=>{mostrarPruebaSeleccionada(prueba_hecha.PruebaID);handlerRespuestasPrueba(prueba_hecha.puntuacion.split(","))}}>{editarFecha(prueba_hecha.createdAt)}</div>
                                             :                                        
                                             null
                                             }
@@ -179,19 +255,32 @@ const Fisioterapia = (props) =>{
                         )
                     })}
                 </div>
+                }
                 {/* PRUEBA ACTUAL */}
+                {cargandoDerecha
+                ?
+                <img src={spin} alt="Cargando" />
+                :
                 <div className="bloque_prueba_actual flex_columna_arriba_izquierda">
-                    <h3>Nueva {pruebaNueva.nombre}</h3>
+                    <h3>{creandoPrueba ? "Nueva " : null}{pruebaNueva.nombre}</h3>
                     <div className="prueba_actual">
                         {/* MUESTRA TODAS LAS VALORACIONES DE LA PRUEBA SELECCIONADA */}
                         {valoracionesPruebaNueva.map((valoracion)=>{
                             let puntuaciones = [];
                             for (let i = 0; i <= valoracion.valoracione.escala; i++) {
-                                puntuaciones.push(
-                                <label key={"valoracion_radio" + i}>
-                                    <input type="radio" name={valoracion.valoracione.pregunta} value={i}/>{i}
-                                    <i></i>
-                                </label>)
+                                if (!creandoPrueba) {
+                                    puntuaciones.push(
+                                    <label key={"valoracion_radio" + i}>
+                                        <input disabled type="radio" name={valoracion.valoracione.pregunta} value={i}/>{i}
+                                        <i></i>
+                                    </label>)
+                                }else{
+                                    puntuaciones.push(
+                                    <label key={"valoracion_radio" + i}>
+                                        <input type="radio" name={valoracion.valoracione.pregunta} value={i}/>{i}
+                                        <i></i>
+                                    </label>)
+                                }                                
                             }
                             return(
                                 <div key={valoracion.id} className="pregunta_individual flex_fila_muy_separado">
@@ -202,11 +291,18 @@ const Fisioterapia = (props) =>{
                                 </div>
                             )
                         })}
+                        {creandoPrueba
+                        ?
                         <div className='flex_columna'>
                             <div className="boton" onClick={()=>guardarPrueba()}>GUARDAR PRUEBA</div>
                         </div>
+                        :
+                        null
+                        }
+                        
                     </div>
                 </div>
+                }
             </div>
             <div className='haciendo_prueba flex_columna_arriba_izquierda'></div>
         </div>

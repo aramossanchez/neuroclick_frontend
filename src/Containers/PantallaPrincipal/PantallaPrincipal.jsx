@@ -22,12 +22,20 @@ const PantallaPrincipal = (props) =>{
     //SELECCIONA QUE VISTA ESTARÁ ACTIVA EN LA APLICACIÓN
     let vistas = document.getElementsByClassName('vista');
 
-    const activarVista = (e,vista) =>{
+    useEffect(()=>{
+        activarVista(props.datosVistas.vista);
+    },[props.datosVistas.vista])
+
+    const activarVista = (vista) =>{
         for (let i = 0; i < vistas.length; i++) {
             vistas[i].classList.add('vista_no_activa');
         }
-        e.target.classList.remove('vista_no_activa');
-        e.target.classList.add('vista_activa');
+        let pestaña = document.getElementById(vista)
+        pestaña.classList.remove('vista_no_activa');
+        pestaña.classList.add('vista_activa');
+    }
+
+    const cambiarVista = (vista) =>{
         props.dispatch({type:VISTASELECCIONADA, payload: vista});
     }
 
@@ -38,16 +46,16 @@ const PantallaPrincipal = (props) =>{
                 <Usuarios/>
                 <div className="contenedor_der bloque_principal">
                     <div className="vistas flex_fila_izquierda">
-                        <div className="vista vista_activa" onClick={(e)=>activarVista(e, 'historiaclinica')}>Historia Clínica</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'datosmedicos')}>Datos Médicos</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'fisioterapia')}>Fisioterapia</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'terapiaocupacional')}>T. Ocupacional</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'neuropsicologia')}>Neuropsicología</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'logopedia')}>Logopedia</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'evolutiva')}>Evolutiva</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'seguimientos')}>Seguimientos</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'agenda')}>Agenda</div>
-                        <div className="vista vista_no_activa" onClick={(e)=>activarVista(e, 'informe')}>Informe</div>
+                        <div id="historiaclinica" className="vista vista_activa" onClick={(e)=>cambiarVista('historiaclinica')}>Historia Clínica</div>
+                        <div id="datosmedicos" className="vista vista_no_activa" onClick={(e)=>cambiarVista('datosmedicos')}>Datos Médicos</div>
+                        <div id="fisioterapia" className="vista vista_no_activa" onClick={(e)=>cambiarVista('fisioterapia')}>Fisioterapia</div>
+                        <div id="terapiaocupacional" className="vista vista_no_activa" onClick={(e)=>cambiarVista('terapiaocupacional')}>T. Ocupacional</div>
+                        <div id="neuropsicologia" className="vista vista_no_activa" onClick={(e)=>cambiarVista('neuropsicologia')}>Neuropsicología</div>
+                        <div id="logopedia" className="vista vista_no_activa" onClick={(e)=>cambiarVista('logopedia')}>Logopedia</div>
+                        <div id="evolutiva" className="vista vista_no_activa" onClick={(e)=>cambiarVista('evolutiva')}>Evolutiva</div>
+                        <div id="seguimientos" className="vista vista_no_activa" onClick={(e)=>cambiarVista('seguimientos')}>Seguimientos</div>
+                        <div id="agenda" className="vista vista_no_activa" onClick={(e)=>cambiarVista('agenda')}>Agenda</div>
+                        <div id="informe" className="vista vista_no_activa" onClick={(e)=>cambiarVista('informe')}>Informe</div>
                     </div>
                     {/* ALTERNANCIA DE VISTA EN FUNCION DE QUE PESTAÑA PINCHEMOS */}
                     {props.datosVistas.vista === "historiaclinica"
