@@ -1,7 +1,7 @@
 import {VISTASELECCIONADA} from '../types';
 
 const initialState = {
-    vista : ''
+    vista : 'historiaclinica'
 };
 
 const datosVistasReducer = (state = initialState, action) => {

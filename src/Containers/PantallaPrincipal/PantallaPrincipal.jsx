@@ -23,6 +23,10 @@ const PantallaPrincipal = (props) =>{
     let vistas = document.getElementsByClassName('vista');
 
     useEffect(()=>{
+        props.dispatch({type:VISTASELECCIONADA, payload: "historiaclinica"});
+    },[])
+
+    useEffect(()=>{
         activarVista(props.datosVistas.vista);
     },[props.datosVistas.vista])
 
