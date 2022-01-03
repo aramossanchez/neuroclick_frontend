@@ -12,13 +12,25 @@ const Fisioterapia = (props) =>{
     const[pruebasFisio, setPruebasFisio] = useState([]);
     const[historico, setHistorico] = useState([]);
     const[pruebaNueva, setPruebaNueva] = useState({});
-    const[valoracionesPruebaNueva, setValoracionesPruebaNueva] = useState([])
+    const[valoracionesPruebaNueva, setValoracionesPruebaNueva] = useState([]);
+    const[respuestasPrueba, setRespuestasPrueba] = useState([])
     
     let pruebasRealizadas = false;
 
     useEffect(()=>{
         saberPruebas();
-    }, [])
+    }, []);
+
+    //CADA VEZ QUE CAMBIA EL HOOK DONDE SE GUARDAN LAS VALORACIONES, PINTA LAS RESPUESTAS DEL HISTORICO SELECCIONADO
+    useEffect(()=>{
+        console.log("soy el que se ejecuta automatico" + respuestasPrueba);
+        escribirValoracionesPrueba(respuestasPrueba);
+    }, [valoracionesPruebaNueva])
+
+    //MANEJADOR DEL HOOK DONDE SE GUARDAN LAS RESPUESTAS DE LOS HISTORICOS DE LAS PRUEBAS
+    const handlerRespuestasPrueba = (puntuaciones) =>{
+        setRespuestasPrueba(puntuaciones);
+    }
 
     //SABER QUE PRUEBAS SON LAS QUE PUEDE HACER FISIOTERAPIA
     const saberPruebas = async () =>{
@@ -52,6 +64,14 @@ const Fisioterapia = (props) =>{
 
     //CREAR PRUEBA NUEVA
     const crearPrueba = (id) => {
+        setValoracionesPruebaNueva([]);
+        obtenerPrueba(id);
+        obtenerValoracionesPrueba(id);
+        handlerRespuestasPrueba([]);
+    }
+
+    //MOSTRAR PRUEBA Y PUNTUACIONES GUARDADAS
+    const mostrarPruebaSeleccionada = (id) => {
         obtenerPrueba(id);
         obtenerValoracionesPrueba(id);
     }
@@ -93,6 +113,20 @@ const Fisioterapia = (props) =>{
         let res = await axios.post(`http://localhost:3000/pruebas_hechas/`, prueba);
     }
 
+    //ESCRIBE LAS PUNTUACIONES CORRESPONDIENTES EN CADA VALORACIÓN
+    const escribirValoracionesPrueba = (puntuaciones) =>{
+        //RECORRO TANTAS VECES COMO VALORACIONES HAY
+        for (let i = 0; i < valoracionesPruebaNueva.length; i++) {
+            var label = document.getElementsByName(valoracionesPruebaNueva[i].valoracione.pregunta);
+            //RECORRO LAS LABEL PARA CHECKEAR LA QUE CORRESPONDA CON LA PUNTUACION DE LA VALORACION CORRESPONDIENTE
+            for (let e = 0; e < label.length; e++) {
+                if (label[e].value === puntuaciones[i]) {
+                    label[e].checked = true;
+                }                
+            }
+        }
+    }
+
     return(
         <div className='contenedor_fisioterapia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Fisioterapia</h2>
@@ -125,7 +159,7 @@ const Fisioterapia = (props) =>{
                                             <div key={prueba_hecha.id}>
                                             {prueba_hecha.UsuarioID===props.usuarioSeleccionado.usuario.id
                                             ?
-                                            <div className=''>Prueba realizada el {prueba_hecha.createdAt}</div>
+                                            <div className='' onClick={()=>{mostrarPruebaSeleccionada(prueba_hecha.PruebaID);handlerRespuestasPrueba(prueba_hecha.puntuacion.split(","))}}>Prueba realizada el {prueba_hecha.createdAt}</div>
                                             :                                        
                                             null
                                             }
@@ -152,7 +186,7 @@ const Fisioterapia = (props) =>{
                         {/* MUESTRA TODAS LAS VALORACIONES DE LA PRUEBA SELECCIONADA */}
                         {valoracionesPruebaNueva.map((valoracion)=>{
                             let puntuaciones = [];
-                            for (let i = 0; i < valoracion.valoracione.escala; i++) {
+                            for (let i = 0; i <= valoracion.valoracione.escala; i++) {
                                 puntuaciones.push(
                                 <label key={"valoracion_radio" + i}>
                                     <input type="radio" name={valoracion.valoracione.pregunta} value={i}/>{i}
