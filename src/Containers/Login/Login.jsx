@@ -62,7 +62,7 @@ const Login = (props) =>{
             ?
             null
             :
-            <div className="mensaje-error">{mensajeError}</div>    
+            <div className="mensaje_error">{mensajeError}</div>
             }
             <img src={logo} alt="Logo" />
             <div className='formulario flex_columna'>
