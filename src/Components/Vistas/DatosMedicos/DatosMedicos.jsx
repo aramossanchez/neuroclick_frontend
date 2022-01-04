@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const DatosMedicos = (props) =>{
-    
-    //INDICAMOS URL DE LA API
+
+    //GUARDA URL DE LA API
     let api = new Api();
 
     //HOOKS

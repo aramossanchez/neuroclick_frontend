@@ -1,7 +1,7 @@
 import {PROFESIONAL} from '../types';
 
 const initialState = {
-    profesional:{}
+    login:{}
 };
 
 const profesionalLogadoReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const profesionalLogadoReducer = (state = initialState, action) => {
         case PROFESIONAL :
             return {
                 ...state,
-                profesional: action.payload
+                login: action.payload
             }
             
         default :

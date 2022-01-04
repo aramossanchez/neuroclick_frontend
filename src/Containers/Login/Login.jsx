@@ -10,10 +10,10 @@ import { PROFESIONAL } from '../../redux/types';
 
 const Login = (props) =>{
     
-    //INDICAMOS URL DE LA API
-    let api = new Api();
-
     const navigate = useNavigate();
+
+    //GUARDA URL DE LA API
+    let api = new Api();
 
     //HOOKS
     //DATOS PARA LOGUEAR EN LA APP
@@ -48,10 +48,7 @@ const Login = (props) =>{
                 entrar()
             }, 2000);
         } catch (error) {
-            //SETEO MENSAJE PARA MOSTRAR ERROR
             setMensajeError("Ha habido un error al intentar conectar con la base de datos.");
-
-            //TRAS 4 SEGUNDOS, SETEO MENSAJE A STRING VACIO
             setTimeout(() => {
                 setMensajeError("");
             }, 4000);

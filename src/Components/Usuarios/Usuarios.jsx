@@ -14,15 +14,20 @@ const Usuarios = (props) =>{
 
     //AL CARGAR EL COMPONENTE, GUARDA LISTADO DE USUARIOS EN REDUX
     useEffect(()=>{
+        console.log(props.profesionalLogado)
         traerListaUsuarios();
     }, [])
 
     //OBTIENE LISTADO DE USUARIOS DE LA BASE DE DATOS
     const traerListaUsuarios = async () =>{
+        //CABECERA PARA MANDAR EL TOKEN
+        let config = {
+            headers: { Authorization: `Bearer ${props.profesionalLogado.login.token}` }
+        };
 
         try {
 
-            let res = await axios.get("http://localhost:3000/usuarios");
+            let res = await axios.get("http://localhost:3000/usuarios", config);
             setListadoUsuarios(res.data);
             setListadoUsuariosFiltrados(res.data);
 
@@ -77,4 +82,6 @@ const Usuarios = (props) =>{
     )
 }
 
-export default connect()(Usuarios);
+export default connect((state)=>({
+    profesionalLogado: state.profesionalLogado
+}))(Usuarios);
