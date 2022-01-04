@@ -20,11 +20,9 @@ const Usuarios = (props) =>{
 
     //OBTIENE LISTADO DE USUARIOS DE LA BASE DE DATOS
     const traerListaUsuarios = async () =>{
-        //CABECERA PARA MANDAR EL TOKEN
         let config = {
             headers: { Authorization: `Bearer ${props.profesionalLogado.login.token}` }
         };
-
         try {
 
             let res = await axios.get("http://localhost:3000/usuarios", config);

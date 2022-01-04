@@ -27,6 +27,10 @@ const DatosMedicos = (props) =>{
         medicaciones();
     }, []);
 
+    //CABECERA PARA MANDAR EL TOKEN EN LAS PETICIONES A LA BASE DE DATOS
+    let config = {
+        headers: { Authorization: `Bearer ${props.profesionalLogado.login.token}` }
+    };
 
     //CÁLCULO DE EDAD DEL USUARIO
     let fechaActual = new Date();
@@ -37,7 +41,7 @@ const DatosMedicos = (props) =>{
     //OBTENER ANTECEDENTES FAMILIARES
     const antecedentesFamiliares = async() =>{
         try {
-            let res = await axios.get(`${api.conexion}/antecedentes_familiares/${props.usuarioSeleccionado.usuario.id}`);
+            let res = await axios.get(`${api.conexion}/antecedentes_familiares/${props.usuarioSeleccionado.usuario.id}`, config);
             setAntecedentes(res.data.descripcion);
         } catch (error) {
             setMensajeError(error);
@@ -47,7 +51,7 @@ const DatosMedicos = (props) =>{
     //OBTENER ENFERMEDADES
     const enfermedades = async() =>{
         try {
-            let res = await axios.get(`${api.conexion}/enfermedades_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`);
+            let res = await axios.get(`${api.conexion}/enfermedades_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
             setEnfermedadesUsuario(res.data);
         } catch (error) {
             setMensajeError(error);
@@ -57,7 +61,7 @@ const DatosMedicos = (props) =>{
     //OBTENER MEDICACIONES
     const medicaciones = async() =>{
         try {
-            let res = await axios.get(`${api.conexion}/medicaciones_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`);
+            let res = await axios.get(`${api.conexion}/medicaciones_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
             setMedicacionesUsuario(res.data);
         } catch (error) {
             setMensajeError(error);
@@ -103,5 +107,6 @@ const DatosMedicos = (props) =>{
 }
 
 export default connect((state)=>({
-    usuarioSeleccionado: state.usuarioSeleccionado
+    usuarioSeleccionado: state.usuarioSeleccionado,
+    profesionalLogado: state.profesionalLogado
 }))(DatosMedicos);
