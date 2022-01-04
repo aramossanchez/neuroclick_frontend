@@ -46,7 +46,7 @@ const PruebasProfesionales = (props) =>{
     const saberPruebas = async () =>{
         try {
             setCargandoIzquierda(true)
-            let res = await axios.get("http://localhost:3000/pruebas/profesional/fisioterapia");
+            let res = await axios.get(`http://localhost:3000/pruebas/profesional/${props.profesional}`);
             setpruebasProfesional(res.data);
             setCargandoIzquierda(false);
         } catch (error) {

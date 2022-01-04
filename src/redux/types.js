@@ -2,9 +2,11 @@
 //DATOS VISTAS//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//GUARDO LOS DATOS DEL USUARIO LOGUEADO
+//GUARDO LA VISTA SELECCIONADA DE LA PANTALLA PRINCIPAL
 export const VISTASELECCIONADA = 'vistaseleccionada';
 
 //GUARDO EL USUARIO SELECCIONADO
 export const USUARIO = 'usuario';
 
+//GUARDO EL PROFESIONAL QUE SE HA LOGADO
+export const PROFESIONAL = 'profesional';
