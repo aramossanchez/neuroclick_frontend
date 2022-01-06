@@ -36,7 +36,7 @@ const NuevoProfesional = (props) =>{
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
-    //GUARDADO DE DATOS PARA LOGUEAR EN LA APLICACIÓN
+    //GUARDADO DE DATOS PARA CREAR PROFESIONAL NUEVO
     const datosRegistroProfesional = (e) =>{
         setDatosRegistrarProfesional({...datosRegistrarProfesional, [e.target.name]: e.target.value})
     }
@@ -79,8 +79,8 @@ const NuevoProfesional = (props) =>{
     return(
         <div className='contenedor_nuevo_profesional contenedor flex_columna_arriba'>
             <h2>NUEVO PROFESIONAL</h2>
-             {/* SI mensajeError ESTÁ VACIO NO MUESTRA NADA. SI TIENE ALGO, MUESTRA EL MENSAJE */}
-             {!mensajeError
+            {/* SI mensajeError ESTÁ VACIO NO MUESTRA NADA. SI TIENE ALGO, MUESTRA EL MENSAJE */}
+            {!mensajeError
             ?
             null
             :

@@ -16,6 +16,15 @@ const Header = (props) =>{
         navigate("/");
     }
 
+    const crearUsuario = () =>{
+        navigate("/nuevousuario");
+        props.dispatch({type:USUARIO, payload: {}});
+    }
+    const crearProfesional = () =>{
+        navigate("/nuevoprofesional");
+        props.dispatch({type:USUARIO, payload: {}});
+    }
+
     const perfil = () =>{
         navigate("/aplicacion");
     }
@@ -28,11 +37,11 @@ const Header = (props) =>{
             </div>
             <div className="enlaces_header flex_fila">
                 <div className='enlace_header'>Notificaciones</div>
-                {props.profesionalLogado.login.profesional.rol === "admin" || props.profesionalLogado.login.profesional.rol === "administracion"
+                {props.profesionalLogado.login.profesional.rol === "admin" || props.profesionalLogado.login.profesional.rol === "Administración"
                 ?
                 <div className='flex_fila'>
-                    <div className='enlace_header'>Registrar nuevo usuario</div>
-                    <div className='enlace_header'>Registrar nuevo profesional</div>
+                    <div className='enlace_header' onClick={()=>crearUsuario()}>Registrar nuevo usuario</div>
+                    <div className='enlace_header' onClick={()=>crearProfesional()}>Registrar nuevo profesional</div>
                 </div>
                 :
                 null}
