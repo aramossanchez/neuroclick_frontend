@@ -91,7 +91,7 @@ const NuevoProfesional = (props) =>{
                 <hr />
                 <div className='bloques_nuevo_profesional flex_fila_muy_separado'>
                     <div className="label_nuevo_profesional flex_columna_izquierda mi">
-                        <label htmlFor="correo_electronico">Email:</label>
+                        <label htmlFor="correo_electronico">Correo electrónico:</label>
                         <label htmlFor="clave_acceso">Contraseña:</label>
                         <label htmlFor="nombre">Nombre:</label>
                         <label htmlFor="apellidos">Apellidos:</label>
@@ -99,7 +99,7 @@ const NuevoProfesional = (props) =>{
                         <label htmlFor="portal">Portal:</label>
                         <label htmlFor="piso">Piso:</label>
                         <label htmlFor="puerta">Puerta:</label>
-                        <label htmlFor="ciudad">Ciudad:</label>
+                        <label htmlFor="ciudad">Población:</label>
                         <label htmlFor="provincia">Provincia:</label>
                         <label htmlFor="codigopostal">Codigo Postal:</label>
                         <label htmlFor="telefono">Teléfono:</label>

@@ -40,4 +40,51 @@
         width: 30em;
         z-index: 4;
     }
+    .editar_registro{
+        position: absolute;
+        top: 30%;
+        left: calc(50vw - 25em);
+        background-color: $claro;
+        border-radius: 0.5em;
+        border: 0.1em solid $oscuro;
+        padding: 0.5em 1em;
+        width: 50em;
+        z-index: 4;
+        h2{
+            text-align: center;
+        }
+    }
+    .crear_registro{
+        position: absolute;
+        top: 5%;
+        left: calc(50vw - 25em);
+        background-color: $claro;
+        border-radius: 0.5em;
+        border: 0.1em solid $oscuro;
+        padding: 0.5em 1em;
+        width: 50em;
+        z-index: 4;
+        h2{
+            text-align: center;
+        }
+    }
+    /*BLOQUES DE DATOS SOCIAL*/
+    .label_registro_admin{
+        text-align: left;
+        width: 25%;
+    }
+    .input_registro_admin{
+        width: 75%;
+        input{
+            width: 95%;
+            border-radius: 0.25em;
+        }
+        input:focus{
+            outline: 0.2em solid $oscuro;
+        }
+    }
+    .nuevo_registro_boton{
+        position: fixed;
+        right: 2em;
+    }
 }
