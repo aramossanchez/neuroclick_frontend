@@ -37,7 +37,7 @@ const Header = (props) =>{
             </div>
             <div className="enlaces_header flex_fila">
                 <div className='enlace_header'>Notificaciones</div>
-                {props.profesionalLogado.login.profesional.rol === "admin" || props.profesionalLogado.login.profesional.rol === "Administración"
+                {props.profesionalLogado.login.profesional.rol === "Administración"
                 ?
                 <div className='flex_fila'>
                     <div className='enlace_header' onClick={()=>crearUsuario()}>Registrar nuevo usuario</div>

@@ -1,0 +1,33 @@
+@import '../../style/colors.scss';
+@import '../../style/formato.scss';
+
+/*FORMATO DE BLOQUES*/
+.bloques_admin{
+    width: 100%;
+    height: 100%;
+    background-color: $principal-claro;
+    h2{
+        margin: 0.25em 0;
+    }
+    .bloque_admin_izq, .bloque_admin_der{
+        height: 98%;
+        background-color: $principal;
+        border-radius: 0.5em;
+    }
+    .bloque_admin_izq{
+        width: 25%;
+    }
+    .bloque_admin_der{
+        width: 73%;
+    }
+    .tablas_admin{
+        text-align: left;
+        padding: 0.25em 1em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .tablas_admin:hover{
+        background-color: $oscuro;
+        color: $claro;
+    }
+}

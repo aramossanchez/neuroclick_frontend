@@ -3,6 +3,7 @@ import './PantallaPrincipal.scss';
 import Header from '../../Components/Header/Header.jsx';
 import { connect } from 'react-redux';
 import { VISTASELECCIONADA } from '../../redux/types';
+import { useNavigate } from 'react-router-dom';
 
 /*IMPORTACIÓN DE VISTAS*/
 import HistoriaClinica from '../../Components/Vistas/HistoriaClinica/HistoriaClinica';
@@ -19,10 +20,15 @@ import Usuarios from '../../Components/Usuarios/Usuarios';
 
 const PantallaPrincipal = (props) =>{
 
+    const navigate = useNavigate();
+
     //SELECCIONA QUE VISTA ESTARÁ ACTIVA EN LA APLICACIÓN
     let vistas = document.getElementsByClassName('vista');
 
     useEffect(()=>{
+        if(props.profesionalLogado.login.profesional.rol === "admin"){
+            navigate("/paneladmin");
+        }
         props.dispatch({type:VISTASELECCIONADA, payload: "historiaclinica"});
     },[])
 
@@ -46,7 +52,7 @@ const PantallaPrincipal = (props) =>{
     }
 
     return(
-        <div className='contenedor_principal contenedor flex_columna_muy_separado'>
+        <div className='contenedor flex_columna_muy_separado'>
             <Header/>
             <div className="bloques_principales flex_fila_mas_separado">
                 <Usuarios/>

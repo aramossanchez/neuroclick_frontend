@@ -4,8 +4,12 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import spin from '../../img/spin.gif';
+import Api from '../../api/api';
 
 const PruebasProfesionales = (props) =>{
+
+    //GUARDA URL DE LA API
+    let api = new Api();
 
     //HOOK
 
@@ -51,7 +55,7 @@ const PruebasProfesionales = (props) =>{
     const saberPruebas = async () =>{
         try {
             setCargandoIzquierda(true)
-            let res = await axios.get(`http://localhost:3000/pruebas/profesional/${props.profesional}`, config);
+            let res = await axios.get(`${api.conexion}/pruebas/profesional/${props.profesional}`, config);
             setpruebasProfesional(res.data);
             setCargandoIzquierda(false);
         } catch (error) {
@@ -88,7 +92,7 @@ const PruebasProfesionales = (props) =>{
     //BUSCAR EL HISTORICO DE LA PRUEBA
     const saberHistoricoPrueba = async (id) =>{
         try {
-            let res = await axios.get(`http://localhost:3000/pruebas_hechas/prueba/${id}`, config);
+            let res = await axios.get(`${api.conexion}/pruebas_hechas/prueba/${id}`, config);
             setHistorico(res.data);
         } catch (error) {
             setMensajeError(error);
@@ -107,7 +111,7 @@ const PruebasProfesionales = (props) =>{
     const obtenerPrueba = async(id) => {
         try {
             setCargandoDerecha(true);
-            let res = await axios.get(`http://localhost:3000/pruebas/${id}`, config);
+            let res = await axios.get(`${api.conexion}/pruebas/${id}`, config);
             setPruebaNueva(res.data);
             setCargandoDerecha(false);
         } catch (error) {
@@ -120,7 +124,7 @@ const PruebasProfesionales = (props) =>{
     const obtenerValoracionesPrueba = async(id) => {
         try {
             setCargandoDerecha(true);
-            let res = await axios.get(`http://localhost:3000/pruebas_valoraciones/prueba/${id}`, config);
+            let res = await axios.get(`${api.conexion}/pruebas_valoraciones/prueba/${id}`, config);
             setValoracionesPruebaNueva(res.data);
             setCargandoDerecha(false);
         } catch (error) {
@@ -191,7 +195,7 @@ const PruebasProfesionales = (props) =>{
             ProfesionalID: 3
         }
         try {
-            await axios.post(`http://localhost:3000/pruebas_hechas/`, prueba, config);
+            await axios.post(`${api.conexion}/pruebas_hechas/`, prueba, config);
             cerrarHistoricos();
             setPruebaNueva({});
             setValoracionesPruebaNueva([]);

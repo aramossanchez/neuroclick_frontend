@@ -1,0 +1,43 @@
+@import '../../../style/colors.scss';
+@import '../../../style/formato.scss';
+
+.contenedor_profesionales_admin{
+    white-space: nowrap;
+    .tabla_nombres_columnas{
+        margin: 0 4.25em;
+    }
+    .registros_admin{
+        margin: 0 0.5em;
+    }
+    .nombre_columna, .nombre_columna_largo{
+        min-width: 25em;
+        border-bottom: 0.1em solid $oscuro;
+        border-top: 0.1em solid $oscuro;
+        background-color: $oscuro;
+        color: $principal-claro;
+    }
+    .icono_registro_individual{
+        margin: 0 0.25em;
+        width: 3em;
+        cursor: pointer;
+    }
+    .registro_individual, .registro_individual_largo{
+        min-width: 25em;
+        border-bottom: 0.1em solid $oscuro;
+        background-color: $claro;
+    }
+    .nombre_columna_largo, .registro_individual_largo{
+        min-width: 45em;
+    }
+    .pregunta_borrado{
+        position: absolute;
+        top: 40%;
+        left: calc(50vw - 15em);
+        background-color: $claro;
+        border-radius: 0.5em;
+        border: 0.1em solid $oscuro;
+        padding: 0.5em 1em;
+        width: 30em;
+        z-index: 4;
+    }
+}

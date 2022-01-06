@@ -12,6 +12,9 @@
 .ma{
     margin-top: 1em;
 }
+.mb{
+    margin-bottom: 1em;
+}
 hr{
     height: 0.1px;
     width: 95%;
@@ -165,6 +168,16 @@ hr{
         margin:0.65em 0;
     }
 }
+.contenedor_vista_admin{
+    height: 100%;
+    border-radius: 0 0 0.5em 0.5em;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    h2{
+        text-align: left;
+        margin: 0.5em;
+    }
+}
 textarea{
     all:unset;
     text-align: left;
@@ -176,7 +189,16 @@ textarea{
     min-height: 7em;
     border-radius: 0.5em;
 }
-
+.contenedor_mensaje{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $claro;
+    opacity: 0.5;
+    z-index: 3;
+}
 /*FORMULARIOS*/
 .formulario{
     width: 30em;
