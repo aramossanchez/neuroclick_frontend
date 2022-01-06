@@ -10,13 +10,12 @@
         width: 2em;
         margin: 0.25em 0 0 1em;
     }
-    a{
-        all: unset;
+    .enlace_header{
         margin: 0 1.5em;
         cursor: pointer;
         transition: 0.3s;
     }
-    a:hover{
+    .enlace_header:hover{
         color: $claro;
     }
 }

@@ -12,7 +12,7 @@ const HistoriaClinica = (props) =>{
                     <label htmlFor="nombre_usuario">Nombre:</label>
                     <label htmlFor="apellidos_usuario">Apellidos:</label>
                     <label htmlFor="direccion_usuario">Dirección:</label>
-                    <label htmlFor="telefono_usuario">Telefono:</label>
+                    <label htmlFor="telefono_usuario">Teléfono:</label>
                 </div>
                 <div className="input_historia_clinica_datos flex_columna_izquierda">
                     <input type="text" name="nombre_usuario" readOnly value={props.usuarioSeleccionado.usuario.nombre}/>

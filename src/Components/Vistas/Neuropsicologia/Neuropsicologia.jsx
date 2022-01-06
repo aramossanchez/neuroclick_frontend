@@ -8,7 +8,7 @@ const Neuropsicologia = () =>{
     return(
         <div className='contenedor_neuropsicologia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Neuropsicología</h2>
-            <PruebasProfesionales profesional="neuropsicologia"/>            
+            <PruebasProfesionales profesional="Neuropsicología"/>            
         </div>
     )
 }

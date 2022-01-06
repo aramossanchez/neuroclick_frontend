@@ -2,12 +2,17 @@ import React from 'react';
 import './Header.scss';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../img/logo-header.png';
+import { connect } from 'react-redux';
+import { USUARIO } from '../../redux/types';
+import { PROFESIONAL } from '../../redux/types';
 
-const Header = () =>{
+const Header = (props) =>{
 
     const navigate = useNavigate();
 
     const logout = () =>{
+        props.dispatch({type:USUARIO, payload: {}});
+        props.dispatch({type:PROFESIONAL, payload: {}});
         navigate("/");
     }
 
@@ -17,17 +22,27 @@ const Header = () =>{
 
     return(
         <div className='header flex_fila_muy_separado'>
-            <div className="logo_header">
+            <div className="logo_header flex_fila">
                 <img src={logo} alt="Logo" />
+                <div className='enlace_header'>Profesional: {props.profesionalLogado.login.profesional.apellidos}, {props.profesionalLogado.login.profesional.nombre} ({props.profesionalLogado.login.profesional.rol})</div>
             </div>
-            <div className="enlaces_header">
-                <a href="/nuevousuario">Registrar nuevo usuario</a>
-                <a href="/nuevoprofesional">Registrar nuevo profesional</a>
-                <a href="/">Salir</a>
+            <div className="enlaces_header flex_fila">
+                <div className='enlace_header'>Notificaciones</div>
+                {props.profesionalLogado.login.profesional.rol === "admin" || props.profesionalLogado.login.profesional.rol === "administracion"
+                ?
+                <div className='flex_fila'>
+                    <div className='enlace_header'>Registrar nuevo usuario</div>
+                    <div className='enlace_header'>Registrar nuevo profesional</div>
+                </div>
+                :
+                null}
+                <div onClick={()=>logout()} className='enlace_header'>Salir</div>
             </div>
             
         </div>
     )
 }
 
-export default Header;
+export default connect((state)=>({
+    profesionalLogado: state.profesionalLogado
+}))(Header);

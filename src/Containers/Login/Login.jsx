@@ -40,10 +40,9 @@ const Login = (props) =>{
         };
 
         try {
-            console.log(body);
             let res = await axios.post(`${api.conexion}/profesionales/login`, body);
             props.dispatch({type:PROFESIONAL, payload: res.data});
-            setMensajeError("Login correcto. Bienvenido " + res.data.profesional.nombre);
+            setMensajeError("Login correcto. Bienvenida " + res.data.profesional.nombre);
             setTimeout(() => {
                 entrar()
             }, 2000);

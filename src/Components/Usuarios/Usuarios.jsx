@@ -14,7 +14,6 @@ const Usuarios = (props) =>{
 
     //AL CARGAR EL COMPONENTE, GUARDA LISTADO DE USUARIOS EN REDUX
     useEffect(()=>{
-        console.log(props.profesionalLogado)
         traerListaUsuarios();
     }, [])
 
@@ -55,7 +54,6 @@ const Usuarios = (props) =>{
 
     //BUSCAR USUARIO POR NOMBRE Y APELLIDOS
     const buscarUsuario = (e) =>{
-        console.log(e.target.value)
         let usuarios = listadoUsuarios.filter(usuario => usuario.nombre.toLowerCase().includes(e.target.value) || usuario.apellidos.toLowerCase().includes(e.target.value))
         setListadoUsuariosFiltrados(usuarios);
     }

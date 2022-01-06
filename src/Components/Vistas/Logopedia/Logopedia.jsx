@@ -8,7 +8,7 @@ const Logopedia = () =>{
     return(
         <div className='contenedor_logopedia contenedor_vista flex_columna_arriba_izquierda'>
             <h2>Pruebas de Logopedia</h2>
-            <PruebasProfesionales profesional="logopedia"/>
+            <PruebasProfesionales profesional="Logopedia"/>
         </div>
     )
 }
