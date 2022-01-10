@@ -1,6 +1,7 @@
 import React from 'react';
 import Actualizar_registro_antecedentes_familiares from './Actualizar_registro_antecedentes_familiares';
 import Actualizar_registro_enfermedades from './Actualizar_registro_enfermedades';
+import Actualizar_registro_enfermedades_usuarios from './Actualizar_registro_enfermedades_usuarios';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
@@ -31,6 +32,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "enfermedades"
             ?
             <Actualizar_registro_enfermedades vista="enfermedades" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "enfermedades_usuarios"
+            ?
+            <Actualizar_registro_enfermedades_usuarios vista="enfermedades_usuarios" config={props.config}/>
             :
             null
             }

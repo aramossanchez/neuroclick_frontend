@@ -69,7 +69,6 @@ const Nuevo_registro_usuarios = (props) =>{
             estatura: nuevoRegistro.estatura,
         };
         try {
-            console.log(body)
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
             props.dispatch({type:CREANDO, payload: false});
             traerListado();

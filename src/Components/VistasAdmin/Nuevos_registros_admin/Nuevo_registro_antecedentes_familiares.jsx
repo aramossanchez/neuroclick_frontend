@@ -47,7 +47,6 @@ const Nuevo_registro_antecedentes_familiares = (props) =>{
             UsuarioID: nuevoRegistro.UsuarioID
         };
         try {
-            console.log(body)
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
             props.dispatch({type:CREANDO, payload: false});
             traerListado();

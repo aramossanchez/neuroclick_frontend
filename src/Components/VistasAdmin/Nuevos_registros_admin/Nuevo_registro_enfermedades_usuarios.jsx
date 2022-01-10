@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 
-const Nuevo_registro_enfermedades = (props) =>{
+const Nuevo_registro_enfermedades_usuarios = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -15,8 +15,8 @@ const Nuevo_registro_enfermedades = (props) =>{
     //HOOKS
     //GUARDA DATOS DE REGISTRO NUEVO
     const[nuevoRegistro, setNuevoRegistro] = useState({
-        descripcion: "",
-        UsuarioID: ""
+        UsuarioID: "",
+        EnfermedadID: ""
     });
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
@@ -43,7 +43,8 @@ const Nuevo_registro_enfermedades = (props) =>{
     //CREAR REGISTRO EN LA BASE DE DATOS
     const crearRegistro = async () =>{
         let body = {
-            nombre: nuevoRegistro.nombre
+            UsuarioID: nuevoRegistro.UsuarioID,
+            EnfermedadID: nuevoRegistro.EnfermedadID,
         };
         try {
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
@@ -66,10 +67,12 @@ const Nuevo_registro_enfermedades = (props) =>{
                 <h2 className='mb'>Crear registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="nombre">Nombre de la enfermedad:</label>
+                        <label htmlFor="UsuarioID">ID de usuario:</label>
+                        <label htmlFor="EnfermedadID">ID de enfermedad:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="nombre" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="UsuarioID" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="EnfermedadID" onChange={(e)=>datosCrearRegistro(e)}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -80,4 +83,4 @@ const Nuevo_registro_enfermedades = (props) =>{
         </div>
     )
 }
-export default connect()(Nuevo_registro_enfermedades);
+export default connect()(Nuevo_registro_enfermedades_usuarios);

@@ -1,6 +1,7 @@
 import React from 'react';
 import Borrando_registro_antecendetes_familiares from './Borrando_registro_antecendetes_familiares';
 import Borrando_registro_enfermedades from './Borrando_registro_enfermedades';
+import Borrando_registro_enfermedades_usuarios from './Borrando_registro_enfermedades_usuarios';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Borrando_registro_profesionales from './Borrando_registro_profesionales';
@@ -31,6 +32,12 @@ const Borrando_registros_admin = (props) =>{
             {props.vista === "enfermedades"
             ?
             <Borrando_registro_enfermedades vista="enfermedades" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "enfermedades_usuarios"
+            ?
+            <Borrando_registro_enfermedades_usuarios vista="enfermedades_usuarios" config={props.config}/>
             :
             null
             }
