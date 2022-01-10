@@ -1,14 +1,15 @@
 import React from 'react';
+
+//IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
+import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
+import Actualizar_registro_usuarios from './Actualizar_registro_usuarios';
 import Actualizar_registro_antecedentes_familiares from './Actualizar_registro_antecedentes_familiares';
 import Actualizar_registro_enfermedades from './Actualizar_registro_enfermedades';
 import Actualizar_registro_enfermedades_usuarios from './Actualizar_registro_enfermedades_usuarios';
 import Actualizar_registro_medicaciones from './Actualizar_registro_medicaciones';
 import Actualizar_registro_medicaciones_usuarios from './Actualizar_registro_medicaciones_usuarios';
-
-//IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
-import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
 import Actualizar_registro_pruebas from './Actualizar_registro_pruebas';
-import Actualizar_registro_usuarios from './Actualizar_registro_usuarios';
+import Actualizar_registro_valoraciones from './Actualizar_registro_valoraciones';
 
 const Actualizar_registros_admin = (props) =>{
     
@@ -59,6 +60,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "pruebas"
             ?
             <Actualizar_registro_pruebas vista="pruebas" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "valoraciones"
+            ?
+            <Actualizar_registro_valoraciones vista="valoraciones" config={props.config}/>
             :
             null
             }

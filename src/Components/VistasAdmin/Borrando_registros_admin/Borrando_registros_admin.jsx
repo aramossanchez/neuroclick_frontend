@@ -9,6 +9,7 @@ import Borrando_registro_medicaciones_usuarios from './Borrando_registro_medicac
 import Borrando_registro_profesionales from './Borrando_registro_profesionales';
 import Borrando_registro_pruebas from './Borrando_registro_pruebas';
 import Borrando_registro_usuarios from './Borrando_registro_usuarios';
+import Borrando_registro_valoraciones from './Borrando_registro_valoraciones';
 
 const Borrando_registros_admin = (props) =>{
     
@@ -59,6 +60,12 @@ const Borrando_registros_admin = (props) =>{
             {props.vista === "pruebas"
             ?
             <Borrando_registro_pruebas vista="pruebas" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "valoraciones"
+            ?
+            <Borrando_registro_valoraciones vista="valoraciones" config={props.config}/>
             :
             null
             }
