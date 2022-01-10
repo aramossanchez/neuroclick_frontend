@@ -36,7 +36,7 @@ const PantallaAdmin = (props) =>{
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Relación entre medicaciones y usuarios</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Pruebas</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Valoraciones</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista()}>Relación entre pruebas y relaciones</div>
+                    <div className="tablas_admin" onClick={()=>elegirVista()}>Relación entre pruebas y valoraciones</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Pruebas realizadas</div>
                 </div>
                 <div className="bloque_admin_der">

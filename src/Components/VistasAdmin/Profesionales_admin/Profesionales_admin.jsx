@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Api from '../../../api/api';
 import { useEffect } from 'react';
+import { LISTADO } from '../../../redux/types';
 
 const Profesionales_admin = (props) =>{
 
@@ -12,8 +13,6 @@ const Profesionales_admin = (props) =>{
     let api = new Api();
 
     //HOOKS
-    //LISTADO COMPLETO DE LOS REGISTROS DE LA TABLA
-    const[listado, setListado] = useState([]);
     //GUARDA SI SE ESTÁ INTENTANDO CREAR UN REGISTRO
     const[creando, setCreando] = useState(false);
     //GUARDA DATOS DE REGISTRO NUEVO
@@ -49,7 +48,7 @@ const Profesionales_admin = (props) =>{
     const traerListado = async () =>{
         try {
             let res = await axios.get(`${api.conexion}/${props.vista}`, props.config);
-            setListado(res.data);
+            props.dispatch({type:LISTADO, payload: res.data});
         } catch (error) {
             setMensajeError(error);
         }
@@ -267,7 +266,7 @@ const Profesionales_admin = (props) =>{
                 <div className="nombre_columna">Rol</div>|
                 <div className="nombre_columna">Fecha de incorporación</div>|
             </div>
-            {listado.map((registro)=>{
+            {props.listadoCompleto.listado.map((registro)=>{
                 return(
                     <div key={registro.id} className='registros_admin flex_fila_izquierda'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
@@ -286,5 +285,6 @@ const Profesionales_admin = (props) =>{
     )
 }
 export default connect((state)=>({
-    usuarioSeleccionado: state.usuarioSeleccionado
+    usuarioSeleccionado: state.usuarioSeleccionado,
+    listadoCompleto: state.listadoCompleto
 }))(Profesionales_admin);
