@@ -66,23 +66,10 @@ const NuevoUsuario = (props) =>{
             fecha_nacimiento: datosRegistrarUsuario.fecha_nacimiento,
             peso: datosRegistrarUsuario.peso,
             estatura: datosRegistrarUsuario.estatura
-            // nombre: "Fernando",
-            // apellidos: "López Vázquez",
-            // direccion: "Calle Toledo, número 20, piso 3, puerta C",
-            // telefono_usuario: "666666666",
-            // persona_contacto: "Esteban Requena Fiel",
-            // telefono_contacto: "611412502",
-            // fecha_nacimiento: "2000/11/05",
-            // peso: 80,
-            // estatura: 192
         };
         try {
             await axios.post(`${api.conexion}/usuarios/`, body, config);            
-            setDatosRegistrarUsuario(({}));            
-            // let inputs = document.getElementById("input_nuevo_profesional").childNodes
-            // for (let i = 0; i < inputs.length; i++) {
-            //     inputs[i].value = "";
-            // }
+            setDatosRegistrarUsuario(({}));
             setMensajeError("Nuevo usuario registrado correctamente");
             setTimeout(() => {
                 volver();

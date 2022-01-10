@@ -28,7 +28,7 @@ const PantallaAdmin = (props) =>{
                 <div className="bloque_admin_izq">
                     <h2>Tablas para gestionar</h2>
                     <div className="tablas_admin" onClick={()=>elegirVista("profesionales")}>Profesionales</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista()}>Usuarios</div>
+                    <div className="tablas_admin" onClick={()=>elegirVista("usuarios")}>Usuarios</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Antecedentes familiares</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Enfermedades</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Relación entre enfermedades y usuarios</div>
@@ -40,7 +40,18 @@ const PantallaAdmin = (props) =>{
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Pruebas realizadas</div>
                 </div>
                 <div className="bloque_admin_der">
-                    <Vista_individual_admin vista={vistaAdmin} config={config}/>
+                    {vistaAdmin === "profesionales"
+                    ?
+                    <Vista_individual_admin vista="profesionales" config={config}/>
+                    :
+                    null
+                    }
+                    {vistaAdmin === "usuarios"
+                    ?
+                    <Vista_individual_admin vista="usuarios" config={config}/>
+                    :
+                    null
+                    }
                 </div>
             </div>
         </div>

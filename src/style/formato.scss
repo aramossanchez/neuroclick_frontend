@@ -124,6 +124,12 @@ hr{
     align-items: flex-end;
     justify-content: space-between;
 }
+.flex_fila_muy_separado_arriba{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
 .flex_fila_izquierda{
     display: flex;
     flex-direction: row;
@@ -169,7 +175,10 @@ hr{
     }
 }
 .contenedor_vista_admin{
-    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
     border-radius: 0 0 0.5em 0.5em;
     overflow-y: scroll;
     overflow-x: scroll;
@@ -290,6 +299,29 @@ textarea{
 }
 
 .contenedor_vista::-webkit-scrollbar-thumb {
+    background-color: $claro;
+    border-radius: 20px;
+    border: 2px solid $principal;
+}
+
+/*CONTENEDOR DE CADA VISTA ADMIN*/
+.contenedor_vista_admin::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.contenedor_vista_admin::-webkit-scrollbar:vertical {
+    width:0.5em;
+}
+
+.contenedor_vista_admin::-webkit-scrollbar-button:increment,.contenedor_vista_admin::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.contenedor_vista_admin::-webkit-scrollbar:horizontal {
+    height: 0.5em;
+}
+
+.contenedor_vista_admin::-webkit-scrollbar-thumb {
     background-color: $claro;
     border-radius: 20px;
     border: 2px solid $principal;

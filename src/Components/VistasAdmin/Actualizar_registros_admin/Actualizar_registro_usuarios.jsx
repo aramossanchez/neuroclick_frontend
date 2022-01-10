@@ -7,7 +7,7 @@ import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Actualizar_registro_profesionales = (props) =>{
+const Actualizar_registro_usuarios = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -32,12 +32,16 @@ const Actualizar_registro_profesionales = (props) =>{
     //ACTUALIZAR REGISTRO DE LA BASE DE DATOS
     const editarRegistro = async () =>{
         let body = {
-            correo_electronico: props.registroSeleccionado.registro.correo_electronico,
             nombre: props.registroSeleccionado.registro.nombre,
             apellidos: props.registroSeleccionado.registro.apellidos,
             direccion: props.registroSeleccionado.registro.direccion,
+            telefono_usuario: props.registroSeleccionado.registro.telefono_usuario,
+            pension: props.registroSeleccionado.registro.pension,
+            persona_contacto: props.registroSeleccionado.registro.persona_contacto,
             telefono_contacto: props.registroSeleccionado.registro.telefono_contacto,
-            rol: props.registroSeleccionado.registro.rol,
+            fecha_nacimiento: props.registroSeleccionado.registro.fecha_nacimiento,
+            peso: props.registroSeleccionado.registro.peso,
+            estatura: props.registroSeleccionado.registro.estatura,
         }
         try {
             await axios.put(`${api.conexion}/${props.vista}/${props.registroSeleccionado.registro.id}`, body, props.config);
@@ -63,19 +67,26 @@ const Actualizar_registro_profesionales = (props) =>{
                     <div className="label_registro_admin flex_columna_izquierda mi">
                         <label htmlFor="nombre">Nombre:</label>
                         <label htmlFor="apellidos">Apellidos:</label>
-                        <label htmlFor="correo_electronico">Correo electrónico:</label>
-                        <label htmlFor="direccion">Dirección:</label>
-                        <label htmlFor="telefono_contacto">Teléfono:</label>
-                        <label htmlFor="rol">Rol:</label>
+                        <label htmlFor="calle">Dirección:</label>
+                        <label htmlFor="telefono_usuario">Teléfono de contacto:</label>
+                        <label htmlFor="fecha_nacimiento">Fecha de nacimiento:</label>
+                        <label htmlFor="peso">Peso:</label>
+                        <label htmlFor="estatura">Estatura:</label>
+                        <label htmlFor="pension">Pensión:</label>
+                        <label htmlFor="persona_contacto">Persona de contacto:</label>
+                        <label htmlFor="telefono_contacto">Teléfono de persona de contacto:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="nombre" value={props.registroSeleccionado.registro.nombre}/>
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="apellidos" value={props.registroSeleccionado.registro.apellidos}/>
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="correo_electronico" value={props.registroSeleccionado.registro.correo_electronico}/>
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="direccion" value={props.registroSeleccionado.registro.direccion}/>
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="telefono_contacto" value={props.registroSeleccionado.registro.telefono_contacto}/>
-                        <input type="text" onChange={(e)=>datosActualizarRegistro(e)} name="rol" value={props.registroSeleccionado.registro.rol}/>
-                    </div>
+                        <input type="text" name="nombre" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.nombre}/>
+                        <input type="text" name="apellidos" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.apellidos}/>
+                        <input type="text" name="direccion" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.direccion}/>
+                        <input type="text" name="telefono_usuario" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.telefono_usuario}/>
+                        <input type="text" name="fecha_nacimiento" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.fecha_nacimiento}/>
+                        <input type="text" name="peso" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.peso}/>
+                        <input type="text" name="estatura" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.estatura}/>
+                        <input type="text" name="pension" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.pension}/>
+                        <input type="text" name="persona_contacto" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.persona_contacto}/>
+                        <input type="text" name="telefono_contacto" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.telefono_contacto}/></div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
                     <div className="boton" onClick={()=>editarRegistro()}>Actualizar registro</div>
@@ -87,4 +98,4 @@ const Actualizar_registro_profesionales = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Actualizar_registro_profesionales);
+}))(Actualizar_registro_usuarios);

@@ -41,9 +41,9 @@ const Vista_individual_admin = (props) =>{
     }
 
     return(
-        <div className='contenedor_vista_individual_admin contenedor_vista'>
-            <div className='flex_fila_muy_separado mb '>
-                <h2 className=''>Tabla de {props.vista}</h2>
+        <div className='contenedor_vista_individual_admin contenedor_vista_admin flex_columna_arriba_izquierda'>
+            <div className='mb'>
+                <h2>Tabla de {props.vista}</h2>
                 <div className="boton nuevo_registro_boton" onClick={()=>mostrarCreacion()}>Nuevo registro</div>
             </div>
             {/* MENSAJE QUE APARECE AL INTENTAR CREAR UN REGISTRO */}

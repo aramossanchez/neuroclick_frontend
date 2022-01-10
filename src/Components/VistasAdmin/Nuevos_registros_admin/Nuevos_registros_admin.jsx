@@ -2,6 +2,7 @@ import React from 'react';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Nuevo_registro_profesionales from './Nuevo_registro_profesionales';
+import Nuevo_registro_usuarios from './Nuevo_registro_usuarios';
 
 const Nuevos_registros_admin = (props) =>{
     
@@ -9,7 +10,13 @@ const Nuevos_registros_admin = (props) =>{
         <div>
             {props.vista === "profesionales"
             ?
-            <Nuevo_registro_profesionales/>
+            <Nuevo_registro_profesionales vista="profesionales" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "usuarios"
+            ?
+            <Nuevo_registro_usuarios vista="usuarios" config={props.config}/>
             :
             null
             }
