@@ -7,6 +7,7 @@ import Borrando_registro_medicaciones_usuarios from './Borrando_registro_medicac
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Borrando_registro_profesionales from './Borrando_registro_profesionales';
+import Borrando_registro_pruebas from './Borrando_registro_pruebas';
 import Borrando_registro_usuarios from './Borrando_registro_usuarios';
 
 const Borrando_registros_admin = (props) =>{
@@ -52,6 +53,12 @@ const Borrando_registros_admin = (props) =>{
             {props.vista === "medicaciones_usuarios"
             ?
             <Borrando_registro_medicaciones_usuarios vista="medicaciones_usuarios" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "pruebas"
+            ?
+            <Borrando_registro_pruebas vista="pruebas" config={props.config}/>
             :
             null
             }

@@ -7,6 +7,7 @@ import Actualizar_registro_medicaciones_usuarios from './Actualizar_registro_med
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
+import Actualizar_registro_pruebas from './Actualizar_registro_pruebas';
 import Actualizar_registro_usuarios from './Actualizar_registro_usuarios';
 
 const Actualizar_registros_admin = (props) =>{
@@ -52,6 +53,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "medicaciones_usuarios"
             ?
             <Actualizar_registro_medicaciones_usuarios vista="medicaciones_usuarios" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "pruebas"
+            ?
+            <Actualizar_registro_pruebas vista="pruebas" config={props.config}/>
             :
             null
             }
