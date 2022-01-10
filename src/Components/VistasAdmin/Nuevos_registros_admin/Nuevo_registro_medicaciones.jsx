@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 
-const Nuevo_registro_enfermedades = (props) =>{
+const Nuevo_registro_medicaciones = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -65,7 +65,7 @@ const Nuevo_registro_enfermedades = (props) =>{
                 <h2 className='mb'>Crear registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="nombre">Nombre de la enfermedad:</label>
+                        <label htmlFor="nombre">Nombre de la medicación:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
                         <input type="text" name="nombre" onChange={(e)=>datosCrearRegistro(e)}/>
@@ -79,4 +79,4 @@ const Nuevo_registro_enfermedades = (props) =>{
         </div>
     )
 }
-export default connect()(Nuevo_registro_enfermedades);
+export default connect()(Nuevo_registro_medicaciones);

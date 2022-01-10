@@ -6,6 +6,7 @@ import Listado_usuarios from './Listado_usuarios';
 import Listado_antecedentes_familiares from './Listado_antecedentes_familiares';
 import Listado_enfermedades from './Listado_enfermedades';
 import Listado_enfermedades_usuarios from './Listado_enfermedades_usuarios';
+import Listado_medicaciones from './Listado_medicaciones';
 
 const Listados_admin = (props) =>{
     
@@ -38,6 +39,12 @@ const Listados_admin = (props) =>{
             {props.vista === "enfermedades_usuarios"
             ?
             <Listado_enfermedades_usuarios/>
+            :
+            null
+            }
+            {props.vista === "medicaciones"
+            ?
+            <Listado_medicaciones/>
             :
             null
             }
