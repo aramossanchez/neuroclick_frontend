@@ -40,11 +40,7 @@ const PantallaAdmin = (props) =>{
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Pruebas realizadas</div>
                 </div>
                 <div className="bloque_admin_der">
-                    {vistaAdmin === "profesionales"
-                    ?
-                    <Vista_individual_admin vista="profesionales" config={config}/>
-                    :
-                    null}
+                    <Vista_individual_admin vista={vistaAdmin} config={config}/>
                 </div>
             </div>
         </div>

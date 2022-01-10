@@ -1,20 +1,20 @@
-import {EDITANDO} from '../types';
+import {CREANDO} from '../types';
 
 const initialState = {
-    editando: false
+    creando: false
 };
 
-const editandoRegistroReducer = (state = initialState, action) => {
+const creandoRegistroReducer = (state = initialState, action) => {
     switch(action.type){
         //GUARDO EN EL ESTADO EL USUARIO DEL QUE SE ESTÁ VIENDO LA INFORMACIÓN
-        case EDITANDO :
+        case CREANDO :
             return {
                 ...state,
-                editando: action.payload
+                creando: action.payload
             }
             
         default :
             return state
     }
 }
-export default editandoRegistroReducer;
+export default creandoRegistroReducer;

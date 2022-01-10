@@ -7,7 +7,7 @@ import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Vista_individual_admin = (props) =>{
+const Actualizar_registro_profesionales = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -91,4 +91,4 @@ export default connect((state)=>({
     editandoRegistro: state.editandoRegistro,
     borrandoRegistro: state.borrandoRegistro,
     registroSeleccionado: state.registroSeleccionado
-}))(Vista_individual_admin);
+}))(Actualizar_registro_profesionales);

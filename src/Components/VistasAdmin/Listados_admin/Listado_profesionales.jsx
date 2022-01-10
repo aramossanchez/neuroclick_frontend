@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Vista_individual_admin/Vista_individual_admin.scss';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { EDITANDO } from '../../../redux/types';

@@ -1,7 +1,7 @@
 import {BORRANDO} from '../types';
 
 const initialState = {
-    borrando:{}
+    borrando: false
 };
 
 const borrandoRegistroReducer = (state = initialState, action) => {
