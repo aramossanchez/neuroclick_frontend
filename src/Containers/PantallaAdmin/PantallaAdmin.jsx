@@ -4,7 +4,7 @@ import Header from '../../Components/Header/Header.jsx';
 import { connect } from 'react-redux';
 
 /*IMPORTACIONES DE VISTAS DE ADMIN*/
-import Profesionales_admin from '../../Components/VistasAdmin/Profesionales_admin/Profesionales_admin';
+import Vista_individual_admin from '../../Components/VistasAdmin/Vista_individual_admin/Vista_individual_admin';
 
 const PantallaAdmin = (props) =>{
 
@@ -42,7 +42,7 @@ const PantallaAdmin = (props) =>{
                 <div className="bloque_admin_der">
                     {vistaAdmin === "profesionales"
                     ?
-                    <Profesionales_admin vista="profesionales" config={config}/>
+                    <Vista_individual_admin vista="profesionales" config={config}/>
                     :
                     null}
                 </div>
