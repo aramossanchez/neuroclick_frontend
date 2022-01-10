@@ -29,7 +29,7 @@ const PantallaAdmin = (props) =>{
                     <h2>Tablas para gestionar</h2>
                     <div className="tablas_admin" onClick={()=>elegirVista("profesionales")}>Profesionales</div>
                     <div className="tablas_admin" onClick={()=>elegirVista("usuarios")}>Usuarios</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista()}>Antecedentes familiares</div>
+                    <div className="tablas_admin" onClick={()=>elegirVista("antecedentes_familiares")}>Antecedentes familiares</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Enfermedades</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Relación entre enfermedades y usuarios</div>
                     <div className="tablas_admin" onClick={()=>elegirVista()}>Medicaciones</div>
@@ -49,6 +49,12 @@ const PantallaAdmin = (props) =>{
                     {vistaAdmin === "usuarios"
                     ?
                     <Vista_individual_admin vista="usuarios" config={config}/>
+                    :
+                    null
+                    }
+                    {vistaAdmin === "antecedentes_familiares"
+                    ?
+                    <Vista_individual_admin vista="antecedentes_familiares" config={config}/>
                     :
                     null
                     }
