@@ -1,5 +1,6 @@
 import React from 'react';
 import Actualizar_registro_antecedentes_familiares from './Actualizar_registro_antecedentes_familiares';
+import Actualizar_registro_enfermedades from './Actualizar_registro_enfermedades';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
@@ -24,6 +25,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "antecedentes_familiares"
             ?
             <Actualizar_registro_antecedentes_familiares vista="antecedentes_familiares" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "enfermedades"
+            ?
+            <Actualizar_registro_enfermedades vista="enfermedades" config={props.config}/>
             :
             null
             }

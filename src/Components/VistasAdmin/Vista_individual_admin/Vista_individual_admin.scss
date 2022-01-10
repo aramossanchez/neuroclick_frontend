@@ -9,6 +9,14 @@
     .registros_admin{
         margin: 0 0.5em;
     }
+    .registros_sin_scroll{
+        margin: 0;
+        .icono_registro_individual{
+            width: 2.125em;
+            margin: 0;
+            cursor: pointer;
+        }
+    }
     .nombre_columna, .nombre_columna_largo{
         min-width: 25em;
         border-bottom: 0.1em solid $oscuro;

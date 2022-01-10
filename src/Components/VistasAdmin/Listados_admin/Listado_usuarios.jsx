@@ -26,7 +26,8 @@ const Listado_usuarios = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">Nombre</div>|
+                |<div className="nombre_columna">ID</div>|
+                <div className="nombre_columna">Nombre</div>|
                 <div className="nombre_columna">Apellidos</div>|
                 <div className="nombre_columna_largo">Dirección</div>|
                 <div className="nombre_columna">Teléfono de contacto</div>|
@@ -43,7 +44,8 @@ const Listado_usuarios = (props) =>{
                     <div key={registro.id} className='registros_admin flex_fila_izquierda'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.nombre}</div>|
+                        |<div className="registro_individual">{registro.id}</div>|
+                        <div className="registro_individual">{registro.nombre}</div>|
                         <div className="registro_individual">{registro.apellidos}</div>|
                         <div className="registro_individual_largo">{registro.direccion}</div>|
                         <div className="registro_individual">{registro.telefono_usuario}</div>|
