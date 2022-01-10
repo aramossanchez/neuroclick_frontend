@@ -8,6 +8,7 @@ import Borrando_registro_medicaciones_usuarios from './Borrando_registro_medicac
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Borrando_registro_profesionales from './Borrando_registro_profesionales';
 import Borrando_registro_pruebas from './Borrando_registro_pruebas';
+import Borrando_Registro_Pruebas_Hechas from './Borrando_Registro_Pruebas_Hechas';
 import Borrando_registro_pruebas_valoraciones from './Borrando_registro_pruebas_valoraciones';
 import Borrando_registro_usuarios from './Borrando_registro_usuarios';
 import Borrando_registro_valoraciones from './Borrando_registro_valoraciones';
@@ -73,6 +74,12 @@ const Borrando_registros_admin = (props) =>{
             {props.vista === "pruebas_valoraciones"
             ?
             <Borrando_registro_pruebas_valoraciones vista="pruebas_valoraciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "pruebas_hechas"
+            ?
+            <Borrando_Registro_Pruebas_Hechas vista="pruebas_hechas" config={props.config}/>
             :
             null
             }

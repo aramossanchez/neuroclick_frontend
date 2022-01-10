@@ -11,6 +11,7 @@ import Actualizar_registro_medicaciones_usuarios from './Actualizar_registro_med
 import Actualizar_registro_pruebas from './Actualizar_registro_pruebas';
 import Actualizar_registro_valoraciones from './Actualizar_registro_valoraciones';
 import Actualizar_registro_pruebas_valoraciones from './Actualizar_registro_pruebas_valoraciones';
+import Actualizar_Registro_Pruebas_Valoraciones_Hechas from './Actualizar_Registro_Pruebas_Valoraciones_Hechas';
 
 const Actualizar_registros_admin = (props) =>{
     
@@ -73,6 +74,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "pruebas_valoraciones"
             ?
             <Actualizar_registro_pruebas_valoraciones vista="pruebas_valoraciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "pruebas_hechas"
+            ?
+            <Actualizar_Registro_Pruebas_Valoraciones_Hechas vista="pruebas_hechas" config={props.config}/>
             :
             null
             }
