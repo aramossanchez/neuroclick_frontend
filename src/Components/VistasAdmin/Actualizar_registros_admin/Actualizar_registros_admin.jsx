@@ -10,6 +10,7 @@ import Actualizar_registro_medicaciones from './Actualizar_registro_medicaciones
 import Actualizar_registro_medicaciones_usuarios from './Actualizar_registro_medicaciones_usuarios';
 import Actualizar_registro_pruebas from './Actualizar_registro_pruebas';
 import Actualizar_registro_valoraciones from './Actualizar_registro_valoraciones';
+import Actualizar_registro_pruebas_valoraciones from './Actualizar_registro_pruebas_valoraciones';
 
 const Actualizar_registros_admin = (props) =>{
     
@@ -66,6 +67,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "valoraciones"
             ?
             <Actualizar_registro_valoraciones vista="valoraciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "pruebas_valoraciones"
+            ?
+            <Actualizar_registro_pruebas_valoraciones vista="pruebas_valoraciones" config={props.config}/>
             :
             null
             }
