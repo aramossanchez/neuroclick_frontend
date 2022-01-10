@@ -3,6 +3,7 @@ import Borrando_registro_antecendetes_familiares from './Borrando_registro_antec
 import Borrando_registro_enfermedades from './Borrando_registro_enfermedades';
 import Borrando_registro_enfermedades_usuarios from './Borrando_registro_enfermedades_usuarios';
 import Borrando_registro_medicaciones from './Borrando_registro_medicaciones';
+import Borrando_registro_medicaciones_usuarios from './Borrando_registro_medicaciones_usuarios';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Borrando_registro_profesionales from './Borrando_registro_profesionales';
@@ -45,6 +46,12 @@ const Borrando_registros_admin = (props) =>{
             {props.vista === "medicaciones"
             ?
             <Borrando_registro_medicaciones vista="medicaciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "medicaciones_usuarios"
+            ?
+            <Borrando_registro_medicaciones_usuarios vista="medicaciones_usuarios" config={props.config}/>
             :
             null
             }

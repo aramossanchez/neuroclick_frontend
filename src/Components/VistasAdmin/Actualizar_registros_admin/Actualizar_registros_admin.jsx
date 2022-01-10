@@ -3,6 +3,7 @@ import Actualizar_registro_antecedentes_familiares from './Actualizar_registro_a
 import Actualizar_registro_enfermedades from './Actualizar_registro_enfermedades';
 import Actualizar_registro_enfermedades_usuarios from './Actualizar_registro_enfermedades_usuarios';
 import Actualizar_registro_medicaciones from './Actualizar_registro_medicaciones';
+import Actualizar_registro_medicaciones_usuarios from './Actualizar_registro_medicaciones_usuarios';
 
 //IMPORTAMOS COMPONENTES PARA CREACIÓN DE REGISTROS
 import Actualizar_registro_profesionales from './Actualizar_registro_profesionales';
@@ -45,6 +46,12 @@ const Actualizar_registros_admin = (props) =>{
             {props.vista === "medicaciones"
             ?
             <Actualizar_registro_medicaciones vista="medicaciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "medicaciones_usuarios"
+            ?
+            <Actualizar_registro_medicaciones_usuarios vista="medicaciones_usuarios" config={props.config}/>
             :
             null
             }

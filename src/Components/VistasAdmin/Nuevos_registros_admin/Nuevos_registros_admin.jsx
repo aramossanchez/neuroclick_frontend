@@ -7,6 +7,7 @@ import Nuevo_registro_antecedentes_familiares from './Nuevo_registro_antecedente
 import Nuevo_registro_enfermedades from './Nuevo_registro_enfermedades';
 import Nuevo_registro_enfermedades_usuarios from './Nuevo_registro_enfermedades_usuarios';
 import Nuevo_registro_medicaciones from './Nuevo_registro_medicaciones';
+import Nuevo_registro_medicaciones_usuarios from './Nuevo_registro_medicaciones_usuarios';
 
 const Nuevos_registros_admin = (props) =>{
     
@@ -45,6 +46,12 @@ const Nuevos_registros_admin = (props) =>{
             {props.vista === "medicaciones"
             ?
             <Nuevo_registro_medicaciones vista="medicaciones" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "medicaciones_usuarios"
+            ?
+            <Nuevo_registro_medicaciones_usuarios vista="medicaciones_usuarios" config={props.config}/>
             :
             null
             }
