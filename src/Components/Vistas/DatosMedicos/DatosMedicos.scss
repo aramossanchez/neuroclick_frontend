@@ -30,3 +30,33 @@
 textarea:focus{
     outline: 0.2em solid $oscuro;
 }
+/*VENTANA EMERGENTE PARA AÑADIR ENFERMEDAD AL USUARIO*/
+.ventana_añadir_enfermedad{
+    width: 50vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $claro;
+    z-index: 4;
+    border-radius: 0.5em;
+    border: 0.1em solid $oscuro;
+    padding: 1em;
+    max-height: 50vh;
+    .listado_enfermedades_añadir{
+        background-color: $principal-claro;
+        padding: 0.5em;
+        width: 100%;
+        text-align: left;
+        overflow-y:scroll;
+        .enfermedad_individual{
+            cursor: pointer;
+            margin: 0.25em 0;
+        }
+        .añadida{
+            transform: scaleY(0);
+            max-height: 0px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

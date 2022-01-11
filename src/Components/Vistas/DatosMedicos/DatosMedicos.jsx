@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { USUARIO } from '../../../redux/types';
+import Antecedentes_Familiares from './Secciones/Antecedentes_Familiares';
+import Enfermedades from './Secciones/Enfermedades';
 
 const DatosMedicos = (props) =>{
 
@@ -15,27 +17,14 @@ const DatosMedicos = (props) =>{
     //HOOKS
     //DATOS DE USUARIO A MODIFICAR
     const[usuarioModificado, setUsuarioModificado] = useState({});
-    //ANTECEDENTES FAMILIARES DEL USUARIO
-    const[antecedentes, setAntecedentes] = useState("");
-    //MODIFICACIÓN DE ANTECEDENTES FAMILIARES DEL USUARIO
-    const[antecedentesModificados, setAntecedentesModificados] = useState("");
-    //ENFERMEDADES DEL USUARIO
-    const[enfermedadesUsuario, setEnfermedadesUsuario] = useState([]);
     //MEDICACIONES DEL USUARIO
     const[medicacionesUsuario, setMedicacionesUsuario] = useState([]);
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
     useEffect(()=>{
-        antecedentesFamiliares();
-        enfermedades();
         medicaciones();
     }, []);
-
-    //CADA VEZ QUE SE MODIFICAN LOS ANTECEDENTES FAMILIARES, SE GUARDA UNA COPIA EN EL HOOK
-    useEffect(()=>{
-        setAntecedentesModificados(antecedentes);
-    },[antecedentes]);
 
     //CADA VEZ QUE SE SELECCIONA UN USUARIO, SE GUARDA ESA INFORMACIÓN EN EL HOOK Y SE CARGA EL COMPONENTE DE NUEVO
     useEffect(()=>{
@@ -53,48 +42,7 @@ const DatosMedicos = (props) =>{
     let fechaDeNacimiento = new Date(props.usuarioSeleccionado.usuario.fecha_nacimiento);
     let añoNacimiento = fechaDeNacimiento.getFullYear();
 
-    //OBTENER ANTECEDENTES FAMILIARES
-    const antecedentesFamiliares = async() =>{
-        try {
-            let res = await axios.get(`${api.conexion}/antecedentes_familiares/${props.usuarioSeleccionado.usuario.id}`, config);
-            setAntecedentes(res.data.descripcion);
-        } catch (error) {
-            setMensajeError(error);
-        }
-    }
-
-    //GUARDAR MODIFICACIONES EN LOS ANTECEDENTES FAMILIARES
-    const guardarModificacionAntecedentes = (e) =>{
-        setAntecedentesModificados(e.target.value);
-        console.log(antecedentesModificados);
-    }
-
-    //GUARDAR LAS MODIFICACIONES DE LOS ANTECEDENTES EN LA BASE DE DATOS
-    const actualizarAntecedentesUsuario = async () =>{
-        let body = {
-            descripcion: antecedentesModificados
-        }
-        try {
-            await axios.put(`${api.conexion}/antecedentes_familiares/${props.usuarioSeleccionado.usuario.id}`, body, config);
-            setMensajeError("Actualización de datos realizada con éxito.");
-            setTimeout(() => {
-                setMensajeError("");
-            }, 4000);
-
-        } catch (error) {
-            setMensajeError(error);
-        }
-    }
-    
-    //OBTENER ENFERMEDADES
-    const enfermedades = async() =>{
-        try {
-            let res = await axios.get(`${api.conexion}/enfermedades_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
-            setEnfermedadesUsuario(res.data);
-        } catch (error) {
-            setMensajeError(error);
-        }
-    }
+    //MEDICACIONES
 
     //OBTENER MEDICACIONES
     const medicaciones = async() =>{
@@ -167,28 +115,8 @@ const DatosMedicos = (props) =>{
             null
             }
             <hr />
-            <h2>Antecedentes familiares</h2>
-            <textarea className='bloque_multiples_datos_medicos mi' value={antecedentesModificados} onChange={(e)=>guardarModificacionAntecedentes(e)}>
-            </textarea>
-            {/* SOLO SE VERÁ EL BOTÓN SI SE HA LOGADO ADMINISTRACIÓN */}
-            {props.profesionalLogado.login.profesional.rol === "Administración"
-            ?
-            <div className="flex_columna ma">
-                <div className="boton" onClick={()=>actualizarAntecedentesUsuario()}>GUARDAR DATOS DE ANTECEDENTES FAMILIARES MODIFICADOS</div>
-            </div>
-            :
-            null
-            }
-            <hr />
-            <h2>Enfermedades</h2>
-            <div className='bloque_multiples_datos_medicos mi'>
-                {enfermedadesUsuario.map((enfermedad)=>{
-                    return(
-                        <div key={enfermedad.id}>{enfermedad.enfermedade.nombre}</div>
-                    )
-                })}
-            </div>
-            <hr />
+            <Antecedentes_Familiares config={config}/>
+            <Enfermedades config={config}/>
             <h2>Medicación actual</h2>
             <div className='bloque_multiples_datos_medicos mi'>
                 {medicacionesUsuario.map((medicacion)=>{
