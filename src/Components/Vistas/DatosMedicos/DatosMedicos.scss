@@ -31,7 +31,7 @@ textarea:focus{
     outline: 0.2em solid $oscuro;
 }
 /*VENTANA EMERGENTE PARA AÑADIR ENFERMEDAD AL USUARIO*/
-.ventana_añadir_enfermedad{
+.ventana_mensaje_datos_medicos{
     width: 50vw;
     position: absolute;
     top: 0;
@@ -42,13 +42,13 @@ textarea:focus{
     border: 0.1em solid $oscuro;
     padding: 1em;
     max-height: 50vh;
-    .listado_enfermedades_añadir{
+    .listado_datos_medicos{
         background-color: $principal-claro;
         padding: 0.5em;
         width: 100%;
         text-align: left;
         overflow-y:scroll;
-        .enfermedad_individual{
+        .elemento_individual_datos_medicos{
             cursor: pointer;
             margin: 0.25em 0;
         }

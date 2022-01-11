@@ -5,8 +5,9 @@ import Api from '../../../../api/api';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { USUARIO } from '../../../../redux/types';
 
-const DatosMedicos = (props) =>{
+const Enfermedades = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -27,6 +28,10 @@ const DatosMedicos = (props) =>{
         enfermedades();
         obtenerEnfermedades();
     }, []);
+    
+    useEffect(()=>{
+        enfermedades();
+    }, [props.usuarioSeleccionado]);
 
     //OBTENER ENFERMEDADES DEL USUARIO
     const enfermedades = async() =>{
@@ -44,8 +49,14 @@ const DatosMedicos = (props) =>{
     }
     
     //CERRAR MENU PARA AÑADIR ENFERMEDADES
-    const ocultarAñadirEnfermedades = () =>{
-        setAñadiendoEnfermedades(false);
+    const ocultarAñadirEnfermedades = async () =>{
+        try {
+            let res = await axios.get(`${api.conexion}/usuarios/${props.usuarioSeleccionado.usuario.id}`, props.config);
+            props.dispatch({type:USUARIO, payload: res.data});
+            setAñadiendoEnfermedades(false);
+        } catch (error) {
+            setMensajeError(error);
+        }
     }
 
     //MOSTRAR MENU PARA ELIMINAR ENFERMEDADES
@@ -54,8 +65,14 @@ const DatosMedicos = (props) =>{
     }
     
     //CERRAR MENU PARA ELIMINAR ENFERMEDADES
-    const ocultarEliminarEnfermedades = () =>{
-        setEliminandoEnfermedades(false);
+    const ocultarEliminarEnfermedades = async () =>{
+        try {
+            let res = await axios.get(`${api.conexion}/usuarios/${props.usuarioSeleccionado.usuario.id}`, props.config);
+            props.dispatch({type:USUARIO, payload: res.data});
+            setEliminandoEnfermedades(false);
+        } catch (error) {
+            setMensajeError(error);
+        }
     }
 
     //OBTENER TODAS LAS ENFERMEDADES GUARDADAS EN LA BASE DE DATOS
@@ -94,24 +111,17 @@ const DatosMedicos = (props) =>{
 
     return(
         <div>
-            {/* SI mensajeError ESTÁ VACIO NO MUESTRA NADA. SI TIENE ALGO, MUESTRA EL MENSAJE */}
-            {!mensajeError
-            ?
-            null
-            :
-            <div className="mensaje_error">{mensajeError}</div>
-            }
             {/* VENTANA QUE SE MOSTRARÁ CUANDO SE QUIERA AÑADIR ENFERMEDADES */}
             {añadiendoEnfermedades
             ?
             <div>
                 <div className='contenedor_mensaje'></div>
-                <div className='ventana_añadir_enfermedad flex_columna_arriba'>
+                <div className='ventana_mensaje_datos_medicos flex_columna_arriba'>
                     <h2>Añadir enfermedad al usuario</h2>
-                    <div className='listado_enfermedades_añadir'>
+                    <div className='listado_datos_medicos'>
                     {listadoEnfermedades.map((enfermedad)=>{
                         return(
-                            <div key={enfermedad.id} className='enfermedad_individual' onClick={(e)=>añadirEnfermedad(enfermedad.id, e)}>
+                            <div key={enfermedad.id} className='elemento_individual_datos_medicos' onClick={(e)=>añadirEnfermedad(enfermedad.id, e)}>
                                 {enfermedad.nombre}
                             </div>
                         )
@@ -130,12 +140,12 @@ const DatosMedicos = (props) =>{
             ?
             <div>
                 <div className='contenedor_mensaje'></div>
-                <div className='ventana_añadir_enfermedad flex_columna_arriba'>
+                <div className='ventana_mensaje_datos_medicos flex_columna_arriba'>
                     <h2>Eliminar enfermedad al usuario</h2>
-                    <div className='listado_enfermedades_añadir'>
+                    <div className='listado_datos_medicos'>
                     {enfermedadesUsuario.map((enfermedad)=>{
                         return(
-                            <div key={enfermedad.id} className='enfermedad_individual' onClick={(e)=>eliminarEnfermedad(enfermedad.id, e)}>
+                            <div key={enfermedad.id} className='elemento_individual_datos_medicos' onClick={(e)=>eliminarEnfermedad(enfermedad.id, e)}>
                                 {enfermedad.enfermedade.nombre}
                             </div>
                         )
@@ -156,10 +166,16 @@ const DatosMedicos = (props) =>{
                     )
                 })}
             </div>
+            {/*SOLO SE MOSTRARÁN LOS BOTONES PARA LOS PROFESIONALES QUE SEAN DE ADMINISTRACION*/}
+            {props.profesionalLogado.login.profesional.rol ==="Administración"
+            ?
             <div className="flex_fila_separado ma">
                 <div className="boton" onClick={()=>mostrarAñadirEnfermedades()}>AÑADIR ENFERMEDAD</div>
                 <div className="boton" onClick={()=>mostrarEliminarEnfermedades()}>ELIMINAR ENFERMEDAD</div>
             </div>
+            :
+            null
+            }
             <hr />
         </div>
     )
@@ -168,4 +184,4 @@ const DatosMedicos = (props) =>{
 export default connect((state)=>({
     usuarioSeleccionado: state.usuarioSeleccionado,
     profesionalLogado: state.profesionalLogado
-}))(DatosMedicos);
+}))(Enfermedades);

@@ -6,8 +6,11 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { USUARIO } from '../../../redux/types';
+
+//SECCIONES DE DATOS MEDICOS
 import Antecedentes_Familiares from './Secciones/Antecedentes_Familiares';
 import Enfermedades from './Secciones/Enfermedades';
+import Medicaciones from './Secciones/Medicaciones';
 
 const DatosMedicos = (props) =>{
 
@@ -17,14 +20,8 @@ const DatosMedicos = (props) =>{
     //HOOKS
     //DATOS DE USUARIO A MODIFICAR
     const[usuarioModificado, setUsuarioModificado] = useState({});
-    //MEDICACIONES DEL USUARIO
-    const[medicacionesUsuario, setMedicacionesUsuario] = useState([]);
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
-
-    useEffect(()=>{
-        medicaciones();
-    }, []);
 
     //CADA VEZ QUE SE SELECCIONA UN USUARIO, SE GUARDA ESA INFORMACIÓN EN EL HOOK Y SE CARGA EL COMPONENTE DE NUEVO
     useEffect(()=>{
@@ -41,18 +38,6 @@ const DatosMedicos = (props) =>{
     let añoActual = fechaActual.getFullYear()
     let fechaDeNacimiento = new Date(props.usuarioSeleccionado.usuario.fecha_nacimiento);
     let añoNacimiento = fechaDeNacimiento.getFullYear();
-
-    //MEDICACIONES
-
-    //OBTENER MEDICACIONES
-    const medicaciones = async() =>{
-        try {
-            let res = await axios.get(`${api.conexion}/medicaciones_usuarios/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
-            setMedicacionesUsuario(res.data);
-        } catch (error) {
-            setMensajeError(error);
-        }
-    }
 
     //GUARDAR DATOS MODIFICADOS DEL USUARIO
     const datosActualizarUsuario = (e) =>{
@@ -117,14 +102,7 @@ const DatosMedicos = (props) =>{
             <hr />
             <Antecedentes_Familiares config={config}/>
             <Enfermedades config={config}/>
-            <h2>Medicación actual</h2>
-            <div className='bloque_multiples_datos_medicos mi'>
-                {medicacionesUsuario.map((medicacion)=>{
-                    return(
-                        <div key={medicacion.id}>{medicacion.medicacione.nombre}</div>
-                    )
-                })}
-            </div>
+            <Medicaciones config={config}/>
         </div>
     )
 }
