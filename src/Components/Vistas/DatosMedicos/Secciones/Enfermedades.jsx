@@ -157,7 +157,8 @@ const Enfermedades = (props) =>{
                 </div>
             </div>
             :
-            null}
+            null
+            }
             <h2>Enfermedades</h2>
             <div className='bloque_multiples_datos_medicos mi'>
                 {enfermedadesUsuario.map((enfermedad)=>{

@@ -200,6 +200,10 @@ const PruebasProfesionales = (props) =>{
             setPruebaNueva({});
             setValoracionesPruebaNueva([]);
             setCreandoPrueba(false);
+            setMensajeError("Prueba creada correctamente.");
+            setTimeout(() => {
+                setMensajeError("");
+            }, 4000);
         } catch (error) {
             setMensajeError(error);
         }
@@ -208,6 +212,13 @@ const PruebasProfesionales = (props) =>{
 
     return(
         <div className="bloque_pruebas flex_fila_arriba_izquierda">
+            {/* SI mensajeError ESTÁ VACIO NO MUESTRA NADA. SI TIENE ALGO, MUESTRA EL MENSAJE */}
+            {!mensajeError
+            ?
+            null
+            :
+            <div className="mensaje_error">{mensajeError}</div>
+            }
             {cargandoIzquierda
             ?
             <img src={spin} alt="Cargando" />
