@@ -12,10 +12,15 @@ const Usuarios = (props) =>{
     const [listadoUsuariosFiltrados, setListadoUsuariosFiltrados] = useState([]);
     const [mensajeError, setMensajeError] = useState("");
 
-    //AL CARGAR EL COMPONENTE, GUARDA LISTADO DE USUARIOS EN REDUX
+    //AL CARGAR EL COMPONENTE, GUARDA LISTADO DE USUARIOS EN EL HOOK
     useEffect(()=>{
         traerListaUsuarios();
     }, [])
+    
+    //AL DETECTAR UN CAMBIO EN EL USUARIO SELECCIONADO GUARDADO EN REDUX, RECARGA LA LISTA DE USUARIOS POR SI HA HABIDO ALGÚN CAMBIO EN LOS DATOS
+    useEffect(()=>{
+        traerListaUsuarios();
+    }, [props.usuarioSeleccionado])
 
     //OBTIENE LISTADO DE USUARIOS DE LA BASE DE DATOS
     const traerListaUsuarios = async () =>{
@@ -79,5 +84,6 @@ const Usuarios = (props) =>{
 }
 
 export default connect((state)=>({
-    profesionalLogado: state.profesionalLogado
+    profesionalLogado: state.profesionalLogado,
+    usuarioSeleccionado: state.usuarioSeleccionado,
 }))(Usuarios);

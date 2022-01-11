@@ -3,17 +3,30 @@
 
 .contenedor_vista .datos_medicos_usuario{
     input{
-        outline: none;
         margin-right: 1em;
+        outline: none;
+        border: none;
+        border-radius: 0.25em;
+    }
+    input:focus{
+        outline: 0.2em solid $oscuro;
+    }
+    input:read-only:focus{
+        outline: 0 solid;
     }
     label{
         margin-right: 0.5em;
     }
 }
 .bloque_multiples_datos_medicos{
+    text-align: left;
+    padding: 0.5em;
     background-color: $claro;
     border-radius: 0.25em;
     width: 95%;
     min-height: 10em;
     margin-bottom: 1em;
+}
+textarea:focus{
+    outline: 0.2em solid $oscuro;
 }

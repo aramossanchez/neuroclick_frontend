@@ -10,6 +10,12 @@
     width: 90%;
     input{
         width: 96%;
+        outline: none;
+        border: none;
+        border-radius: 0.25em;
+    }
+    input:focus{
+        outline: 0.2em solid $oscuro;
     }
 }
 
@@ -22,5 +28,11 @@
     width: 75%;
     input{
         width: 95%;
+        outline: none;
+        border: none;
+        border-radius: 0.25em;
+    }
+    input:focus{
+        outline: 0.2em solid $oscuro;
     }
 }
