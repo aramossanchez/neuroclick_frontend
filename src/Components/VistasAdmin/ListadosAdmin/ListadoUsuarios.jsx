@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_usuarios = (props) =>{
+const ListadoUsuarios = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -64,4 +64,4 @@ const Listado_usuarios = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_usuarios);
+}))(ListadoUsuarios);

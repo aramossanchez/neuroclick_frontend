@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_valoraciones = (props) =>{
+const ListadoMedicacionesUsuarios = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,18 +26,16 @@ const Listado_valoraciones = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID</div>|
-                <div className="nombre_columna">Pregunta</div>|
-                <div className="nombre_columna">Escala</div>|
+                |<div className="nombre_columna admin_campo_id_usuario">ID de usuario</div>|
+                <div className="nombre_columna admin_campo_id_medicacion">ID de medicación</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='flex_fila_izquierda registros_admin'>
+                    <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.id}</div>|
-                        <div className="registro_individual">{registro.pregunta}</div>|
-                        <div className="registro_individual">{registro.escala}</div>|
+                        |<div className="registro_individual admin_campo_id_usuario">{registro.UsuarioID}</div>|
+                        <div className="registro_individual admin_campo_id_medicacion">{registro.MedicacionID}</div>|
                     </div>
                 )
             })}
@@ -46,4 +44,4 @@ const Listado_valoraciones = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_valoraciones);
+}))(ListadoMedicacionesUsuarios);

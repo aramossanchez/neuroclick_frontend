@@ -10,7 +10,7 @@ import { CREANDO } from '../../../redux/types';
 import NuevosRegistrosAdmin from '../NuevosRegistrosAdmin/NuevosRegistrosAdmin';
 import Borrando_registros_admin from '../Borrando_registros_admin/Borrando_registros_admin';
 import ActualizarRegistrosAdmin from '../ActualizarRegistrosAdmin/ActualizarRegistrosAdmin';
-import Listados_admin from '../Listados_admin/Listados_admin';
+import ListadosAdmin from '../ListadosAdmin/ListadosAdmin';
 
 const Vista_individual_admin = (props) =>{
 
@@ -64,7 +64,7 @@ const Vista_individual_admin = (props) =>{
             <ActualizarRegistrosAdmin vista={props.vista} config={props.config}/>
             :
             null}
-            <Listados_admin vista={props.vista}/>
+            <ListadosAdmin vista={props.vista}/>
         </div>
     )
 }

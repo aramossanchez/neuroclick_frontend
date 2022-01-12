@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_pruebas_valoraciones = (props) =>{
+const ListadoPruebas = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,16 +26,20 @@ const Listado_pruebas_valoraciones = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID de prueba</div>|
-                <div className="nombre_columna">ID de valoración</div>|
+                |<div className="nombre_columna admin_campo_id">ID</div>|
+                <div className="nombre_columna admin_campo_nombre">Nombre</div>|
+                <div className="nombre_columna admin_campo_rol">Ámbito</div>|
+                <div className="nombre_columna admin_campo_descripcion_prueba">Descripción</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
+                    <div key={registro.id} className='flex_fila_izquierda registros_admin'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.PruebaID}</div>|
-                        <div className="registro_individual">{registro.ValoracionID}</div>|
+                        |<div className="registro_individual admin_campo_id">{registro.id}</div>|
+                        <div className="registro_individual admin_campo_nombre">{registro.nombre}</div>|
+                        <div className="registro_individual admin_campo_rol">{registro.profesional}</div>|
+                        <div className="registro_individual admin_campo_descripcion_prueba">{registro.descripcion}</div>|
                     </div>
                 )
             })}
@@ -44,4 +48,4 @@ const Listado_pruebas_valoraciones = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_pruebas_valoraciones);
+}))(ListadoPruebas);

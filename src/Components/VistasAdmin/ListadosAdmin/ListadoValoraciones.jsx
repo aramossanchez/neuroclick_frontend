@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_antecendetes_familiares = (props) =>{
+const ListadoValoraciones = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,16 +26,18 @@ const Listado_antecendetes_familiares = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID de usuario</div>|
-                <div className="nombre_columna_largo">Descripción</div>|
+                |<div className="nombre_columna admin_campo_id">ID</div>|
+                <div className="nombre_columna admin_campo_pregunta">Pregunta</div>|
+                <div className="nombre_columna admin_campo_escala">Escala</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='registros_admin flex_fila_izquierda'>
+                    <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.UsuarioID}</div>|
-                        <div className="registro_individual_largo">{registro.descripcion}</div>|
+                        |<div className="registro_individual admin_campo_id">{registro.id}</div>|
+                        <div className="registro_individual admin_campo_pregunta">{registro.pregunta}</div>|
+                        <div className="registro_individual admin_campo_escala">{registro.escala}</div>|
                     </div>
                 )
             })}
@@ -44,4 +46,4 @@ const Listado_antecendetes_familiares = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_antecendetes_familiares);
+}))(ListadoValoraciones);

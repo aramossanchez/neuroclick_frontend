@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_profesionales = (props) =>{
+const ListadoEnfermedades = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,26 +26,16 @@ const Listado_profesionales = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">Nombre</div>|
-                <div className="nombre_columna">Apellidos</div>|
-                <div className="nombre_columna">Correo electrónico</div>|
-                <div className="nombre_columna_largo">Dirección</div>|
-                <div className="nombre_columna">Teléfono de contacto</div>|
-                <div className="nombre_columna">Rol</div>|
-                <div className="nombre_columna">Fecha de incorporación</div>|
+                |<div className="nombre_columna admin_campo_id">ID</div>|
+                <div className="nombre_columna admin_campo_nombre_enfermedad">Nombre</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='registros_admin flex_fila_izquierda'>
+                    <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.nombre}</div>|
-                        <div className="registro_individual">{registro.apellidos}</div>|
-                        <div className="registro_individual">{registro.correo_electronico}</div>|
-                        <div className="registro_individual_largo">{registro.direccion}</div>|
-                        <div className="registro_individual">{registro.telefono_contacto}</div>|
-                        <div className="registro_individual">{registro.rol}</div>|
-                        <div className="registro_individual">{registro.createdAt}</div>|
+                        |<div className="registro_individual admin_campo_id">{registro.id}</div>|
+                        <div className="registro_individual admin_campo_nombre_enfermedad">{registro.nombre}</div>|
                     </div>
                 )
             })}
@@ -54,4 +44,4 @@ const Listado_profesionales = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_profesionales);
+}))(ListadoEnfermedades);

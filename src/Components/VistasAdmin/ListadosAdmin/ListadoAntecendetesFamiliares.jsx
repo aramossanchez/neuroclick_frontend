@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_enfermedades_usuarios = (props) =>{
+const ListadoAntecendetesFamiliares = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,16 +26,16 @@ const Listado_enfermedades_usuarios = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID de usuario</div>|
-                <div className="nombre_columna">ID de enfermedad</div>|
+                |<div className="nombre_columna admin_campo_id_usuario">ID de usuario</div>|
+                <div className="nombre_columna admin_campo_descripcion">Descripción</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
+                    <div key={registro.id} className='registros_admin flex_fila_izquierda'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.UsuarioID}</div>|
-                        <div className="registro_individual">{registro.EnfermedadID}</div>|
+                        |<div className="registro_individual admin_campo_id_usuario">{registro.UsuarioID}</div>|
+                        <div className="registro_individual admin_campo_descripcion">{registro.descripcion}</div>|
                     </div>
                 )
             })}
@@ -44,4 +44,4 @@ const Listado_enfermedades_usuarios = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_enfermedades_usuarios);
+}))(ListadoAntecendetesFamiliares);

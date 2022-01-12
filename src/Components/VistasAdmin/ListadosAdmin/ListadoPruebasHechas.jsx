@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Listado_medicaciones = (props) =>{
+const ListadoPruebasHechas = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,16 +26,22 @@ const Listado_medicaciones = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID</div>|
-                <div className="nombre_columna">Nombre</div>|
+                |<div className="nombre_columna admin_campo_puntuacion">Puntuación</div>|
+                <div className="nombre_columna admin_campo_id_prueba">ID de prueba</div>|
+                <div className="nombre_columna admin_campo_id_usuario">ID de usuario</div>|
+                <div className="nombre_columna admin_campo_id_profesional">ID de profesional</div>|
+                <div className="nombre_columna admin_campo_fecha">Fecha de realización</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
                     <div key={registro.id} className='flex_fila_izquierda registros_sin_scroll'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.id}</div>|
-                        <div className="registro_individual">{registro.nombre}</div>|
+                        |<div className="registro_individual admin_campo_puntuacion">{registro.puntuacion}</div>|
+                        <div className="registro_individual admin_campo_id_prueba">{registro.PruebaID}</div>|
+                        <div className="registro_individual admin_campo_id_usuario">{registro.UsuarioID}</div>|
+                        <div className="registro_individual admin_campo_id_profesional">{registro.ProfesionalID}</div>|
+                        <div className="registro_individual admin_campo_fecha">{registro.createdAt}</div>|
                     </div>
                 )
             })}
@@ -44,4 +50,4 @@ const Listado_medicaciones = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(Listado_medicaciones);
+}))(ListadoPruebasHechas);
