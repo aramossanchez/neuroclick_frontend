@@ -17,6 +17,9 @@
     input:focus{
         outline: 0.2em solid $oscuro;
     }
+    input:read-only:focus{
+        outline: 0 solid;
+    }
 }
 
 /*BLOQUES DE DATOS SOCIAL*/
@@ -34,5 +37,8 @@
     }
     input:focus{
         outline: 0.2em solid $oscuro;
+    }
+    input:read-only:focus{
+        outline: 0 solid;
     }
 }

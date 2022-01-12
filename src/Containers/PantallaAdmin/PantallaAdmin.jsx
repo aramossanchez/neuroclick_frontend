@@ -39,7 +39,14 @@ const PantallaAdmin = (props) =>{
                     <div className="tablas_admin" onClick={()=>elegirVista("pruebas_valoraciones")}>Relación entre pruebas y valoraciones</div>
                     <div className="tablas_admin" onClick={()=>elegirVista("pruebas_hechas")}>Pruebas realizadas</div>
                 </div>
-                <div className="bloque_admin_der">
+                
+                <div className="bloque_admin_der flex_columna">
+                    {vistaAdmin === ""
+                    ?
+                    <div className="mensaje_seleccion">Selecciona una tabla para empezar a gestionar la base de datos.</div>
+                    :
+                    null
+                    }
                     {/* EN FUNCION DE CUAL SEA LA VISTA CLICKADA, SE CARGARÁ EL COMPONENTE CON UN PROP O CON OTRO. ES NECESARIO HACERLO ASÍ, PORQUE PASANDO EL HOOK DIRECTAMENTE AL PROP DEL COMPONENTE DA ERROR */}
                     {vistaAdmin === "profesionales"
                     ?

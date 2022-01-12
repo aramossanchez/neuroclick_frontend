@@ -1,18 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Api from '../../../api/api';
 import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Actualizar_registro_pruebas = (props) =>{
+const ActualizarRegistroPruebasValoraciones = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
+
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
+
+    useEffect(()=>{
+        colocarTop();
+    },[])
+    
+    //EDITA LA ALTURA DEL COMPONENTE PARA QUE APAREZCA CENTRADO
+    const colocarTop = () => {
+        let ventana = document.getElementsByClassName('editar_registro')[0];
+        let height = ventana.offsetHeight;
+        //SOLO SE RENDERIZA 2 VECES: LA PRIMERA VEZ LO HACE NORMAL Y LA SEGUNDA VEZ LO HACE CON LA ALTURA MODIFICADA
+        if (height !== tamañoVentana) {
+            setTamañoVentana(height);
+            setEstilo({top: `calc(50vh - ${ventana?.offsetHeight / 2}px`});
+        }
+    }
 
     //TRAER LISTADO COMPLETO
     const traerListado = async () =>{
@@ -32,9 +52,8 @@ const Actualizar_registro_pruebas = (props) =>{
     //ACTUALIZAR REGISTRO DE LA BASE DE DATOS
     const editarRegistro = async () =>{
         let body = {
-            nombre: props.registroSeleccionado.registro.nombre,
-            descripcion: props.registroSeleccionado.registro.descripcion,
-            profesional: props.registroSeleccionado.registro.profesional
+            PruebaID: props.registroSeleccionado.registro.PruebaID,
+            ValoracionID: props.registroSeleccionado.registro.ValoracionID
         }
         try {
             await axios.put(`${api.conexion}/${props.vista}/${props.registroSeleccionado.registro.id}`, body, props.config);
@@ -54,18 +73,16 @@ const Actualizar_registro_pruebas = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='editar_registro'>
+            <div className='editar_registro' style={estilo}>
                 <h2 className='mb'>Modificar registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="nombre">Nombre:</label>
-                        <label htmlFor="profesional">Ámbito:</label>
-                        <label htmlFor="descripcion">Descripción:</label>
+                        <label htmlFor="PruebaID">ID de prueba:</label>
+                        <label htmlFor="ValoracionID">ID de valoracion:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="nombre" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.nombre}/>
-                        <input type="text" name="profesional" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.profesional}/>
-                        <input type="text" name="descripcion" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.descripcion}/>
+                        <input type="text" name="PruebaID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.PruebaID}/>
+                        <input type="text" name="ValoracionID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.ValoracionID}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -78,4 +95,4 @@ const Actualizar_registro_pruebas = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Actualizar_registro_pruebas);
+}))(ActualizarRegistroPruebasValoraciones);

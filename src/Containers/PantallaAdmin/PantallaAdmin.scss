@@ -19,6 +19,15 @@
     }
     .bloque_admin_der{
         width: 73%;
+        .mensaje_seleccion{
+            width: 75%;
+            background-color: $principal-claro;
+            padding: 1em 0;
+            margin: 1em;
+            font-size: 1.2em;
+            border-radius: 0.5em;
+            font-weight: bold;
+        }
     }
     .tablas_admin{
         text-align: left;

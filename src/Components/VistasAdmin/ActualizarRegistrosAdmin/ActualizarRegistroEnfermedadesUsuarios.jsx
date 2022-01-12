@@ -1,18 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Api from '../../../api/api';
 import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Actualizar_registro_medicaciones_usuarios = (props) =>{
+const ActualizarRegistroEnfermedadesUsuarios = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
+
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
+
+    useEffect(()=>{
+        colocarTop();
+    },[])
+    
+    //EDITA LA ALTURA DEL COMPONENTE PARA QUE APAREZCA CENTRADO
+    const colocarTop = () => {
+        let ventana = document.getElementsByClassName('editar_registro')[0];
+        let height = ventana.offsetHeight;
+        //SOLO SE RENDERIZA 2 VECES: LA PRIMERA VEZ LO HACE NORMAL Y LA SEGUNDA VEZ LO HACE CON LA ALTURA MODIFICADA
+        if (height !== tamañoVentana) {
+            setTamañoVentana(height);
+            setEstilo({top: `calc(50vh - ${ventana?.offsetHeight / 2}px`});
+        }
+    }
 
     //TRAER LISTADO COMPLETO
     const traerListado = async () =>{
@@ -33,7 +53,7 @@ const Actualizar_registro_medicaciones_usuarios = (props) =>{
     const editarRegistro = async () =>{
         let body = {
             UsuarioID: props.registroSeleccionado.registro.UsuarioID,
-            MedicacionID: props.registroSeleccionado.registro.MedicacionID
+            EnfermedadID: props.registroSeleccionado.registro.EnfermedadID
         }
         try {
             await axios.put(`${api.conexion}/${props.vista}/${props.registroSeleccionado.registro.id}`, body, props.config);
@@ -53,16 +73,16 @@ const Actualizar_registro_medicaciones_usuarios = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='editar_registro'>
+            <div className='editar_registro' style={estilo}>
                 <h2 className='mb'>Modificar registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
                         <label htmlFor="UsuarioID">ID de usuario:</label>
-                        <label htmlFor="MedicacionID">ID de medicación:</label>
+                        <label htmlFor="EnfermedadID">ID de enfermedad:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
                         <input type="text" name="UsuarioID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.UsuarioID}/>
-                        <input type="text" name="MedicacionID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.MedicacionID}/>
+                        <input type="text" name="EnfermedadID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.EnfermedadID}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -75,4 +95,4 @@ const Actualizar_registro_medicaciones_usuarios = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Actualizar_registro_medicaciones_usuarios);
+}))(ActualizarRegistroEnfermedadesUsuarios);

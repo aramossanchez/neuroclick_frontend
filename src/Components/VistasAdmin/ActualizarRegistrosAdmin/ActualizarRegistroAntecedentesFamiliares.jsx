@@ -1,18 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Api from '../../../api/api';
 import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Actualizar_registro_valoraciones = (props) =>{
+const ActualizarRegistroAntecedentesFamiliares = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
+
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
+
+    useEffect(()=>{
+        colocarTop();
+    },[])
+    
+    //EDITA LA ALTURA DEL COMPONENTE PARA QUE APAREZCA CENTRADO
+    const colocarTop = () => {
+        let ventana = document.getElementsByClassName('editar_registro')[0];
+        let height = ventana.offsetHeight;
+        //SOLO SE RENDERIZA 2 VECES: LA PRIMERA VEZ LO HACE NORMAL Y LA SEGUNDA VEZ LO HACE CON LA ALTURA MODIFICADA
+        if (height !== tamañoVentana) {
+            setTamañoVentana(height);
+            setEstilo({top: `calc(50vh - ${ventana?.offsetHeight / 2}px`});
+        }
+    }
 
     //TRAER LISTADO COMPLETO
     const traerListado = async () =>{
@@ -32,8 +52,8 @@ const Actualizar_registro_valoraciones = (props) =>{
     //ACTUALIZAR REGISTRO DE LA BASE DE DATOS
     const editarRegistro = async () =>{
         let body = {
-            pregunta: props.registroSeleccionado.registro.pregunta,
-            escala: props.registroSeleccionado.registro.escala
+            descripcion: props.registroSeleccionado.registro.descripcion,
+            UsuarioID: props.registroSeleccionado.registro.UsuarioID,
         }
         try {
             await axios.put(`${api.conexion}/${props.vista}/${props.registroSeleccionado.registro.id}`, body, props.config);
@@ -53,16 +73,16 @@ const Actualizar_registro_valoraciones = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='editar_registro'>
+            <div className='editar_registro' style={estilo}>
                 <h2 className='mb'>Modificar registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="pregunta">Pregunta:</label>
-                        <label htmlFor="escala">Escala:</label>
+                        <label htmlFor="UsuarioID">ID del usuario:</label>
+                        <label htmlFor="descripcion">Descripción:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="pregunta" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.pregunta}/>
-                        <input type="text" name="escala" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.escala}/>
+                        <input type="text" name="UsuarioID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.UsuarioID}/>
+                        <input type="text" name="descripcion" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.descripcion}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -75,4 +95,4 @@ const Actualizar_registro_valoraciones = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Actualizar_registro_valoraciones);
+}))(ActualizarRegistroAntecedentesFamiliares);

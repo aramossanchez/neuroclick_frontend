@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 
-const Nuevo_registro_medicaciones_usuarios = (props) =>{
+const NuevoRegistroPruebasValoraciones = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -15,15 +15,31 @@ const Nuevo_registro_medicaciones_usuarios = (props) =>{
     //HOOKS
     //GUARDA DATOS DE REGISTRO NUEVO
     const[nuevoRegistro, setNuevoRegistro] = useState({
-        UsuarioID: "",
-        MedicacionID: ""
+        PruebaID: "",
+        ValoracionID: ""
     });
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
     useEffect(()=>{
-        traerListado()
+        traerListado();
+        colocarTop();
     },[])
+    
+    //EDITA LA ALTURA DEL COMPONENTE PARA QUE APAREZCA CENTRADO
+    const colocarTop = () => {
+        let ventana = document.getElementsByClassName('crear_registro')[0];
+        let height = ventana.offsetHeight;
+        //SOLO SE RENDERIZA 2 VECES: LA PRIMERA VEZ LO HACE NORMAL Y LA SEGUNDA VEZ LO HACE CON LA ALTURA MODIFICADA
+        if (height !== tamañoVentana) {
+            setTamañoVentana(height);
+            setEstilo({top: `calc(50vh - ${ventana?.offsetHeight / 2}px`});
+        }
+    }
 
     //TRAER LISTADO COMPLETO
     const traerListado = async () =>{
@@ -43,8 +59,8 @@ const Nuevo_registro_medicaciones_usuarios = (props) =>{
     //CREAR REGISTRO EN LA BASE DE DATOS
     const crearRegistro = async () =>{
         let body = {
-            UsuarioID: nuevoRegistro.UsuarioID,
-            MedicacionID: nuevoRegistro.MedicacionID,
+            PruebaID: nuevoRegistro.PruebaID,
+            ValoracionID: nuevoRegistro.ValoracionID
         };
         try {
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
@@ -63,16 +79,16 @@ const Nuevo_registro_medicaciones_usuarios = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='crear_registro'>
+            <div className='crear_registro' style={estilo}>
                 <h2 className='mb'>Crear registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="UsuarioID">ID de usuario:</label>
-                        <label htmlFor="MedicacionID">ID de medicació:</label>
+                        <label htmlFor="PruebaID">ID de prueba:</label>
+                        <label htmlFor="ValoracionID">ID de valoración:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="UsuarioID" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="MedicacionID" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="PruebaID" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="ValoracionID" onChange={(e)=>datosCrearRegistro(e)}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -83,4 +99,4 @@ const Nuevo_registro_medicaciones_usuarios = (props) =>{
         </div>
     )
 }
-export default connect()(Nuevo_registro_medicaciones_usuarios);
+export default connect()(NuevoRegistroPruebasValoraciones);

@@ -7,9 +7,9 @@ import Api from '../../../api/api';
 import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
-import Nuevos_registros_admin from '../Nuevos_registros_admin/Nuevos_registros_admin';
+import NuevosRegistrosAdmin from '../NuevosRegistrosAdmin/NuevosRegistrosAdmin';
 import Borrando_registros_admin from '../Borrando_registros_admin/Borrando_registros_admin';
-import Actualizar_registros_admin from '../Actualizar_registros_admin/Actualizar_registros_admin';
+import ActualizarRegistrosAdmin from '../ActualizarRegistrosAdmin/ActualizarRegistrosAdmin';
 import Listados_admin from '../Listados_admin/Listados_admin';
 
 const Vista_individual_admin = (props) =>{
@@ -49,7 +49,7 @@ const Vista_individual_admin = (props) =>{
             {/* MENSAJE QUE APARECE AL INTENTAR CREAR UN REGISTRO */}
             {props.creandoRegistro.creando
             ?
-            <Nuevos_registros_admin vista={props.vista} config={props.config}/>
+            <NuevosRegistrosAdmin vista={props.vista} config={props.config}/>
             :
             null}
             {/* MENSAJE QUE APARECE AL INTENTAR BORRAR UN REGISTRO */}
@@ -61,7 +61,7 @@ const Vista_individual_admin = (props) =>{
             {/* MENSAJE QUE APARECE AL INTENTAR EDITAR UN REGISTRO */}
             {props.editandoRegistro.editando
             ?
-            <Actualizar_registros_admin vista={props.vista} config={props.config}/>
+            <ActualizarRegistrosAdmin vista={props.vista} config={props.config}/>
             :
             null}
             <Listados_admin vista={props.vista}/>

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 
-const Nuevo_registro_usuarios = (props) =>{
+const NuevoRegistroProfesionales = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -15,6 +15,8 @@ const Nuevo_registro_usuarios = (props) =>{
     //HOOKS
     //GUARDA DATOS DE REGISTRO NUEVO
     const[nuevoRegistro, setNuevoRegistro] = useState({
+        correo_electronico: "",
+        clave_acceso: "",
         nombre: "",
         apellidos: "",
         calle: "",
@@ -24,20 +26,31 @@ const Nuevo_registro_usuarios = (props) =>{
         ciudad: "",
         provincia: "",
         codigopostal: "",
-        telefono_usuario:"",
-        fecha_nacimiento:"",
-        peso:"",
-        estatura:"",
-        pension:"",
-        persona_contacto:"",
-        telefono_contacto:""
+        telefono: "",
+        rol: "",
     });
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
     useEffect(()=>{
         traerListado()
+        colocarTop();
     },[])
+    
+    //EDITA LA ALTURA DEL COMPONENTE PARA QUE APAREZCA CENTRADO
+    const colocarTop = () => {
+        let ventana = document.getElementsByClassName('crear_registro')[0];
+        let height = ventana.offsetHeight;
+        //SOLO SE RENDERIZA 2 VECES: LA PRIMERA VEZ LO HACE NORMAL Y LA SEGUNDA VEZ LO HACE CON LA ALTURA MODIFICADA
+        if (height !== tamañoVentana) {
+            setTamañoVentana(height);
+            setEstilo({top: `calc(50vh - ${ventana?.offsetHeight / 2}px`});
+        }
+    }
 
     //TRAER LISTADO COMPLETO
     const traerListado = async () =>{
@@ -57,16 +70,13 @@ const Nuevo_registro_usuarios = (props) =>{
     //CREAR REGISTRO EN LA BASE DE DATOS
     const crearRegistro = async () =>{
         let body = {
+            correo_electronico: nuevoRegistro.correo_electronico,
+            clave_acceso: nuevoRegistro.clave_acceso,
             nombre: nuevoRegistro.nombre,
             apellidos: nuevoRegistro.apellidos,
             direccion: "Calle " + nuevoRegistro.calle + ", " + "número " + nuevoRegistro.portal + ", " + "piso " + nuevoRegistro.piso + ", " + "puerta " + nuevoRegistro.puerta + ", " + nuevoRegistro.ciudad + ", " + nuevoRegistro.provincia + ", " + nuevoRegistro.codigopostal,
-            telefono_usuario: nuevoRegistro.telefono_usuario,
-            pension: nuevoRegistro.pension,
-            persona_contacto: nuevoRegistro.persona_contacto,
-            telefono_contacto: nuevoRegistro.telefono_contacto,
-            fecha_nacimiento: nuevoRegistro.fecha_nacimiento,
-            peso: nuevoRegistro.peso,
-            estatura: nuevoRegistro.estatura,
+            telefono_contacto: nuevoRegistro.telefono,
+            rol: nuevoRegistro.rol
         };
         try {
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
@@ -85,10 +95,12 @@ const Nuevo_registro_usuarios = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='crear_registro'>
+            <div className='crear_registro' style={estilo}>
                 <h2 className='mb'>Crear registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
+                        <label htmlFor="correo_electronico">Correo electrónico:</label>
+                        <label htmlFor="clave_acceso">Contraseña:</label>
                         <label htmlFor="nombre">Nombre:</label>
                         <label htmlFor="apellidos">Apellidos:</label>
                         <label htmlFor="calle">Calle:</label>
@@ -98,15 +110,12 @@ const Nuevo_registro_usuarios = (props) =>{
                         <label htmlFor="ciudad">Población:</label>
                         <label htmlFor="provincia">Provincia:</label>
                         <label htmlFor="codigopostal">Codigo Postal:</label>
-                        <label htmlFor="telefono_usuario">Teléfono de contacto:</label>
-                        <label htmlFor="fecha_nacimiento">Fecha de nacimiento:</label>
-                        <label htmlFor="peso">Peso:</label>
-                        <label htmlFor="estatura">Estatura:</label>
-                        <label htmlFor="pension">Pensión:</label>
-                        <label htmlFor="persona_contacto">Persona de contacto:</label>
-                        <label htmlFor="telefono_contacto">Teléfono de persona de contacto:</label>
+                        <label htmlFor="telefono">Teléfono:</label>
+                        <label htmlFor="rol">Rol:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
+                        <input type="text" name="correo_electronico" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="clave_acceso" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="nombre" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="apellidos" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="calle" onChange={(e)=>datosCrearRegistro(e)}/>
@@ -116,13 +125,8 @@ const Nuevo_registro_usuarios = (props) =>{
                         <input type="text" name="ciudad" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="provincia" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="codigopostal" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="telefono_usuario" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="fecha_nacimiento" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="peso" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="estatura" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="pension" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="persona_contacto" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="telefono_contacto" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="telefono" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="rol" onChange={(e)=>datosCrearRegistro(e)}/>
                     </div>
                 </div>
                 <div className="botones_borrado flex_fila_separado">
@@ -133,4 +137,4 @@ const Nuevo_registro_usuarios = (props) =>{
         </div>
     )
 }
-export default connect()(Nuevo_registro_usuarios);
+export default connect()(NuevoRegistroProfesionales);

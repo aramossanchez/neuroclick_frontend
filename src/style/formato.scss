@@ -420,3 +420,25 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 20px;
     border: 2px solid $principal-claro;
 }
+/*CONTENEDOR DONDE SE VISUALIZAN LAS ENFERMEDADES Y LAS MEDICACIONES PARA AÑADIR O QUITAR A LOS USUARIOS*/
+.listado_datos_medicos::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.listado_datos_medicos::-webkit-scrollbar:vertical {
+    width:0.5em;
+}
+
+.listado_datos_medicos::-webkit-scrollbar-button:increment,.listado_datos_medicos::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.listado_datos_medicos::-webkit-scrollbar:horizontal {
+    height: 0.5em;
+}
+
+.listado_datos_medicos::-webkit-scrollbar-thumb {
+    background-color: $oscuro;
+    border-radius: 20px;
+    border: 2px solid $principal-claro;
+}

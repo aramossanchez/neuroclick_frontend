@@ -2,7 +2,7 @@
 
 ## PARTE FRONTAL QUE CONECTA CON LA API DE LA APLICACIÓN (https://github.com/aramossanchez/neuroclick_backend) 🤜🤛
 
-![Portfolio Carta](img/logo-login.png)
+![LOGO APLICACION](src/img/screenshot/logo-login.png)
 
 ## APLICACIÓN PARA LA GESTIÓN DE UNA CLÍNICA DE NEUROREHABILITACIÓN 🧠
 
@@ -14,7 +14,7 @@ Entre las diferentes funciones que tiene la aplicación cabe destacar:
 * La posibilidad de que cualquier profesional (de los mencionados anteriormente) pueda acceder al histórico de cada una de las pruebas realizadas a cualquier usuario.
 * La limitación de crear nuevas pruebas solamente del mismo tipo de profesional logado en la aplicación.
 * Solo los profesionales con perfil de Administración podrán editar los datos de los usuarios, así como dar de alta a nuevos usuarios y profesionales, pero no tendrán acceso a las pruebas.
-* El usuario con perfil de admin tendrá acceso a todas las tablas de la base de datos. Podrá crear registros nuevos y leer, modificar y borrar los registros ya existentes.
+* El profesional con perfil de admin tendrá acceso a todas las tablas de la base de datos. Podrá crear registros nuevos y leer, modificar y borrar los registros ya existentes.
 
 ## TECNOLOGÍAS UTILIZADAS 🔨
 * react
@@ -38,7 +38,7 @@ npm start
 ```
 
 ## EXPLICACIÓN DE LAS DISTINTAS VISTAS
-* **PANTALLA DE LOGIN:** Desde esta pantalla se accede a la aplicación. Es necesario el correo electrónico y la constraseña de un trabajador dado de alta en la base de datos.
+* **PANTALLA DE LOGIN:** Desde esta pantalla se accede a la aplicación. Es necesario el correo electrónico y la contraseña de un trabajador dado de alta en la base de datos.
 
 ![PANTALLA LOGIN](src/img/screenshot/login.jpg)
 
