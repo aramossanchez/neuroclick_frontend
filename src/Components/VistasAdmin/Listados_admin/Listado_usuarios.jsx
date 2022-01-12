@@ -26,36 +26,36 @@ const Listado_usuarios = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna">ID</div>|
-                <div className="nombre_columna">Nombre</div>|
-                <div className="nombre_columna">Apellidos</div>|
-                <div className="nombre_columna_largo">Dirección</div>|
-                <div className="nombre_columna">Teléfono de contacto</div>|
-                <div className="nombre_columna">Fecha de nacimiento</div>|
-                <div className="nombre_columna">Peso</div>|
-                <div className="nombre_columna">Estatura</div>|
-                <div className="nombre_columna">Pensión</div>|
-                <div className="nombre_columna">Persona de contacto</div>|
-                <div className="nombre_columna">Teléfono de persona de contacto</div>|
-                <div className="nombre_columna">Fecha de incorporación</div>|
+                |<div className="nombre_columna admin_campo_id">ID</div>|
+                <div className="nombre_columna admin_campo_nombre">Nombre</div>|
+                <div className="nombre_columna admin_campo_apellidos">Apellidos</div>|
+                <div className="nombre_columna admin_campo_direccion">Dirección</div>|
+                <div className="nombre_columna admin_campo_telefono">Teléfono de contacto</div>|
+                <div className="nombre_columna admin_campo_fecha">Fecha de nacimiento</div>|
+                <div className="nombre_columna admin_campo_peso">Peso</div>|
+                <div className="nombre_columna admin_campo_estatura">Estatura</div>|
+                <div className="nombre_columna admin_campo_pension">Pensión</div>|
+                <div className="nombre_columna admin_campo_persona_contacto">Persona de contacto</div>|
+                <div className="nombre_columna admin_campo_telefono">Tlf de persona de contacto</div>|
+                <div className="nombre_columna admin_campo_fecha">Fecha de incorporación</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
                     <div key={registro.id} className='registros_admin flex_fila_izquierda'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual">{registro.id}</div>|
-                        <div className="registro_individual">{registro.nombre}</div>|
-                        <div className="registro_individual">{registro.apellidos}</div>|
-                        <div className="registro_individual_largo">{registro.direccion}</div>|
-                        <div className="registro_individual">{registro.telefono_usuario}</div>|
-                        <div className="registro_individual">{registro.fecha_nacimiento}</div>|
-                        <div className="registro_individual">{registro.peso}</div>|
-                        <div className="registro_individual">{registro.estatura}</div>|
-                        <div className="registro_individual">{registro.pension}</div>|
-                        <div className="registro_individual">{registro.persona_contacto}</div>|
-                        <div className="registro_individual">{registro.telefono_contacto}</div>|
-                        <div className="registro_individual">{registro.createdAt}</div>|
+                        |<div className="registro_individual admin_campo_id">{registro.id}</div>|
+                        <div className="registro_individual admin_campo_nombre">{registro.nombre}</div>|
+                        <div className="registro_individual admin_campo_apellidos">{registro.apellidos}</div>|
+                        <div className="registro_individual admin_campo_direccion">{registro.direccion}</div>|
+                        <div className="registro_individual admin_campo_telefono">{registro.telefono_usuario}</div>|
+                        <div className="registro_individual admin_campo_fecha">{registro.fecha_nacimiento}</div>|
+                        <div className="registro_individual admin_campo_peso">{registro.peso}</div>|
+                        <div className="registro_individual admin_campo_estatura">{registro.estatura}</div>|
+                        <div className="registro_individual admin_campo_pension">{registro.pension}</div>|
+                        <div className="registro_individual admin_campo_persona_contacto">{registro.persona_contacto}</div>|
+                        <div className="registro_individual admin_campo_telefono">{registro.telefono_contacto}</div>|
+                        <div className="registro_individual admin_campo_fecha">{registro.createdAt}</div>|
                     </div>
                 )
             })}

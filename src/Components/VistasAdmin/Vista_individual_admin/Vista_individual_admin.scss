@@ -20,25 +20,24 @@
             cursor: pointer;
         }
     }
-    .nombre_columna, .nombre_columna_largo{
-        min-width: 25em;
+    .nombre_columna{
+        font-size: 0.7em;
         border-bottom: 0.1em solid $oscuro;
         border-top: 0.1em solid $oscuro;
         background-color: $oscuro;
         color: $principal-claro;
+        padding: 0 0.25em;
     }
     .icono_registro_individual{
         margin: 0 0.25em;
         width: 3em;
         cursor: pointer;
     }
-    .registro_individual, .registro_individual_largo{
-        min-width: 25em;
+    .registro_individual{
+        font-size: 0.7em;
         border-bottom: 0.1em solid $oscuro;
         background-color: $claro;
-    }
-    .nombre_columna_largo, .registro_individual_largo{
-        min-width: 45em;
+        padding: 0 0.25em;
     }
     .pregunta_borrado{
         position: absolute;
@@ -102,5 +101,36 @@
     .nuevo_registro_boton{
         width: 10em;
         margin-left: 0.5em;
+    }
+    /*TAMAÑOS DE COLUMNAS DE LISTADOS*/
+    .admin_campo_id{
+        min-width: 2.5em;
+    }
+    .admin_campo_nombre{
+        min-width: 8em;
+    }
+    .admin_campo_apellidos{
+        min-width: 12em;
+    }
+    .admin_campo_direccion{
+        min-width: 40em;
+    }
+    .admin_campo_telefono{
+        min-width: 13em;
+    }
+    .admin_campo_fecha{
+        min-width: 14em;
+    }
+    .admin_campo_peso{
+        min-width: 3.5em;
+    }
+    .admin_campo_estatura{
+        min-width: 5.5em;
+    }
+    .admin_campo_pension{
+        min-width: 4.5em;
+    }
+    .admin_campo_persona_contacto{
+        min-width: 16em;
     }
 }
