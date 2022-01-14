@@ -1,6 +1,6 @@
 class api{
     constructor(){
-        this.conexion = "http://localhost:3000"
+        this.conexion = "https://ars-neuroclick.herokuapp.com"
     }
 }
 
