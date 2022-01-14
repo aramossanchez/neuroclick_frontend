@@ -232,7 +232,7 @@ const PruebasProfesionales = (props) =>{
                                 <div className='nombre_prueba'>- {prueba.nombre}</div>
                                 <div className="acciones_prueba flex_fila_izquierda">
                                     <div className='boton ver_historial' onClick={(e)=>{abrirHistoricoPrueba(e, `historico_prueba_${prueba.id}`);saberHistoricoPrueba(prueba.id)}}>Ver historial</div>
-                                    {/* SOLO SE PUEDEN CREAR PRUEBAS SI SE ES EL TIP DE PROFESIONAL CORRESPONDIENTE A LA PESTAÑA */}
+                                    {/* SOLO SE PUEDEN CREAR PRUEBAS SI SE ES EL TIPO DE PROFESIONAL CORRESPONDIENTE A LA PESTAÑA */}
                                     {props.profesionalLogado.login.profesional.rol === props.profesional
                                     ?
                                     <div className='boton' onClick={()=>crearPrueba(prueba.id)}>Añadir prueba</div>

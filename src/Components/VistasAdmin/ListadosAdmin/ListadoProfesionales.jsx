@@ -22,6 +22,12 @@ const ListadoProfesionales = (props) =>{
         props.dispatch({type:BORRANDO, payload: true});
         props.dispatch({type:REGISTRO, payload: registro});
     }
+
+    //FORMATEA LA FECHA
+    const editarFecha = (fecha) =>{
+        let f = new Date(fecha);
+        return f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    }
     
     return(
         <div>
@@ -45,7 +51,7 @@ const ListadoProfesionales = (props) =>{
                         <div className="registro_individual admin_campo_direccion">{registro.direccion}</div>|
                         <div className="registro_individual admin_campo_telefono">{registro.telefono_contacto}</div>|
                         <div className="registro_individual admin_campo_rol">{registro.rol}</div>|
-                        <div className="registro_individual admin_campo_fecha">{registro.createdAt}</div>|
+                        <div className="registro_individual admin_campo_fecha">{editarFecha(registro.createdAt)}</div>|
                     </div>
                 )
             })}

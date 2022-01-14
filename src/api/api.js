@@ -1,6 +1,6 @@
 class api{
     constructor(){
-        this.conexion = "https://ars-neuroclick.herokuapp.com"
+        this.conexion = "https://deploy.dgx3p3gz9qta0.amplifyapp.com"
     }
 }
 

@@ -17,8 +17,14 @@ const PantallaAdmin = (props) =>{
     const[vistaAdmin, setVistaAdmin] = useState("");
 
     //SELECCIONAR LA VISTA DE ADMIN QUE SE QUIERE GESTIONAR
-    const elegirVista = (vista) =>{
+    const elegirVista = (vista, e) =>{
         setVistaAdmin(vista);
+        //CAMBIAR CLASE PARA MARCAR QUE TABLA ESTÁ SELECCIONADA
+        let tablas = document.getElementsByClassName('tablas_admin');
+        for (let i = 0; i < tablas.length; i++) {
+            tablas[i].classList.remove('tabla_seleccionada')
+        }
+        e.target.classList.add('tabla_seleccionada');
     }
 
     return(
@@ -27,17 +33,17 @@ const PantallaAdmin = (props) =>{
             <div className='bloques_admin flex_fila_mas_separado'>
                 <div className="bloque_admin_izq">
                     <h2>Tablas para gestionar</h2>
-                    <div className="tablas_admin" onClick={()=>elegirVista("profesionales")}>Profesionales</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("usuarios")}>Usuarios</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("antecedentes_familiares")}>Antecedentes familiares</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("enfermedades")}>Enfermedades</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("enfermedades_usuarios")}>Relación entre enfermedades y usuarios</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("medicaciones")}>Medicaciones</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("medicaciones_usuarios")}>Relación entre medicaciones y usuarios</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("pruebas")}>Pruebas</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("valoraciones")}>Valoraciones</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("pruebas_valoraciones")}>Relación entre pruebas y valoraciones</div>
-                    <div className="tablas_admin" onClick={()=>elegirVista("pruebas_hechas")}>Pruebas realizadas</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("profesionales", e)}>Profesionales</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("usuarios", e)}>Usuarios</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("antecedentes_familiares", e)}>Antecedentes familiares</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("enfermedades", e)}>Enfermedades</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("enfermedades_usuarios", e)}>Relación entre enfermedades y usuarios</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("medicaciones", e)}>Medicaciones</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("medicaciones_usuarios", e)}>Relación entre medicaciones y usuarios</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("pruebas", e)}>Pruebas</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("valoraciones", e)}>Valoraciones</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("pruebas_valoraciones", e)}>Relación entre pruebas y valoraciones</div>
+                    <div className="tablas_admin" onClick={(e)=>elegirVista("pruebas_hechas", e)}>Pruebas realizadas</div>
                 </div>
                 
                 <div className="bloque_admin_der flex_columna">

@@ -71,7 +71,7 @@ const Usuarios = (props) =>{
         <div className="contenedor_izq bloque_principal flex_columna_muy_separado">
             <h2>Usuarios</h2>
             <div className="campo_formulario">
-                <input type="email" name="buscar" placeholder='Buscar usuario' onChange={(e)=>buscarUsuario(e)}/>
+                <input type="text" name="buscar" placeholder='Buscar usuario' onChange={(e)=>buscarUsuario(e)}/>
             </div>
             <div className='contenedor_usuarios flex_columna_arriba_izquierda'>
                 {listadoUsuariosFiltrados.map((usuario)=>{

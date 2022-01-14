@@ -71,7 +71,7 @@ const ActualizarRegistroPruebasHechas = (props) =>{
     const datosActualizarRegistro = (e) =>{
         props.dispatch({type:REGISTRO, payload: {...props.registroSeleccionado.registro, [e.target.name]: e.target.value}});
     }
-
+    
     return(
         <div>
             <div className='contenedor_mensaje'></div>

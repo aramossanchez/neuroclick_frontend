@@ -22,6 +22,12 @@ const ListadoUsuarios = (props) =>{
         props.dispatch({type:BORRANDO, payload: true});
         props.dispatch({type:REGISTRO, payload: registro});
     }
+
+    //FORMATEA LA FECHA
+    const editarFecha = (fecha) =>{
+        let f = new Date(fecha);
+        return f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    }
     
     return(
         <div>
@@ -49,13 +55,13 @@ const ListadoUsuarios = (props) =>{
                         <div className="registro_individual admin_campo_apellidos">{registro.apellidos}</div>|
                         <div className="registro_individual admin_campo_direccion">{registro.direccion}</div>|
                         <div className="registro_individual admin_campo_telefono">{registro.telefono_usuario}</div>|
-                        <div className="registro_individual admin_campo_fecha">{registro.fecha_nacimiento}</div>|
+                        <div className="registro_individual admin_campo_fecha">{editarFecha(registro.fecha_nacimiento)}</div>|
                         <div className="registro_individual admin_campo_peso">{registro.peso}</div>|
                         <div className="registro_individual admin_campo_estatura">{registro.estatura}</div>|
                         <div className="registro_individual admin_campo_pension">{registro.pension}</div>|
                         <div className="registro_individual admin_campo_persona_contacto">{registro.persona_contacto}</div>|
                         <div className="registro_individual admin_campo_telefono">{registro.telefono_contacto}</div>|
-                        <div className="registro_individual admin_campo_fecha">{registro.createdAt}</div>|
+                        <div className="registro_individual admin_campo_fecha">{editarFecha(registro.createdAt)}</div>|
                     </div>
                 )
             })}
