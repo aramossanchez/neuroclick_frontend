@@ -54,4 +54,4 @@ npm start
 * **INFORMES:** En esta vista 
 
 ## URL DE DEPLOY 💥
-https://master.dhtjmui0e4adn.amplifyapp.com/aplicacion
+https://deploy.dgx3p3gz9qta0.amplifyapp.com/

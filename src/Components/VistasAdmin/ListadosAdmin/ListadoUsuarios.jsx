@@ -26,8 +26,7 @@ const ListadoUsuarios = (props) =>{
     //FORMATEA LA FECHA
     const editarFecha = (fecha) =>{
         let f = new Date(fecha);
-        let fvalida = f.toLocaleDateString()
-        return fvalida;
+        return f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     }
     
     return(
