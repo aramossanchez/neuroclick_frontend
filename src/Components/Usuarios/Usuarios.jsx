@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import { USUARIO } from '../../redux/types';
 import { VISTASELECCIONADA } from '../../redux/types';
 import axios from 'axios';
+import Api from '../../api/api';
 
 const Usuarios = (props) =>{
+    
+    //GUARDA URL DE LA API
+    let api = new Api();
 
     //HOOKS
     const [listadoUsuarios, setListadoUsuarios] = useState([]);
@@ -29,7 +33,7 @@ const Usuarios = (props) =>{
         };
         try {
 
-            let res = await axios.get("http://localhost:3000/usuarios", config);
+            let res = await axios.get(`${api.conexion}/usuarios`, config);
             setListadoUsuarios(res.data);
             setListadoUsuariosFiltrados(res.data);
 
