@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import { USUARIO } from '../../redux/types';
 import { VISTASELECCIONADA } from '../../redux/types';
 import axios from 'axios';
+import Api from '../../api/api';
 
 const Usuarios = (props) =>{
+    
+    //GUARDA URL DE LA API
+    let api = new Api();
 
     //HOOKS
     const [listadoUsuarios, setListadoUsuarios] = useState([]);
@@ -29,7 +33,7 @@ const Usuarios = (props) =>{
         };
         try {
 
-            let res = await axios.get("http://localhost:3000/usuarios", config);
+            let res = await axios.get(`${api.conexion}/usuarios`, config);
             setListadoUsuarios(res.data);
             setListadoUsuariosFiltrados(res.data);
 
@@ -67,7 +71,7 @@ const Usuarios = (props) =>{
         <div className="contenedor_izq bloque_principal flex_columna_muy_separado">
             <h2>Usuarios</h2>
             <div className="campo_formulario">
-                <input type="email" name="buscar" placeholder='Buscar usuario' onChange={(e)=>buscarUsuario(e)}/>
+                <input type="text" name="buscar" placeholder='Buscar usuario' onChange={(e)=>buscarUsuario(e)}/>
             </div>
             <div className='contenedor_usuarios flex_columna_arriba_izquierda'>
                 {listadoUsuariosFiltrados.map((usuario)=>{

@@ -25,10 +25,6 @@ const Header = (props) =>{
         props.dispatch({type:USUARIO, payload: {}});
     }
 
-    const perfil = () =>{
-        navigate("/aplicacion");
-    }
-
     return(
         <div className='header flex_fila_muy_separado'>
             <div className="logo_header flex_fila">

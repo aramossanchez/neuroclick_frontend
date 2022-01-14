@@ -23,6 +23,14 @@ const ListadoPruebasHechas = (props) =>{
         props.dispatch({type:REGISTRO, payload: registro});
     }
     
+    //FORMATEA LA FECHA
+    const editarFecha = (fecha) =>{
+        let f = new Date(fecha);
+        let fvalida = f.toLocaleDateString()
+        return fvalida;
+
+    }
+
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
@@ -41,7 +49,7 @@ const ListadoPruebasHechas = (props) =>{
                         <div className="registro_individual admin_campo_id_prueba">{registro.PruebaID}</div>|
                         <div className="registro_individual admin_campo_id_usuario">{registro.UsuarioID}</div>|
                         <div className="registro_individual admin_campo_id_profesional">{registro.ProfesionalID}</div>|
-                        <div className="registro_individual admin_campo_fecha">{registro.createdAt}</div>|
+                        <div className="registro_individual admin_campo_fecha">{editarFecha(registro.createdAt)}</div>|
                     </div>
                 )
             })}

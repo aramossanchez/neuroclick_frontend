@@ -16,6 +16,10 @@
     }
     .bloque_admin_izq{
         width: 25%;
+        .tabla_seleccionada{
+            background-color: $oscuro;
+            color: $principal-claro;
+        }
     }
     .bloque_admin_der{
         width: 73%;
