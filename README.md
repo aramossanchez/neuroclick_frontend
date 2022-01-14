@@ -37,7 +37,7 @@ npm install
 npm start
 ```
 
-## EXPLICACIÓN DE LAS DISTINTAS VISTAS
+## EXPLICACIÓN DE LAS DISTINTAS VISTAS 📊
 
 * **PANTALLA DE LOGIN:** Desde esta pantalla se accede a la aplicación. Es necesario el correo electrónico y la contraseña de un trabajador dado de alta en la base de datos.
 
