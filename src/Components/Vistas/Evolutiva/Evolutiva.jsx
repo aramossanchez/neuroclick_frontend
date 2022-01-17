@@ -38,11 +38,11 @@ const Evolutiva = (props) =>{
         let pruebasFiltrado = [];
         try {
             let res = await axios.get(`${api.conexion}/pruebas_hechas/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
-            //GUARDA EN ARRAY PRUEBAS LOS NOMBRES DE LAS PRUEBAS REALIZADAS
+            //GUARDA EN ARRAY pruebas LOS NOMBRES DE LAS PRUEBAS REALIZADAS
             res.data.map((registro)=>{
                 pruebas.push(registro.prueba.nombre);
             })
-            //GUARDA EN ARRAY PRUEBASFILTRADO LOS NOMBRES DE LAS PRUEBAS HECHAS SIN REPETIRLOS
+            //GUARDA EN ARRAY pruebasFiltrado LOS NOMBRES DE LAS PRUEBAS HECHAS SIN REPETIRLOS
             for (let i = 0; i < pruebas.length; i++) {
                 if(!pruebasFiltrado.includes(pruebas[i])){
                     pruebasFiltrado.push(pruebas[i]);
@@ -81,9 +81,16 @@ const Evolutiva = (props) =>{
             }
             try {
                 let ans = await axios.get(`${api.conexion}/pruebas/nombre/${pruebasSeleccionadas[i]}`, config);
+                console.log(ans);
                 objetosPruebasSeleccionadas.push(ans.data);
                 let res = await axios.post(`${api.conexion}/pruebas_hechas/prueba/nombre/id`, body, config);
-                historialPruebas.push(res.data);
+                //SOLO INTERESA GUARDAR LAS 3 ULTIMAS PRUEBAS REALIZADAS
+                if (res.data.length >= 3) {
+                    res.data.splice(0, res.data.length - 3)
+                    historialPruebas.push(res.data);
+                }else{
+                    historialPruebas.push(res.data);
+                }
             } catch (error) {
                 setMensajeError(error);
             }
@@ -99,6 +106,7 @@ const Evolutiva = (props) =>{
         contadorPruebas++;
     }
 
+    //PINTA LAS BARRAS EN PANTALLA EN FUNCIÓN DE LOS VALORES OBTENIDOS EN LAS PRUEBAS
     const indicarTamañoBarra = (puntuacion, valormax) =>{
         let h = (puntuacion / valormax) * 100;
         return {height: parseInt(h)+"%"}
@@ -113,25 +121,36 @@ const Evolutiva = (props) =>{
         return resultado
     }
 
+    //FORMATEA LA FECHA
+    const editarFecha = (fecha) =>{
+        let f = new Date(fecha);
+        return f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    }
+
     return(
         <div className='contenedor_evolutiva contenedor_vista flex_columna_arriba_izquierda'>
-            <h2>Pruebas realizadas</h2>
-            <div className="pruebas_realizadas flex_fila_arriba_wrap">
-                {nombresPruebas.map((prueba)=>{
-                    return(
-                        <div onClick={(e)=>seleccionarPrueba(e)}>{prueba}</div>
-                    )
-                })}
-            </div>
-            <div className="flex_columna">
-                <div className="boton" onClick={()=>mostrarGraficas()}>MOSTRAR EVOLUTIVA DE PRUEBAS</div>
-            </div>
-            <hr />
-            <h2>Evolutiva de pruebas seleccionadas</h2>
-            {/* SI ESTA TRUE, MUESTRA LAS GRAFICAS */}
-            {viendoEvolutivas
+            
+            {/* SI ES FALSE, MUESTRA LAS PRUEBAS SELECCIONABLES. SI ES TRUE, MUESTRA LAS GRAFICAS */}
+            {!viendoEvolutivas
             ?
+            <div>
+                <h2>Pruebas realizadas al usuario</h2>
+                <div className="pruebas_realizadas flex_fila_arriba_wrap">
+                    {/* MUESTRA LAS PRUEBAS EN LAS QUE EL USUARIO TIENE HISTORIAL */}
+                    {nombresPruebas.map((prueba)=>{
+                        return(
+                            <div className='prueba_seleccionable' onClick={(e)=>seleccionarPrueba(e)}>{prueba}</div>
+                        )
+                    })}
+                </div>
+                <div className="flex_columna">
+                    <div className="boton" onClick={()=>mostrarGraficas()}>MOSTRAR EVOLUTIVA DE PRUEBAS</div>
+                </div>
+                <hr />
+            </div>
+            :
             <div className="evolutivas_mostradas flex_columna_arriba_izquierda">
+                <h2>Evolutiva de pruebas seleccionadas</h2>
                 {pruebasSeleccionadasCompletas.map((prueba)=>{
                     var puntuacionMaxima = prueba[0].puntuacion_maxima;
                     sumarContadorPruebas()
@@ -140,9 +159,10 @@ const Evolutiva = (props) =>{
                             <h3>{prueba[0].nombre}</h3>
                             <div className="evolutiva_total flex_columna_arriba_derecha">
                                 <div className="evolutiva_con_valores_izquierda flex_fila_izquierda">
+                                    {/* MUESTRA LA ESCALA DE LA GRÁFICA */}
                                     <div className="evolutiva_valores flex_columna_muy_separado">
                                         <div className='valor_individual'>{puntuacionMaxima}</div>
-                                        <div className='valor_individual'>{puntuacionMaxima/2}</div>
+                                        <div className='valor_individual'>{(puntuacionMaxima/3)*2}</div>
                                         <div className='valor_individual'>{puntuacionMaxima/3}</div>
                                         <div className='valor_individual'>0</div>
                                     </div>
@@ -152,8 +172,8 @@ const Evolutiva = (props) =>{
                                             <div></div>
                                             <div className='barra_horizontal_border'></div>
                                         </div>
+                                        {/* MUESTRA CADA BARRA EN LA GRAFICA */}
                                         {historialPruebasSeleccionadas[contadorPruebas].map((prueba)=>{
-                                            console.log();
                                             return(
                                                 <div className="evolutiva_barra" style={indicarTamañoBarra(sumarArray(prueba.puntuacion.split(",")), puntuacionMaxima)}>{sumarArray(prueba.puntuacion.split(","))}</div>
                                             )
@@ -161,11 +181,10 @@ const Evolutiva = (props) =>{
                                     </div>
                                 </div>
                                 <div className="evolutiva_fechas flex_fila_muy_separado">
+                                    {/* MUESTRA LAS FECHAS EN LA GRÁFICA */}
                                     {historialPruebasSeleccionadas[contadorPruebas].map((prueba)=>{
                                         return(
-                                            <div>
-                                                <div>{prueba.createdAt}</div>
-                                            </div>
+                                            <div>{editarFecha(prueba.createdAt)}</div>
                                         )
                                     })}
                                 </div>
@@ -174,8 +193,6 @@ const Evolutiva = (props) =>{
                     )
                 })}
             </div>
-            :
-            null
             }
         </div>
     )
