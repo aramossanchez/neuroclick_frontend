@@ -87,9 +87,11 @@ npm start
 
 ![PESTAÑA LOGOPEDIA](src/img/screenshot/logopedia.jpg)
 
-* **(EN DESARROLLO) Evolutiva:** En esta pestaña se puede visualizar un listado de todos los tipos de pruebas realizadas al usuario. Marcando las pruebas deseadas y pulsando el botón de "MOSTRAR EVOLUTIVA DE PRUEBAS", se muestran las gráficas con las 3 últimas pruebas realizadas de cada tipo de prueba seleccionada.
+* **Evolutiva:** En esta pestaña se puede visualizar un listado de todos los tipos de pruebas realizadas al usuario. Marcando las pruebas deseadas y pulsando el botón de "MOSTRAR EVOLUTIVA DE PRUEBAS", se muestran las gráficas con las 3 últimas pruebas realizadas de cada tipo de prueba seleccionada.
 
-![PESTAÑA EVOLUTIVA](src/img/screenshot/evolutiva.jpg)
+![PESTAÑA EVOLUTIVA](src/img/screenshot/evolutiva_pruebas.jpg)
+
+![PESTAÑA EVOLUTIVA](src/img/screenshot/evolutiva_graficas.jpg)
 
 * **(EN DESARROLLO) Seguimientos:** En esta pestaña se puede visualizar los seguimientos creados por cada profesional, así como crear seguimientos nuevos.
 

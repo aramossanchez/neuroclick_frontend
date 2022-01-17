@@ -87,7 +87,6 @@ const Evolutiva = (props) =>{
             try {
                 setCargandoPruebas(true);
                 let ans = await axios.get(`${api.conexion}/pruebas/nombre/${pruebasSeleccionadas[i]}`, config);
-                console.log(ans);
                 objetosPruebasSeleccionadas.push(ans.data);
                 let res = await axios.post(`${api.conexion}/pruebas_hechas/prueba/nombre/id`, body, config);
                 //SOLO INTERESA GUARDAR LAS 3 ULTIMAS PRUEBAS REALIZADAS
