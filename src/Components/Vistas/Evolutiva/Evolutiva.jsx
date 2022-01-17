@@ -5,6 +5,7 @@ import Api from '../../../api/api';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import spin from '../../../img/spin.gif';
 
 const Evolutiva = (props) =>{
     
@@ -25,6 +26,8 @@ const Evolutiva = (props) =>{
     const[historialPruebasSeleccionadas, setHistorialPruebasSeleccionadas] = useState([]);
     //VISUALIZANDO LAS GRAFICAS
     const[viendoEvolutivas, setViendoEvolutivas] = useState(false);
+    //CARGANDO PRUEBAS
+    const[cargandoPruebas, setCargandoPruebas] = useState(false);
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
@@ -37,6 +40,7 @@ const Evolutiva = (props) =>{
         let pruebas = [];
         let pruebasFiltrado = [];
         try {
+            setCargandoPruebas(true);
             let res = await axios.get(`${api.conexion}/pruebas_hechas/usuario/${props.usuarioSeleccionado.usuario.id}`, config);
             //GUARDA EN ARRAY pruebas LOS NOMBRES DE LAS PRUEBAS REALIZADAS
             res.data.map((registro)=>{
@@ -49,6 +53,7 @@ const Evolutiva = (props) =>{
                 }
             }
             setNombresPruebas(pruebasFiltrado);
+            setCargandoPruebas(false)
         } catch (error) {
             setMensajeError(error);
         }
@@ -80,8 +85,8 @@ const Evolutiva = (props) =>{
                 nombre: pruebasSeleccionadas[i]
             }
             try {
+                setCargandoPruebas(true);
                 let ans = await axios.get(`${api.conexion}/pruebas/nombre/${pruebasSeleccionadas[i]}`, config);
-                console.log(ans);
                 objetosPruebasSeleccionadas.push(ans.data);
                 let res = await axios.post(`${api.conexion}/pruebas_hechas/prueba/nombre/id`, body, config);
                 //SOLO INTERESA GUARDAR LAS 3 ULTIMAS PRUEBAS REALIZADAS
@@ -91,6 +96,7 @@ const Evolutiva = (props) =>{
                 }else{
                     historialPruebas.push(res.data);
                 }
+                setCargandoPruebas(false);
             } catch (error) {
                 setMensajeError(error);
             }
@@ -129,7 +135,12 @@ const Evolutiva = (props) =>{
 
     return(
         <div className='contenedor_evolutiva contenedor_vista flex_columna_arriba_izquierda'>
-            
+            {cargandoPruebas
+            ?
+            <img src={spin} alt="Cargando" />
+            :
+            null
+            }
             {/* SI ES FALSE, MUESTRA LAS PRUEBAS SELECCIONABLES. SI ES TRUE, MUESTRA LAS GRAFICAS */}
             {!viendoEvolutivas
             ?
