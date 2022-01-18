@@ -192,7 +192,7 @@ const PruebasProfesionales = (props) =>{
             puntuacion: puntuacionesRadios.toString(),
             PruebaID: pruebaNueva.id,
             UsuarioID: props.usuarioSeleccionado.usuario.id,
-            ProfesionalID: 3
+            ProfesionalID: props.profesionalLogado.login.profesional.id
         }
         try {
             await axios.post(`${api.conexion}/pruebas_hechas/`, prueba, config);
