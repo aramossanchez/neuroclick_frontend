@@ -442,3 +442,25 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 20px;
     border: 2px solid $principal-claro;
 }
+/*CONTENEDOR GENERICO*/
+.scroll_personalizado_principal_claro::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.scroll_personalizado_principal_claro::-webkit-scrollbar:vertical {
+    width:0.5em;
+}
+
+.scroll_personalizado_principal_claro::-webkit-scrollbar-button:increment,.scroll_personalizado_principal_claro::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.scroll_personalizado_principal_claro::-webkit-scrollbar:horizontal {
+    height: 0.5em;
+}
+
+.scroll_personalizado_principal_claro::-webkit-scrollbar-thumb {
+    background-color: $principal-claro;
+    border-radius: 20px;
+    border: 2px solid $principal-claro;
+}
