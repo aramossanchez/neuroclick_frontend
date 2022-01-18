@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const ListadoAntecendetesFamiliares = (props) =>{
+const ListadoAntecedentesFamiliares = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -44,4 +44,4 @@ const ListadoAntecendetesFamiliares = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(ListadoAntecendetesFamiliares);
+}))(ListadoAntecedentesFamiliares);
