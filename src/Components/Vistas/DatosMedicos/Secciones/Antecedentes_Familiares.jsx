@@ -35,7 +35,6 @@ const Antecedentes_Familiares = (props) =>{
         try {
             let res = await axios.get(`${api.conexion}/antecedentes_familiares/usuario/${props.usuarioSeleccionado.usuario.id}`, props.config);
             setAntecedentes(res.data[0]?.descripcion);
-            console.log(antecedentes)
         } catch (error) {
             setMensajeError(error);
         }
