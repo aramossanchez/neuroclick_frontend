@@ -8,6 +8,7 @@ import NuevoRegistroEnfermedades from './NuevoRegistroEnfermedades';
 import NuevoRegistroEnfermedadesUsuarios from './NuevoRegistroEnfermedadesUsuarios';
 import NuevoRegistroMedicaciones from './NuevoRegistroMedicaciones';
 import NuevoRegistroMedicacionesUsuarios from './NuevoRegistroMedicacionesUsuarios';
+import NuevoRegistroSeguimientos from './NuevoRegistroSeguimientos';
 import NuevoRegistroPruebas from './NuevoRegistroPruebas';
 import NuevoRegistroValoraciones from './NuevoRegistroValoraciones';
 import NuevoRegistroPruebasValoraciones from './NuevoRegistroPruebasValoraciones';
@@ -56,6 +57,12 @@ const NuevosRegistrosAdmin = (props) =>{
             {props.vista === "medicaciones_usuarios"
             ?
             <NuevoRegistroMedicacionesUsuarios vista="medicaciones_usuarios" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "seguimientos"
+            ?
+            <NuevoRegistroSeguimientos vista="seguimientos" config={props.config}/>
             :
             null
             }

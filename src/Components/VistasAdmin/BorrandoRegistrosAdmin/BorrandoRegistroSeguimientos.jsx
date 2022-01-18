@@ -7,7 +7,7 @@ import { LISTADO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Borrando_Registro_Pruebas_Hechas = (props) =>{
+const BorrandoRegistroSeguimientos = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -46,9 +46,9 @@ const Borrando_Registro_Pruebas_Hechas = (props) =>{
     return(
         <div>
             <div className='contenedor_mensaje'></div>
-            <div className='pregunta_borrado'>
-                <div className='mb'>¿Estás seguro que quieres eliminar este registro?</div>
-                <div className='mb'>Prueba {props.registroSeleccionado.registro.PruebaID} con fecha {props.registroSeleccionado.registro.createdAt}</div>
+            <div className='pregunta_borrado scroll_personalizado_principal_claro'>
+                <div className='mb '>¿Estás seguro que quieres eliminar este registro?</div>
+                <div className='mb'>Descripción: {props.registroSeleccionado.registro.descripcion}</div>
                 <div className="botones_borrado flex_fila_separado">
                     <div className="boton" onClick={()=>borrarRegistro()}>Borrar registro</div>
                     <div className="boton" onClick={()=>cerrarPreguntarBorrado()}>Cerrar este mensaje</div>
@@ -59,4 +59,4 @@ const Borrando_Registro_Pruebas_Hechas = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Borrando_Registro_Pruebas_Hechas);
+}))(BorrandoRegistroSeguimientos);

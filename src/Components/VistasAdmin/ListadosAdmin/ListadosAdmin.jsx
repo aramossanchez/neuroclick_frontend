@@ -3,11 +3,12 @@ import React from 'react';
 //IMPORTAMOS COMPONENTES PARA LISTADO DE REGISTROS
 import ListadoProfesionales from './ListadoProfesionales';
 import ListadoUsuarios from './ListadoUsuarios';
-import ListadoAntecendetesFamiliares from './ListadoAntecendetesFamiliares';
+import ListadoAntecedentesFamiliares from './ListadoAntecedentesFamiliares';
 import ListadoEnfermedades from './ListadoEnfermedades';
 import ListadoEnfermedadesUsuarios from './ListadoEnfermedadesUsuarios';
 import ListadoMedicaciones from './ListadoMedicaciones';
 import ListadoMedicacionesUsuarios from './ListadoMedicacionesUsuarios';
+import ListadoSeguimientos from './ListadoSeguimientos';
 import ListadoPruebas from './ListadoPruebas';
 import ListadoValoraciones from './ListadoValoraciones';
 import ListadoPruebasValoraciones from './ListadoPruebasValoraciones';
@@ -31,7 +32,7 @@ const ListadosAdmin = (props) =>{
             }
             {props.vista === "antecedentes_familiares"
             ?
-            <ListadoAntecendetesFamiliares/>
+            <ListadoAntecedentesFamiliares/>
             :
             null
             }
@@ -56,6 +57,12 @@ const ListadosAdmin = (props) =>{
             {props.vista === "medicaciones_usuarios"
             ?
             <ListadoMedicacionesUsuarios/>
+            :
+            null
+            }
+            {props.vista === "seguimientos"
+            ?
+            <ListadoSeguimientos/>
             :
             null
             }

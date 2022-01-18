@@ -8,6 +8,7 @@ import ActualizarRegistroEnfermedades from './ActualizarRegistroEnfermedades';
 import ActualizarRegistroEnfermedadesUsuarios from './ActualizarRegistroEnfermedadesUsuarios';
 import ActualizarRegistroMedicaciones from './ActualizarRegistroMedicaciones';
 import ActualizarRegistroMedicacionesUsuarios from './ActualizarRegistroMedicacionesUsuarios';
+import ActualizarRegistroSeguimientos from './ActualizarRegistroSeguimientos';
 import ActualizarRegistroPruebas from './ActualizarRegistroPruebas';
 import ActualizarRegistroValoraciones from './ActualizarRegistroValoraciones';
 import ActualizarRegistroPruebasValoraciones from './ActualizarRegistroPruebasValoraciones';
@@ -56,6 +57,12 @@ const ActualizarRegistrosAdmin = (props) =>{
             {props.vista === "medicaciones_usuarios"
             ?
             <ActualizarRegistroMedicacionesUsuarios vista="medicaciones_usuarios" config={props.config}/>
+            :
+            null
+            }
+            {props.vista === "seguimientos"
+            ?
+            <ActualizarRegistroSeguimientos vista="seguimientos" config={props.config}/>
             :
             null
             }

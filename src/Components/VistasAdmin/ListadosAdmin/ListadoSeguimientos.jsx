@@ -5,7 +5,7 @@ import { EDITANDO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const ListadoPruebas = (props) =>{
+const ListadoSeguimientos = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -26,22 +26,18 @@ const ListadoPruebas = (props) =>{
     return(
         <div>
             <div className='tabla_nombres_columnas flex_fila_izquierda'>
-                |<div className="nombre_columna admin_campo_id">ID</div>|
-                <div className="nombre_columna admin_campo_nombre">Nombre</div>|
-                <div className="nombre_columna admin_campo_rol">Ámbito</div>|
-                <div className="nombre_columna admin_campo_rol">Puntuación máxima</div>|
-                <div className="nombre_columna admin_campo_descripcion_prueba">Descripción</div>|
+                |<div className="nombre_columna admin_campo_id_usuario">ID de usuario</div>|
+                |<div className="nombre_columna admin_campo_id_profesional">ID de profesional</div>|
+                <div className="nombre_columna admin_campo_descripcion">Descripción</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
                 return(
-                    <div key={registro.id} className='flex_fila_izquierda registros_admin'>
+                    <div key={registro.id} className='registros_admin flex_fila_izquierda'>
                         <div className='icono_registro_individual' onClick={()=>mostrarEdicion(registro)}>📝</div>
                         <div className='icono_registro_individual' onClick={()=>preguntarBorrado(registro)}>❌</div>
-                        |<div className="registro_individual admin_campo_id">{registro.id}</div>|
-                        <div className="registro_individual admin_campo_nombre">{registro.nombre}</div>|
-                        <div className="registro_individual admin_campo_rol">{registro.profesional}</div>|
-                        <div className="registro_individual admin_campo_rol">{registro.puntuacion_maxima}</div>|
-                        <div className="registro_individual admin_campo_descripcion_prueba">{registro.descripcion}</div>|
+                        |<div className="registro_individual admin_campo_id_usuario">{registro.UsuarioID}</div>|
+                        |<div className="registro_individual admin_campo_id_profesional">{registro.ProfesionalID}</div>|
+                        <div className="registro_individual admin_campo_descripcion">{registro.descripcion}</div>|
                     </div>
                 )
             })}
@@ -50,4 +46,4 @@ const ListadoPruebas = (props) =>{
 }
 export default connect((state)=>({
     listadoCompleto: state.listadoCompleto
-}))(ListadoPruebas);
+}))(ListadoSeguimientos);

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 
-const NuevoRegistroPruebas = (props) =>{
+const NuevoRegistroSeguimientos = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -15,10 +15,8 @@ const NuevoRegistroPruebas = (props) =>{
     //HOOKS
     //GUARDA DATOS DE REGISTRO NUEVO
     const[nuevoRegistro, setNuevoRegistro] = useState({
-        nombre: "",
         descripcion: "",
-        puntuacion_maxima: "",
-        profesional: "",
+        UsuarioID: ""
     });
     // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
     const[tamañoVentana, setTamañoVentana] = useState(undefined);
@@ -61,10 +59,9 @@ const NuevoRegistroPruebas = (props) =>{
     //CREAR REGISTRO EN LA BASE DE DATOS
     const crearRegistro = async () =>{
         let body = {
-            nombre: nuevoRegistro.nombre,
             descripcion: nuevoRegistro.descripcion,
-            puntuacion_maxima: nuevoRegistro.puntuacion_maxima,
-            profesional: nuevoRegistro.profesional
+            UsuarioID: nuevoRegistro.UsuarioID,
+            ProfesionalID: nuevoRegistro.ProfesionalID,
         };
         try {
             await axios.post(`${api.conexion}/${props.vista}/`, body, props.config);
@@ -87,15 +84,13 @@ const NuevoRegistroPruebas = (props) =>{
                 <h2 className='mb'>Crear registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="nombre">Nombre:</label>
-                        <label htmlFor="profesional">Ámbito:</label>
-                        <label htmlFor="puntuacion_maxima">Puntuación máxima:</label>
+                        <label htmlFor="UsuarioID">ID del usuario:</label>
+                        <label htmlFor="ProfesionalID">ID del profesional:</label>
                         <label htmlFor="descripcion">Descripción:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="nombre" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="profesional" onChange={(e)=>datosCrearRegistro(e)}/>
-                        <input type="text" name="puntuacion_maxima" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="UsuarioID" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="ProfesionalID" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="descripcion" onChange={(e)=>datosCrearRegistro(e)}/>
                     </div>
                 </div>
@@ -107,4 +102,4 @@ const NuevoRegistroPruebas = (props) =>{
         </div>
     )
 }
-export default connect()(NuevoRegistroPruebas);
+export default connect()(NuevoRegistroSeguimientos);

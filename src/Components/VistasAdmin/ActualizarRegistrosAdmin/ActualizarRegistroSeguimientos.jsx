@@ -7,15 +7,15 @@ import { LISTADO } from '../../../redux/types';
 import { EDITANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const ActualizarRegistroPruebas = (props) =>{
+const ActualizarRegistroSeguimientos = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
 
-     // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
-     const[tamañoVentana, setTamañoVentana] = useState(undefined);
-     // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
-     const[estilo, setEstilo] = useState({});
+    // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
+    const[tamañoVentana, setTamañoVentana] = useState(undefined);
+    // ESTILO QUE SE DARÁ A LA VENTA DE CREACIÓN DE REGISTRO
+    const[estilo, setEstilo] = useState({});
     //MENSAJE DE ERROR
     const[mensajeError, setMensajeError] = useState("");
 
@@ -52,10 +52,9 @@ const ActualizarRegistroPruebas = (props) =>{
     //ACTUALIZAR REGISTRO DE LA BASE DE DATOS
     const editarRegistro = async () =>{
         let body = {
-            nombre: props.registroSeleccionado.registro.nombre,
             descripcion: props.registroSeleccionado.registro.descripcion,
-            puntuacion_maxima: props.registroSeleccionado.registro.puntuacion_maxima,
-            profesional: props.registroSeleccionado.registro.profesional
+            UsuarioID: props.registroSeleccionado.registro.UsuarioID,
+            ProfesionalID: props.registroSeleccionado.registro.ProfesionalID
         }
         try {
             await axios.put(`${api.conexion}/${props.vista}/${props.registroSeleccionado.registro.id}`, body, props.config);
@@ -79,15 +78,13 @@ const ActualizarRegistroPruebas = (props) =>{
                 <h2 className='mb'>Modificar registro</h2>
                 <div className='flex_fila_muy_separado mb'>
                     <div className="label_registro_admin flex_columna_izquierda mi">
-                        <label htmlFor="nombre">Nombre:</label>
-                        <label htmlFor="profesional">Ámbito:</label>
-                        <label htmlFor="puntuacion_maxima">Puntuación máxima:</label>
+                        <label htmlFor="UsuarioID">ID del usuario:</label>
+                        <label htmlFor="ProfesionalID">ID del profesional:</label>
                         <label htmlFor="descripcion">Descripción:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
-                        <input type="text" name="nombre" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.nombre}/>
-                        <input type="text" name="profesional" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.profesional}/>
-                        <input type="text" name="puntuacion_maxima" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.puntuacion_maxima}/>
+                        <input type="text" name="UsuarioID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.UsuarioID}/>
+                        <input type="text" name="ProfesionalID" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.ProfesionalID}/>
                         <input type="text" name="descripcion" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.descripcion}/>
                     </div>
                 </div>
@@ -101,4 +98,4 @@ const ActualizarRegistroPruebas = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(ActualizarRegistroPruebas);
+}))(ActualizarRegistroSeguimientos);

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Vista_individual_admin.scss';
+import './VistaIndividualAdmin.scss';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
@@ -8,11 +8,11 @@ import { useEffect } from 'react';
 import { LISTADO } from '../../../redux/types';
 import { CREANDO } from '../../../redux/types';
 import NuevosRegistrosAdmin from '../NuevosRegistrosAdmin/NuevosRegistrosAdmin';
-import Borrando_registros_admin from '../Borrando_registros_admin/Borrando_registros_admin';
+import BorrandoRegistrosAdmin from '../BorrandoRegistrosAdmin/BorrandoRegistrosAdmin';
 import ActualizarRegistrosAdmin from '../ActualizarRegistrosAdmin/ActualizarRegistrosAdmin';
 import ListadosAdmin from '../ListadosAdmin/ListadosAdmin';
 
-const Vista_individual_admin = (props) =>{
+const VistaIndividualAdmin = (props) =>{
 
     //HOOKS
     //MENSAJE DE ERROR
@@ -55,7 +55,7 @@ const Vista_individual_admin = (props) =>{
             {/* MENSAJE QUE APARECE AL INTENTAR BORRAR UN REGISTRO */}
             {props.borrandoRegistro.borrando
             ?
-            <Borrando_registros_admin vista={props.vista} config={props.config}/>
+            <BorrandoRegistrosAdmin vista={props.vista} config={props.config}/>
             :
             null}
             {/* MENSAJE QUE APARECE AL INTENTAR EDITAR UN REGISTRO */}
@@ -72,4 +72,4 @@ export default connect((state)=>({
     creandoRegistro: state.creandoRegistro,
     editandoRegistro: state.editandoRegistro,
     borrandoRegistro: state.borrandoRegistro
-}))(Vista_individual_admin);
+}))(VistaIndividualAdmin);
