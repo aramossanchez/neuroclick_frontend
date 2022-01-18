@@ -4,7 +4,7 @@ import Header from '../../Components/Header/Header.jsx';
 import { connect } from 'react-redux';
 
 /*IMPORTACIONES DE VISTAS DE ADMIN*/
-import Vista_individual_admin from '../../Components/VistasAdmin/Vista_individual_admin/Vista_individual_admin';
+import VistaIndividualAdmin from '../../Components/VistasAdmin/VistaIndividualAdmin/VistaIndividualAdmin';
 
 const PantallaAdmin = (props) =>{
 
@@ -57,73 +57,73 @@ const PantallaAdmin = (props) =>{
                     {/* EN FUNCION DE CUAL SEA LA VISTA CLICKADA, SE CARGARÁ EL COMPONENTE CON UN PROP O CON OTRO. ES NECESARIO HACERLO ASÍ, PORQUE PASANDO EL HOOK DIRECTAMENTE AL PROP DEL COMPONENTE DA ERROR */}
                     {vistaAdmin === "profesionales"
                     ?
-                    <Vista_individual_admin vista="profesionales" config={config}/>
+                    <VistaIndividualAdmin vista="profesionales" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "usuarios"
                     ?
-                    <Vista_individual_admin vista="usuarios" config={config}/>
+                    <VistaIndividualAdmin vista="usuarios" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "antecedentes_familiares"
                     ?
-                    <Vista_individual_admin vista="antecedentes_familiares" config={config}/>
+                    <VistaIndividualAdmin vista="antecedentes_familiares" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "enfermedades"
                     ?
-                    <Vista_individual_admin vista="enfermedades" config={config}/>
+                    <VistaIndividualAdmin vista="enfermedades" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "enfermedades_usuarios"
                     ?
-                    <Vista_individual_admin vista="enfermedades_usuarios" config={config}/>
+                    <VistaIndividualAdmin vista="enfermedades_usuarios" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "medicaciones"
                     ?
-                    <Vista_individual_admin vista="medicaciones" config={config}/>
+                    <VistaIndividualAdmin vista="medicaciones" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "medicaciones_usuarios"
                     ?
-                    <Vista_individual_admin vista="medicaciones_usuarios" config={config}/>
+                    <VistaIndividualAdmin vista="medicaciones_usuarios" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "seguimientos"
                     ?
-                    <Vista_individual_admin vista="seguimientos" config={config}/>
+                    <VistaIndividualAdmin vista="seguimientos" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "pruebas"
                     ?
-                    <Vista_individual_admin vista="pruebas" config={config}/>
+                    <VistaIndividualAdmin vista="pruebas" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "valoraciones"
                     ?
-                    <Vista_individual_admin vista="valoraciones" config={config}/>
+                    <VistaIndividualAdmin vista="valoraciones" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "pruebas_valoraciones"
                     ?
-                    <Vista_individual_admin vista="pruebas_valoraciones" config={config}/>
+                    <VistaIndividualAdmin vista="pruebas_valoraciones" config={config}/>
                     :
                     null
                     }
                     {vistaAdmin === "pruebas_hechas"
                     ?
-                    <Vista_individual_admin vista="pruebas_hechas" config={config}/>
+                    <VistaIndividualAdmin vista="pruebas_hechas" config={config}/>
                     :
                     null
                     }

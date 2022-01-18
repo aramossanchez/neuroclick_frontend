@@ -29,6 +29,7 @@ const ListadoPruebas = (props) =>{
                 |<div className="nombre_columna admin_campo_id">ID</div>|
                 <div className="nombre_columna admin_campo_nombre">Nombre</div>|
                 <div className="nombre_columna admin_campo_rol">Ámbito</div>|
+                <div className="nombre_columna admin_campo_rol">Puntuación máxima</div>|
                 <div className="nombre_columna admin_campo_descripcion_prueba">Descripción</div>|
             </div>
             {props.listadoCompleto.listado.map((registro)=>{
@@ -39,6 +40,7 @@ const ListadoPruebas = (props) =>{
                         |<div className="registro_individual admin_campo_id">{registro.id}</div>|
                         <div className="registro_individual admin_campo_nombre">{registro.nombre}</div>|
                         <div className="registro_individual admin_campo_rol">{registro.profesional}</div>|
+                        <div className="registro_individual admin_campo_rol">{registro.puntuacion_maxima}</div>|
                         <div className="registro_individual admin_campo_descripcion_prueba">{registro.descripcion}</div>|
                     </div>
                 )

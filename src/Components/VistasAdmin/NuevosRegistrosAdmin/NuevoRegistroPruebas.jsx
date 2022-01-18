@@ -17,6 +17,7 @@ const NuevoRegistroPruebas = (props) =>{
     const[nuevoRegistro, setNuevoRegistro] = useState({
         nombre: "",
         descripcion: "",
+        puntuacion_maxima: "",
         profesional: "",
     });
     // TAMAÑO DE VENTANA DE CREACION DE REGISTRO NUEVO
@@ -62,6 +63,7 @@ const NuevoRegistroPruebas = (props) =>{
         let body = {
             nombre: nuevoRegistro.nombre,
             descripcion: nuevoRegistro.descripcion,
+            puntuacion_maxima: nuevoRegistro.puntuacion_maxima,
             profesional: nuevoRegistro.profesional
         };
         try {
@@ -87,11 +89,13 @@ const NuevoRegistroPruebas = (props) =>{
                     <div className="label_registro_admin flex_columna_izquierda mi">
                         <label htmlFor="nombre">Nombre:</label>
                         <label htmlFor="profesional">Ámbito:</label>
+                        <label htmlFor="puntuacion_maxima">Puntuación máxima:</label>
                         <label htmlFor="descripcion">Descripción:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
                         <input type="text" name="nombre" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="profesional" onChange={(e)=>datosCrearRegistro(e)}/>
+                        <input type="text" name="puntuacion_maxima" onChange={(e)=>datosCrearRegistro(e)}/>
                         <input type="text" name="descripcion" onChange={(e)=>datosCrearRegistro(e)}/>
                     </div>
                 </div>

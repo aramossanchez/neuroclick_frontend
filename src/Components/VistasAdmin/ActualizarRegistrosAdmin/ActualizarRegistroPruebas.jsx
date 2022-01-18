@@ -54,6 +54,7 @@ const ActualizarRegistroPruebas = (props) =>{
         let body = {
             nombre: props.registroSeleccionado.registro.nombre,
             descripcion: props.registroSeleccionado.registro.descripcion,
+            puntuacion_maxima: props.registroSeleccionado.registro.puntuacion_maxima,
             profesional: props.registroSeleccionado.registro.profesional
         }
         try {
@@ -80,11 +81,13 @@ const ActualizarRegistroPruebas = (props) =>{
                     <div className="label_registro_admin flex_columna_izquierda mi">
                         <label htmlFor="nombre">Nombre:</label>
                         <label htmlFor="profesional">Ámbito:</label>
+                        <label htmlFor="puntuacion_maxima">Puntuación máxima:</label>
                         <label htmlFor="descripcion">Descripción:</label>
                     </div>
                     <div className="input_registro_admin flex_columna_izquierda">
                         <input type="text" name="nombre" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.nombre}/>
                         <input type="text" name="profesional" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.profesional}/>
+                        <input type="text" name="puntuacion_maxima" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.puntuacion_maxima}/>
                         <input type="text" name="descripcion" onChange={(e)=>datosActualizarRegistro(e)} value={props.registroSeleccionado.registro.descripcion}/>
                     </div>
                 </div>

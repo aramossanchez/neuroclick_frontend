@@ -7,7 +7,7 @@ import { LISTADO } from '../../../redux/types';
 import { BORRANDO } from '../../../redux/types';
 import { REGISTRO } from '../../../redux/types';
 
-const Borrando_Registro_Pruebas_Hechas = (props) =>{
+const BorrandoRegistroPruebasHechas = (props) =>{
 
     //GUARDA URL DE LA API
     let api = new Api();
@@ -59,4 +59,4 @@ const Borrando_Registro_Pruebas_Hechas = (props) =>{
 }
 export default connect((state)=>({
     registroSeleccionado: state.registroSeleccionado
-}))(Borrando_Registro_Pruebas_Hechas);
+}))(BorrandoRegistroPruebasHechas);
