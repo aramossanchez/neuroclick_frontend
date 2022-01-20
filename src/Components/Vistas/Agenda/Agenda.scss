@@ -74,7 +74,6 @@
     .horas_jornada{
         width: 8%;
         div{
-            text-align: center;
             height: 2em;
             border:0.1em solid $principal;
         }
@@ -88,6 +87,10 @@
             height: 2em;
             border:0.1em solid $principal;
         }
+    }
+    //ESTILOS PARA LAS CITAS
+    .cita_fisioterapia, .cita_terapia_ocupacional, .cita_neuropsicologia, .cita_logopedia{
+        position: relative;
     }
     .cita_fisioterapia{
         cursor: pointer;
@@ -112,5 +115,22 @@
     .contenedor_botones{
         margin: 1em 0;
         width: 90%;
+    }
+    //CUADRO DONDE VER DETALLES DE LA CITA
+    .detalles_cita{
+        position: absolute;
+        top: -6em;
+        width: 250%;
+        text-align: left;
+        background-color: $claro;
+        border: 0.1em solid $oscuro;
+        border-radius: 0.5em;
+        padding: 0.5em 0.25em;
+        p{
+            margin: 0.25em;
+        }
+    }
+    .invisible{
+        display: none;
     }
 }
